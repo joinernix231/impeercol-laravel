@@ -336,8 +336,8 @@
 						</div>
 						<div class="products-desc">
 							<h5><a href="{{ route('web.product.show', $product->slug) }}">{{ $product->name }}</a></h5>
-							@if($product->brand)
-								<p class="text-muted mb-2"><small>Marca:{{ $product->brand }}</small></p>
+							@if($product->brand_name)
+								<p class="text-muted mb-2"><small>Marca: {{ $product->brand_name }}</small></p>
 							@endif
 							@if($product->category)
 								<p class="text-muted mb-2"><small>Categoria: {{$product->category->name }}</small></p>
