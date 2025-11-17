@@ -85,8 +85,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Imagen</th>
                                     <th>Nombre</th>
-                                    <th>Precio</th>
                                     <th>Orden</th>
                                     <th>Estado</th>
                                 </tr>
@@ -94,14 +94,14 @@
                             <tbody>
                                 @foreach($product->variants as $variant)
                                     <tr>
-                                        <td>{{ $variant->name }}</td>
                                         <td>
-                                            @if($variant->price)
-                                                ${{ number_format($variant->price, 2) }}
+                                            @if($variant->image)
+                                                <img src="{{ $variant->image_url }}" alt="{{ $variant->name }}" class="img-thumbnail" style="max-width: 80px; max-height: 80px; object-fit: cover;">
                                             @else
-                                                N/A
+                                                <span class="text-muted">Sin imagen</span>
                                             @endif
                                         </td>
+                                        <td>{{ $variant->name }}</td>
                                         <td>{{ $variant->order }}</td>
                                         <td>
                                             @if($variant->is_active)

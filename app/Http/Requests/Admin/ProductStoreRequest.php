@@ -47,7 +47,7 @@ class ProductStoreRequest extends BaseFormRequest
             'is_featured' => 'nullable|boolean',
             'variants' => 'nullable|array|max:3',
             'variants.*.name' => 'required_with:variants|string|max:255',
-            'variants.*.price' => 'nullable|numeric|min:0',
+            'variants.*.image' => 'nullable|string|max:500',
             'variants.*.order' => 'nullable|integer|min:0',
             'variants.*.is_active' => 'nullable|boolean',
         ];
