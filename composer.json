@@ -8,7 +8,9 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.31",
-        "laravel/tinker": "^2.9"
+        "laravel/telescope": "^5.15",
+        "laravel/tinker": "^2.9",
+        "prettus/l5-repository": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

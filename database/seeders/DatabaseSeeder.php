@@ -13,11 +13,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Crear usuario administrador
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Administrador',
+            'email' => 'admin@impeercol.com',
+            'password' => bcrypt('password'), // Cambiar en producción
+            'role' => 'admin',
+            'email_verified_at' => now(),
+        ]);
+
+        // Crear usuario cliente de prueba
+        User::factory()->create([
+            'name' => 'Cliente Test',
+            'email' => 'cliente@impeercol.com',
+            'password' => bcrypt('password'), // Cambiar en producción
+            'role' => 'cliente',
+            'email_verified_at' => now(),
+        ]);
+
+        $this->call([
+            CategorySeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }

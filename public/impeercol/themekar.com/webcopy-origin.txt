@@ -1,0 +1,780 @@
+Uri: https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&family=Pattaya&family=Roboto:wght@100;300;400;500;700;900&display=swap
+File Name: C:\Downloaded Web Sites\themekar.com\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7mwjIgVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7mwjIgVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7mwjJQVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7mwjJQVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7mwKIgVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7mwKIgVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7mx9IgVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7mx9IgVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7mxEIgVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7mxEIgVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7myjJAVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7myjJAVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7myjJQVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7myjJQVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7myRJQVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7myRJQVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/jost/v20/92zPtBhPNqw79Ij1E865zBUv7mz9JQVG.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\jost\v20\92zPtBhPNqw79Ij1E865zBUv7mz9JQVG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/pattaya/v18/ea8ZadcqV_zkHY-XNdA.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\pattaya\v18\ea8ZadcqV_zkHY-XNdA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\roboto\v49\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaabWmT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\roboto\v49\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbGmT.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\roboto\v49\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbGmT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\roboto\v49\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjammT.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\roboto\v49\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjammT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v49/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuZtammT.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\s\roboto\v49\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuZtammT.ttf
+Content Type: font/ttf
+
+Uri: https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png
+File Name: C:\Downloaded Web Sites\themekar.com\pizza3\asset\master\natureSmaller.png
+Content Type: image/png
+
+Uri: https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png
+File Name: C:\Downloaded Web Sites\themekar.com\robin-dela\css-mask-animation\master\img\nature-sprite.png
+Content Type: image/png
+
+Uri: https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png
+File Name: C:\Downloaded Web Sites\themekar.com\robin-dela\css-mask-animation\master\img\urban-sprite.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/about.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\about.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/animate.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\animate.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/bootstrap-icons.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\bootstrap-icons.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/bootstrap.min.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\bootstrap.min.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/fontawesome.min.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\fontawesome.min.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/icofont.min.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\icofont.min.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/magnific-popup.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\magnific-popup.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/owl.carousel.min.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\owl.carousel.min.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/owl.theme.default.min.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\owl.theme.default.min.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/responsive.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\responsive.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/site-flaticon.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\site-flaticon.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/css/themify-icons.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\css\themify-icons.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/bootstrap-icons.woff
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\bootstrap-icons.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/bootstrap-icons.woff2
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\bootstrap-icons.woff2
+Content Type: font/woff2
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-brands-400.eot
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-brands-400.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-brands-400.eot?
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-brands-400-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-brands-400.svg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-brands-400.svg
+Content Type: image/svg+xml
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-brands-400.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-brands-400.ttf
+Content Type: font/ttf
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-brands-400.woff
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-brands-400.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-brands-400.woff2
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-brands-400.woff2
+Content Type: font/woff2
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-regular-400.eot
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-regular-400.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-regular-400.eot?
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-regular-400-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-regular-400.svg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-regular-400.svg
+Content Type: image/svg+xml
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-regular-400.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-regular-400.ttf
+Content Type: font/ttf
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-regular-400.woff
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-regular-400.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-regular-400.woff2
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-regular-400.woff2
+Content Type: font/woff2
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-solid-900.eot
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-solid-900.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-solid-900.eot?
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-solid-900-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-solid-900.svg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-solid-900.svg
+Content Type: image/svg+xml
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-solid-900.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-solid-900.ttf
+Content Type: font/ttf
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-solid-900.woff
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-solid-900.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/fa-solid-900.woff2
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\fa-solid-900.woff2
+Content Type: font/woff2
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/Flaticon.eot
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\Flaticon.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/Flaticon.eot?
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\Flaticon-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/Flaticon.svg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\Flaticon.svg
+Content Type: image/svg+xml
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/Flaticon.ttf
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\Flaticon.ttf
+Content Type: font/ttf
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/Flaticon.woff
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\Flaticon.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/icofont.woff
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\icofont.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/icofont.woff2
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\icofont.woff2
+Content Type: font/woff2
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/themify.eot?
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\themify.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/themify.svg?-fvbane
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\themify.svg
+Content Type: image/svg+xml
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/themify.ttf?-fvbane
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\themify.ttf
+Content Type: font/ttf
+
+Uri: https://themekar.com/templatebucket/drilux/assets/fonts/themify.woff?-fvbane
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\fonts\themify.woff
+Content Type: font/woff
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/about/about-4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\about\about-4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/about/about-5.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\about\about-5.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/about/about-6.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\about\about-6.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/about-right-bg.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\about-right-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/action-bg.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\action-bg.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/bg-1.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\bg-1.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/bg-team.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\bg-team.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/contact-right.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\contact-right.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/service-2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\service-2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/service-bg.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\service-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/sketch.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\sketch.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/bg/step-bg.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\bg\step-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/blog/1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\blog\1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/blog/2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\blog\2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/blog/3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\blog\3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/breadcrumb/breadcrumb.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\breadcrumb\breadcrumb.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/choose/1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\choose\1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/choose/2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\choose\2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/choose/3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\choose\3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/choose/4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\choose\4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/choose/5.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\choose\5.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/dot/dot-2.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\dot\dot-2.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/gallery/1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\gallery\1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/gallery/2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\gallery\2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/gallery/3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\gallery\3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/gallery/4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\gallery\4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/header/hdr-3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\header\hdr-3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/header/hdr-4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\header\hdr-4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/logo/favicon.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\logo\favicon.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/logo/logo-white.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\logo\logo-white.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/logo/logo.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\logo\logo.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/logo/pre-loader.gif
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\logo\pre-loader.gif
+Content Type: image/gif
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/partner/cl-1.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\partner\cl-1.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/partner/cl-2.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\partner\cl-2.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/partner/cl-3.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\partner\cl-3.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/partner/cl-4.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\partner\cl-4.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/partner/cl-5.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\partner\cl-5.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/1.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\1.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/2.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\2.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/3.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\3.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/4.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\4.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/5.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\5.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/6.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\6.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/7.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\7.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/product/8.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\product\8.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/project/440x380-1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\project\440x380-1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/project/440x380-2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\project\440x380-2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/project/440x380-3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\project\440x380-3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/project/440x380-4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\project\440x380-4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/project/900x380-2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\project\900x380-2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/project/900x380.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\project\900x380.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/service/1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\service\1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/service/3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\service\3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/service/4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\service\4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shape/dot-2.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shape\dot-2.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shape/shape-10.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shape\shape-10.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shape/shape-3.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shape\shape-3.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shape/shape-4.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shape\shape-4.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shape/shape-7.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shape\shape-7.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shape/shape-9.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shape\shape-9.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/01.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\01.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/02.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\02.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/03.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\03.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/04.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\04.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/1.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\1.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/shop/4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\shop\4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/cart-pic.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\cart-pic.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/de-1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\de-1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/de-2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\de-2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/post-1.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\post-1.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/post-2.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\post-2.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/post-3.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\post-3.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/post-4.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\post-4.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/proj.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\proj.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/serv.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\serv.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/single-content-img.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\single-content-img.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/single-qoute.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\single-qoute.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/user-1-s.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\user-1-s.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/user-1.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\user-1.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/user-2-s.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\user-2-s.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/user-2.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\user-2.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/user-3-s.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\user-3-s.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/single/user-3.png
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\single\user-3.png
+Content Type: image/png
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/team/1.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\team\1.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/team/2.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\team\2.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/team/3.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\team\3.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/img/team/4.jpg
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\img\team\4.jpg
+Content Type: image/jpeg
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/active-class.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\active-class.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/bootstrap-menu.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\bootstrap-menu.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/bootstrap.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\bootstrap.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/color-option.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\color-option.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/count-to.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\count-to.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/imagesloaded.pkgd.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\imagesloaded.pkgd.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/isotope.pkgd.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\isotope.pkgd.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/jquery-3.6.0.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\jquery-3.6.0.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/jquery.appear.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\jquery.appear.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/jquery.countdown.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\jquery.countdown.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/jquery.easing.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\jquery.easing.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/jquery.magnific-popup.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\jquery.magnific-popup.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/jquery.mixitup.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\jquery.mixitup.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/main.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\main.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/modernizr.custom.13711.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\modernizr.custom.13711.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/owl.carousel.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\owl.carousel.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/popper.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\popper.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/progress-bar.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\progress-bar.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/typed.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\typed.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/wodry.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\wodry.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/wow.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\wow.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/js/YTPlayer.min.js
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\js\YTPlayer.min.js
+Content Type: text/javascript
+
+Uri: https://themekar.com/templatebucket/drilux/assets/style.css
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\assets\style.css
+Content Type: text/css
+
+Uri: https://themekar.com/templatebucket/drilux/blog-left-sidebar.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\blog-left-sidebar.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/blog-right-sidebar.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\blog-right-sidebar.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/blog.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\blog.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/cart.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\cart.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/checkout.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\checkout.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/contact.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\contact.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/index-2.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\index-2.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/index-3.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\index-3.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/index.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\index.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/login.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\login.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/project-single.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\project-single.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/project.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\project.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/register.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\register.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/service-single.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\service-single.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/service.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\service.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/shop-details.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\shop-details.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/shop.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\shop.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/single.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\single.html
+Content Type: text/html
+
+Uri: https://themekar.com/templatebucket/drilux/team.html
+File Name: C:\Downloaded Web Sites\themekar.com\templatebucket\drilux\team.html
+Content Type: text/html
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "626b9e7ddd47fb7eff9aaa53cce0c9ad",
+    "content-hash": "2e38bc064deff2a0bced16563b74f8ef",
     "packages": [
         {
             "name": "brick/math",
@@ -1388,6 +1388,75 @@
             "time": "2025-10-09T13:42:30+00:00"
         },
         {
+            "name": "laravel/telescope",
+            "version": "v5.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "cbdd61b025dddeccaffefc3b54d327c4e0a410b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/cbdd61b025dddeccaffefc3b54d327c4e0a410b6",
+                "reference": "cbdd61b025dddeccaffefc3b54d327c4e0a410b6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.37|^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.0",
+                "symfony/console": "^5.3|^6.0|^7.0",
+                "symfony/var-dumper": "^5.0|^6.0|^7.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "laravel/octane": "^1.4|^2.0|dev-develop",
+                "orchestra/testbench": "^6.40|^7.37|^8.17|^9.0|^10.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0|^10.5|^11.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/telescope/issues",
+                "source": "https://github.com/laravel/telescope/tree/v5.15.0"
+            },
+            "time": "2025-10-23T15:19:35+00:00"
+        },
+        {
             "name": "laravel/tinker",
             "version": "v2.10.1",
             "source": {
@@ -2585,6 +2654,130 @@
                 }
             ],
             "time": "2025-08-21T11:53:16+00:00"
+        },
+        {
+            "name": "prettus/l5-repository",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andersao/l5-repository.git",
+                "reference": "742c6f481c551cb99454e572240f0b60a04c5e69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/742c6f481c551cb99454e572240f0b60a04c5e69",
+                "reference": "742c6f481c551cb99454e572240f0b60a04c5e69",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/console": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/database": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/filesystem": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/http": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/pagination": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/validation": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.1|^8.0",
+                "prettus/laravel-validation": "~1.1|~1.2|~1.3|~1.4|~1.5|~1.6|~1.7"
+            },
+            "suggest": {
+                "league/fractal": "Required to use the Fractal Presenter (0.12.*).",
+                "prettus/laravel-validation": "Required to provide easy validation with the repository (1.1.*)",
+                "robclancy/presenter": "Required to use the Presenter Model (1.3.*)"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Prettus\\Repository\\Providers\\RepositoryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Prettus\\Repository\\": "src/Prettus/Repository/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anderson Andrade",
+                    "email": "contato@andersonandra.de",
+                    "homepage": "http://andersonandra.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5|6|7|8|9|10|11|12 - Repositories to  the database layer",
+            "homepage": "http://andersao.github.io/l5-repository",
+            "keywords": [
+                "cache",
+                "eloquent",
+                "laravel",
+                "model",
+                "repository"
+            ],
+            "support": {
+                "docs": "http://andersao.github.io/l5-repository",
+                "email": "contato@andersonandra.de",
+                "issues": "https://github.com/andersao/l5-repository/issues",
+                "source": "https://github.com/andersao/l5-repository",
+                "wiki": "https://github.com/andersao/l5-repository"
+            },
+            "time": "2025-10-10T13:25:00+00:00"
+        },
+        {
+            "name": "prettus/laravel-validation",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andersao/laravel-validator.git",
+                "reference": "fc6ecaaedb482767592eba2a4178792437c86bda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andersao/laravel-validator/zipball/fc6ecaaedb482767592eba2a4178792437c86bda",
+                "reference": "fc6ecaaedb482767592eba2a4178792437c86bda",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.4|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/validation": "~5.4|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Prettus\\Validator\\": "src/Prettus/Validator/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Anderson Andrade",
+                    "email": "contato@andersonandra.de",
+                    "homepage": "http://andersonandra.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Validation Service",
+            "homepage": "http://andersao.github.io/laravel-validation",
+            "keywords": [
+                "laravel",
+                "service",
+                "validation"
+            ],
+            "support": {
+                "docs": "http://andersao.github.io/laravel-validation",
+                "email": "contato@andersonandra.de",
+                "issues": "https://github.com/andersao/laravel-validation/issues",
+                "source": "https://github.com/andersao/laravel-validation",
+                "wiki": "https://github.com/andersao/laravel-validation"
+            },
+            "time": "2025-03-07T18:33:05+00:00"
         },
         {
             "name": "psr/clock",
@@ -8175,12 +8368,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
