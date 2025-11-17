@@ -2,6 +2,122 @@
 
 @section('title', $product->name . ' - IMPEERCOL')
 
+@section('styles')
+<style>
+	/* Animaciones simples al pasar el mouse */
+	.shop-datails-pic img {
+		transition: transform 0.3s ease;
+	}
+
+	.shop-datails-pic:hover img {
+		transform: scale(1.05);
+	}
+
+	.sh-pic {
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+
+	.sh-pic:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+		border-color: #dc3545 !important;
+	}
+
+	.sh-pic img {
+		transition: all 0.3s ease;
+	}
+
+	.sh-pic:hover img {
+		border-color: #dc3545 !important;
+	}
+
+	/* Botones con animación y color rojo */
+	.sh-de-btn-1 {
+		transition: all 0.3s ease;
+	}
+
+	.sh-de-btn-1:hover {
+		background-color: #dc3545 !important;
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+	}
+
+	.sh-de-btn-2 {
+		transition: all 0.3s ease;
+		border-color: #dc3545 !important;
+		color: #dc3545 !important;
+	}
+
+	.sh-de-btn-2:hover {
+		background-color: #dc3545 !important;
+		color: #ffffff !important;
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+	}
+
+	/* Pestañas con animación */
+	.nav-pills .nav-link {
+		transition: all 0.3s ease;
+	}
+
+	.nav-pills .nav-link:hover {
+		background-color: rgba(220, 53, 69, 0.1);
+		color: #dc3545;
+	}
+
+	.nav-pills .nav-link.active {
+		background-color: #dc3545 !important;
+		color: #ffffff !important;
+	}
+
+	/* Tabla con hover */
+	.table tbody tr {
+		transition: all 0.3s ease;
+	}
+
+	.table tbody tr:hover {
+		background-color: rgba(220, 53, 69, 0.05);
+		transform: translateX(5px);
+	}
+
+	/* Productos relacionados con hover */
+	.products-box {
+		transition: all 0.3s ease;
+	}
+
+	.products-box:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(220, 53, 69, 0.2);
+	}
+
+	.products-box:hover .products-pic img {
+		transform: scale(1.1);
+	}
+
+	.products-pic img {
+		transition: transform 0.3s ease;
+	}
+
+	.cart-btn {
+		transition: all 0.3s ease;
+	}
+
+	.cart-btn:hover {
+		background-color: #dc3545 !important;
+		color: #ffffff !important;
+		transform: translateY(-2px);
+		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+	}
+
+	/* Precio destacado */
+	.sh-de-price span {
+		color: #dc3545;
+		font-weight: 700;
+	}
+</style>
+@endsection
+
 @section('content')
 	<!-- Start Breadcrumb -->
 	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/breadcrumb/breadcrumb.jpg') }})">

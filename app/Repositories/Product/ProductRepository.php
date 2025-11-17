@@ -124,6 +124,16 @@ class ProductRepository extends BaseRepository
             ->with(['category', 'activeVariants'])
             ->active();
 
+        // Buscar por texto (nombre, descripción o marca)
+        if (isset($filters['search']) && $filters['search']) {
+            $search = $filters['search'];
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%")
+                  ->orWhere('brand', 'LIKE', "%{$search}%");
+            });
+        }
+
         // Filtrar por categoría
         if (isset($filters['category_id']) && $filters['category_id']) {
             $query->byCategory($filters['category_id']);
