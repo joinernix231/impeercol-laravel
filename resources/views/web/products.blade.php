@@ -11,35 +11,29 @@
 		padding: 25px 35px;
 		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
 		margin-bottom: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 30px;
-		flex-wrap: wrap;
 		border: 1px solid rgba(0, 0, 0, 0.05);
 		backdrop-filter: blur(10px);
 	}
 
-	.modern-filter-bar-left {
+	.modern-filter-bar form {
 		display: flex;
 		align-items: center;
 		gap: 25px;
-		flex: 1;
+		flex-wrap: nowrap;
+		width: 100%;
 	}
 
-	.modern-filter-bar-right {
-		display: flex;
-		align-items: center;
-		gap: 25px;
-		flex-wrap: wrap;
+	.modern-filter-bar-left {
+		flex: 1;
+		min-width: 0;
 	}
 
 	/* Campo de búsqueda */
 	.modern-search-box {
 		position: relative;
 		min-width: 200px;
-		flex: 1;
-		max-width: 350px;
+		width: 100%;
+		max-width: 300px;
 	}
 
 	.modern-search-box input {
@@ -97,6 +91,8 @@
 		align-items: center;
 		gap: 15px;
 		position: relative;
+		flex-shrink: 0;
+		min-width: 0;
 	}
 
 	.modern-filter-item label {
@@ -108,6 +104,8 @@
 		letter-spacing: 0.3px;
 		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 		transition: all 0.3s ease;
+		flex-shrink: 0;
+		min-width: fit-content;
 	}
 
 	.modern-filter-item:hover label {
@@ -116,7 +114,9 @@
 	}
 
 	.modern-filter-item .form-select {
-		min-width: 200px;
+		width: 220px;
+		min-width: 220px;
+		max-width: 220px;
 		padding: 12px 40px 12px 18px;
 		border: 2px solid #e9ecef;
 		border-radius: 12px;
@@ -132,6 +132,9 @@
 		cursor: pointer;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 		font-weight: 500;
+		height: 45px;
+		box-sizing: border-box;
+		flex-shrink: 0;
 	}
 
 	.modern-filter-item .form-select:hover {
@@ -167,6 +170,10 @@
 		box-shadow: 0 2px 8px rgba(220, 53, 69, 0.15);
 		position: relative;
 		overflow: hidden;
+		height: 45px;
+		flex-shrink: 0;
+		min-width: 180px;
+		box-sizing: border-box;
 	}
 
 	.modern-clear-btn::before {
@@ -214,43 +221,190 @@
 	}
 
 	/* Responsive */
+	@media (max-width: 1400px) {
+		.modern-filter-bar form {
+			gap: 20px;
+		}
+
+		.modern-filter-item {
+			gap: 12px;
+		}
+
+		.modern-filter-item label {
+			font-size: 1.3rem;
+		}
+
+		.modern-filter-item .form-select {
+			width: 200px;
+			min-width: 200px;
+			max-width: 200px;
+		}
+
+		.modern-search-box {
+			max-width: 280px;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		.modern-filter-bar {
+			padding: 20px 25px;
+		}
+
+		.modern-filter-bar form {
+			gap: 18px;
+		}
+
+		.modern-filter-item {
+			gap: 12px;
+		}
+
+		.modern-filter-item label {
+			font-size: 1.25rem;
+		}
+
+		.modern-filter-item .form-select {
+			width: 180px;
+			min-width: 180px;
+			max-width: 180px;
+		}
+
+		.modern-search-box {
+			max-width: 250px;
+		}
+	}
+
+	@media (max-width: 992px) {
+		.modern-filter-bar {
+			padding: 20px;
+		}
+
+		.modern-filter-bar form {
+			flex-wrap: wrap;
+			gap: 15px;
+			justify-content: flex-start;
+		}
+
+		.modern-filter-bar-left {
+			flex: 1 1 100%;
+			min-width: 100%;
+			order: 1;
+		}
+
+		.modern-search-box {
+			max-width: 100%;
+		}
+
+		.modern-filter-item {
+			flex: 0 1 calc(50% - 8px);
+			min-width: 250px;
+			gap: 12px;
+		}
+
+		.modern-filter-item label {
+			font-size: 1.2rem;
+			flex-shrink: 0;
+		}
+
+		.modern-filter-item .form-select {
+			width: 100%;
+			min-width: 150px;
+			max-width: 100%;
+			flex: 1;
+		}
+
+		.modern-clear-btn {
+			flex: 1 1 100%;
+			width: 100%;
+			min-width: 100%;
+			justify-content: center;
+			margin-top: 0;
+			order: 3;
+		}
+	}
+
 	@media (max-width: 768px) {
 		.modern-filter-bar {
+			padding: 20px 15px;
+			border-radius: 15px;
+		}
+
+		.modern-filter-bar form {
 			flex-direction: column;
 			align-items: stretch;
 			gap: 15px;
 		}
 
-		.modern-filter-bar-left,
-		.modern-filter-bar-right {
+		.modern-filter-bar-left {
 			width: 100%;
-			flex-direction: column;
-			align-items: stretch;
+			flex: 1 1 100%;
+			order: 1;
 		}
 
 		.modern-search-box {
-			min-width: auto;
 			max-width: 100%;
+		}
+
+		.modern-filter-item {
+			flex-direction: row;
+			align-items: center;
+			width: 100%;
+			flex: 1 1 100%;
+			gap: 12px;
+			min-width: 100%;
+		}
+
+		.modern-filter-item label {
+			margin-bottom: 0;
+			font-size: 1.15rem;
+			min-width: 90px;
+			flex-shrink: 0;
+		}
+
+		.modern-filter-item .form-select {
+			width: 100% !important;
+			min-width: 150px !important;
+			max-width: 100% !important;
+			flex: 1;
+		}
+
+		.modern-clear-btn {
+			width: 100%;
+			min-width: 100%;
+			justify-content: center;
+			margin-top: 0;
+			order: 3;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.modern-filter-bar {
+			padding: 15px;
 		}
 
 		.modern-filter-item {
 			flex-direction: column;
 			align-items: stretch;
-			width: 100%;
+			gap: 8px;
 		}
 
 		.modern-filter-item label {
-			margin-bottom: 8px;
+			margin-bottom: 0;
+			font-size: 1.1rem;
+			min-width: auto;
+			width: 100%;
 		}
 
 		.modern-filter-item .form-select {
-			width: 100%;
-			min-width: auto;
+			width: 100% !important;
+			min-width: 100% !important;
+			max-width: 100% !important;
 		}
 
+		.modern-filter-item .form-select,
+		.modern-search-box input,
 		.modern-clear-btn {
-			width: 100%;
-			justify-content: center;
+			height: 42px;
+			font-size: 0.95rem;
 		}
 	}
 </style>
@@ -282,7 +436,7 @@
 
 			{{-- Barra de Filtros Moderna --}}
 			<div class="modern-filter-bar">
-				<form method="GET" action="{{ route('web.products') }}" style="display: contents;">
+				<form method="GET" action="{{ route('web.products') }}">
 					<div class="modern-filter-bar-left">
 						<div class="modern-search-box">
 							<input type="text" 
@@ -294,34 +448,32 @@
 							<i class="bi bi-search modern-search-icon"></i>
 						</div>
 					</div>
-					<div class="modern-filter-bar-right">
-						<div class="modern-filter-item">
-							<label for="category_id">Categoría</label>
-							<select class="form-select" id="category_id" name="category_id" onchange="this.form.submit()">
-								<option value="">Todas las categorías</option>
-								@foreach($categories as $category)
-									<option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-										{{ $category->name }}
-									</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="modern-filter-item">
-							<label for="brand">Marca</label>
-							<select class="form-select" id="brand" name="brand" onchange="this.form.submit()">
-								<option value="">Todas las marcas</option>
-								@foreach($brands as $brand)
-									<option value="{{ $brand }}" {{ request('brand') == $brand ? 'selected' : '' }}>
-										{{ $brand }}
-									</option>
-								@endforeach
-							</select>
-						</div>
-						<a href="{{ route('web.products') }}" class="modern-clear-btn">
-							<i class="bi bi-arrow-counterclockwise"></i>
-							<span>Limpiar Filtros</span>
-						</a>
+					<div class="modern-filter-item">
+						<label for="category_id">Categoría</label>
+						<select class="form-select" id="category_id" name="category_id" onchange="this.form.submit()">
+							<option value="">Todas las categorías</option>
+							@foreach($categories as $category)
+								<option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+									{{ $category->name }}
+								</option>
+							@endforeach
+						</select>
 					</div>
+					<div class="modern-filter-item">
+						<label for="brand">Marca</label>
+						<select class="form-select" id="brand" name="brand" onchange="this.form.submit()">
+							<option value="">Todas las marcas</option>
+							@foreach($brands as $brand)
+								<option value="{{ $brand }}" {{ request('brand') == $brand ? 'selected' : '' }}>
+									{{ $brand }}
+								</option>
+							@endforeach
+						</select>
+					</div>
+					<a href="{{ route('web.products') }}" class="modern-clear-btn">
+						<i class="bi bi-arrow-counterclockwise"></i>
+						<span>Limpiar Filtros</span>
+					</a>
 				</form>
 			</div>
 
