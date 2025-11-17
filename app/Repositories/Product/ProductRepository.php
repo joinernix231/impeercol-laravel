@@ -61,7 +61,7 @@ class ProductRepository extends BaseRepository
     public function getFeatured(int $limit = 3)
     {
         return $this->model
-            ->with(['category', 'activeVariants'])
+            ->with(['category', 'brand', 'activeVariants'])
             ->active()
             ->featured()
             ->ordered()
@@ -78,7 +78,7 @@ class ProductRepository extends BaseRepository
     public function findBySlug(string $slug)
     {
         return $this->model
-            ->with(['category', 'activeVariants'])
+            ->with(['category', 'brand', 'activeVariants'])
             ->where('slug', $slug)
             ->active()
             ->first();
@@ -92,7 +92,7 @@ class ProductRepository extends BaseRepository
     public function getAllActive()
     {
         return $this->model
-            ->with(['category', 'activeVariants'])
+            ->with(['category', 'brand', 'activeVariants'])
             ->active()
             ->ordered()
             ->get();
@@ -106,7 +106,7 @@ class ProductRepository extends BaseRepository
     public function getAllForAdmin()
     {
         return $this->model
-            ->with(['category', 'variants'])
+            ->with(['category', 'brand', 'variants'])
             ->ordered()
             ->get();
     }
@@ -121,7 +121,7 @@ class ProductRepository extends BaseRepository
     public function getFiltered(array $filters = [], int $perPage = 12)
     {
         $query = $this->model
-            ->with(['category', 'activeVariants'])
+            ->with(['category', 'brand', 'activeVariants'])
             ->active();
 
         // Filtrar por categoría
@@ -151,7 +151,7 @@ class ProductRepository extends BaseRepository
     public function getRelatedProducts(int $productId, int $categoryId, int $limit = 4)
     {
         return $this->model
-            ->with(['category', 'activeVariants'])
+            ->with(['category', 'brand', 'activeVariants'])
             ->where('category_id', $categoryId)
             ->where('id', '!=', $productId)
             ->active()
@@ -169,10 +169,13 @@ class ProductRepository extends BaseRepository
     {
         return $this->model
             ->active()
-            ->whereNotNull('brand')
-            ->distinct()
+            ->whereNotNull('brand_id')
+            ->with('brand')
+            ->get()
             ->pluck('brand')
-            ->sort()
+            ->filter()
+            ->unique('id')
+            ->sortBy('name')
             ->values();
     }
 

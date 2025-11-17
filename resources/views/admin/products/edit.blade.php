@@ -108,8 +108,15 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="brand" class="form-label">Marca</label>
-                        <input type="text" class="form-control" id="brand" name="brand" value="{{ old('brand', $product->brand) }}" placeholder="Ej: Texsa, Sika, etc.">
+                        <label for="brand_id" class="form-label">Marca</label>
+                        <select class="form-select" id="brand_id" name="brand_id">
+                            <option value="">Seleccione una marca</option>
+                            @foreach($brands as $brand)
+                                <option value="{{ $brand->id }}" {{ old('brand_id', $product->brand_id) == $brand->id ? 'selected' : '' }}>
+                                    {{ $brand->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">

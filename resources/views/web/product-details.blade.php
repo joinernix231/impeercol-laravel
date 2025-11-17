@@ -90,7 +90,7 @@
 					<div class="sh-de-header">
 						<h4>{{ $product->name }}</h4>
 						@if($product->brand)
-							<p class="mb-2"><strong>Marca:</strong> {{ $product->brand }}</p>
+							<p class="mb-2"><strong>Marca:</strong> {{ $product->brand->name }}</p>
 						@endif
 						@if($product->category)
 							<p class="mb-2"><strong>Categoría:</strong> {{ $product->category->name }}</p>

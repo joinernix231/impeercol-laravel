@@ -40,7 +40,7 @@ class ProductStoreRequest extends BaseFormRequest
             'description' => 'required|string',
             'image' => 'nullable|string|max:500',
             'gallery' => 'nullable',
-            'brand' => 'nullable|string|max:255',
+            'brand_id' => 'nullable|exists:brands,id',
             'technical_sheet_file' => 'nullable|string|max:500',
             'order' => 'nullable|integer|min:0',
             'is_active' => 'nullable|boolean',

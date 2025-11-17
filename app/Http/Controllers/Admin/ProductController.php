@@ -7,6 +7,7 @@ use App\Repositories\Product\ProductRepository;
 use App\Repositories\Category\CategoryRepository;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Requests\Admin\ProductUpdateRequest;
+use App\Models\Brand;
 use Illuminate\Support\Str;
 
 /**
@@ -44,7 +45,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = $this->categoryRepository->getAllActive();
-        return view('admin.products.create', compact('categories'));
+        $brands = Brand::active()->ordered()->get();
+        return view('admin.products.create', compact('categories', 'brands'));
     }
 
     /**
@@ -80,7 +82,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = $this->productRepository->find($id);
+        $product = $this->productRepository->findWithRelations($id, ['category', 'brand', 'variants']);
 
         if (!$product) {
             return redirect()->route('admin.products.index')
@@ -96,7 +98,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         // Cargar el producto con sus variantes usando el repositorio
-        $product = $this->productRepository->findWithRelations($id, ['variants']);
+        $product = $this->productRepository->findWithRelations($id, ['category', 'brand', 'variants']);
 
         if (!$product) {
             return redirect()->route('admin.products.index')
@@ -104,8 +106,9 @@ class ProductController extends Controller
         }
 
         $categories = $this->categoryRepository->getAllActive();
+        $brands = Brand::active()->ordered()->get();
 
-        return view('admin.products.edit', compact('product', 'categories'));
+        return view('admin.products.edit', compact('product', 'categories', 'brands'));
     }
 
     /**

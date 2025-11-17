@@ -16,7 +16,7 @@ class Product extends Model
         'description',
         'image',
         'gallery',
-        'brand',
+        'brand_id',
         'technical_sheet_file',
         'order',
         'is_active',
@@ -35,6 +35,14 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Relación: Un producto pertenece a una marca
+     */
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     /**
@@ -86,11 +94,18 @@ class Product extends Model
     }
 
     /**
-     * Scope para filtrar por marca
+     * Scope para filtrar por marca (acepta ID o nombre)
      */
     public function scopeByBrand($query, $brand)
     {
-        return $query->where('brand', $brand);
+        if (is_numeric($brand)) {
+            return $query->where('brand_id', $brand);
+        }
+        
+        // Si es un string, buscar por nombre de marca
+        return $query->whereHas('brand', function ($q) use ($brand) {
+            $q->where('name', $brand);
+        });
     }
 
     /**
@@ -161,6 +176,14 @@ class Product extends Model
             // Por defecto, asumir que es una ruta de storage
             return asset('storage/' . $cleanPath);
         }, array_filter($this->gallery));
+    }
+
+    /**
+     * Accesor: Obtiene el nombre de la marca (para compatibilidad)
+     */
+    public function getBrandNameAttribute(): ?string
+    {
+        return $this->brand ? $this->brand->name : null;
     }
 
     /**
