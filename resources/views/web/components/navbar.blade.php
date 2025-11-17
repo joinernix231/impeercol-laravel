@@ -114,8 +114,13 @@
 								</label>
 								<div class="navigation__background">&nbsp;</div>
 								<div class="site-search-content">
-									<form>
-										<input type="text" placeholder="Buscar" class="input-style-3">
+									<form method="GET" action="{{ route('web.products') }}">
+										<input type="text" 
+											   name="search" 
+											   placeholder="Buscar productos..." 
+											   class="input-style-3"
+											   value="{{ request('search') }}"
+											   autocomplete="off">
 										<button type="submit">Buscar</button>
 									</form>
 								</div>

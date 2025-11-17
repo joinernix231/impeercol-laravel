@@ -81,9 +81,14 @@
 		transform: translateY(-50%);
 		color: var(--clr-def, #007bff);
 		font-size: 1.2rem;
-		pointer-events: none;
 		transition: all 0.3s ease;
 		opacity: 0.7;
+		z-index: 10;
+	}
+
+	.modern-search-icon:hover {
+		opacity: 1;
+		transform: translateY(-50%) scale(1.1);
 	}
 
 	.modern-search-box input:focus + .modern-search-icon {
@@ -291,7 +296,9 @@
 								   placeholder="Buscar productos..." 
 								   value="{{ request('search') }}"
 								   onkeypress="if(event.key === 'Enter') { this.form.submit(); }">
-							<i class="bi bi-search modern-search-icon"></i>
+							<button type="submit" class="modern-search-icon" style="background: none; border: none; cursor: pointer; padding: 0;">
+								<i class="bi bi-search" style="color: var(--clr-def, #007bff); font-size: 1.2rem;"></i>
+							</button>
 						</div>
 					</div>
 					<div class="modern-filter-bar-right">
@@ -311,8 +318,12 @@
 							<select class="form-select" id="brand" name="brand" onchange="this.form.submit()">
 								<option value="">Todas las marcas</option>
 								@foreach($brands as $brand)
-									<option value="{{ $brand }}" {{ request('brand') == $brand ? 'selected' : '' }}>
-										{{ $brand }}
+									@php
+										$selectedBrand = request()->query('brand');
+										$isSelected = $selectedBrand && (int)$selectedBrand == (int)$brand->id;
+									@endphp
+									<option value="{{ $brand->id }}" {{ $isSelected ? 'selected' : '' }}>
+										{{ $brand->name }}
 									</option>
 								@endforeach
 							</select>

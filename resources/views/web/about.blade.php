@@ -222,25 +222,43 @@
 				</div>
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
-				<a href="#" target="_blank" rel="noopener" aria-label="Logo Mobile" class="wow fadeInUp" data-wow-delay=".2s">
+				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="wow fadeInUp" data-wow-delay=".2s" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Sika" class="wow fadeInUp" data-wow-delay=".25s">
+				@php
+					$sikaId = $brandsMap['sika'] ?? null;
+				@endphp
+				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="wow fadeInUp" data-wow-delay=".25s" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Texsa" class="wow fadeInUp" data-wow-delay=".3s">
+				@php
+					$texsaId = $brandsMap['texsa'] ?? null;
+				@endphp
+				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="wow fadeInUp" data-wow-delay=".3s" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Metic" class="wow fadeInUp" data-wow-delay=".35s">
+				@php
+					$meticId = $brandsMap['metic'] ?? null;
+				@endphp
+				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="wow fadeInUp" data-wow-delay=".35s" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="FiverGlass" class="wow fadeInUp" data-wow-delay=".4s">
-					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiverGlass">
+				@php
+					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
+				@endphp
+				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="wow fadeInUp" data-wow-delay=".4s" style="cursor: pointer;">
+					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Kaudal" class="wow fadeInUp" data-wow-delay=".45s">
+				@php
+					$kaudalId = $brandsMap['kaudal'] ?? null;
+				@endphp
+				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="wow fadeInUp" data-wow-delay=".45s" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Tekbond" class="wow fadeInUp" data-wow-delay=".5s">
+				@php
+					$tekbondId = $brandsMap['tekbond'] ?? null;
+				@endphp
+				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="wow fadeInUp" data-wow-delay=".5s" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
 			</div>

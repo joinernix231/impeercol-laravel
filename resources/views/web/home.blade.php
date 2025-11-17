@@ -515,25 +515,43 @@
 				</div>
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
-				<a href="#" target="_blank" rel="noopener" aria-label="Logo Mobile">
+				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Sika">
+				@php
+					$sikaId = $brandsMap['sika'] ?? null;
+				@endphp
+				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Texsa">
+				@php
+					$texsaId = $brandsMap['texsa'] ?? null;
+				@endphp
+				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Metic">
+				@php
+					$meticId = $brandsMap['metic'] ?? null;
+				@endphp
+				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="FiverGlass">
-					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiverGlass">
+				@php
+					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
+				@endphp
+				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" style="cursor: pointer;">
+					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Kaudal">
+				@php
+					$kaudalId = $brandsMap['kaudal'] ?? null;
+				@endphp
+				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
 				</a>
-				<a href="#" target="_blank" rel="noopener" aria-label="Tekbond">
+				@php
+					$tekbondId = $brandsMap['tekbond'] ?? null;
+				@endphp
+				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
 			</div>

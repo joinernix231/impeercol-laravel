@@ -13,7 +13,7 @@
 				<div class="info-icon"><i class="icofont-email"></i></div>
 				<div class="info-text">
 					<div class="info-top">E-mail</div>
-					<div class="info-bold">info@impeercol.com</div>
+					<div class="info-bold">impeercol@gmail.com</div>
 				</div>
 			</div>
 			<div class="info-card wow animated fadeInUp" data-wow-delay=".3s" style="animation-delay:.3s">

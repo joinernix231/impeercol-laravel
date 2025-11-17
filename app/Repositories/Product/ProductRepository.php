@@ -4,6 +4,7 @@ namespace App\Repositories\Product;
 
 use App\Models\Product;
 use App\Repositories\BaseRepository;
+use App\Utils\Criterias\BasicCriteria\FiltersCriteria;
 
 /**
  * ============================================
@@ -37,8 +38,10 @@ class ProductRepository extends BaseRepository
 {
     protected $fieldSearchable = [
         'name',
-        'brand',
+        'brand_id',
         'description',
+        'is_active',
+        'is_featured',
         'created_at',
     ];
 
@@ -124,13 +127,20 @@ class ProductRepository extends BaseRepository
             ->with(['category', 'brand', 'activeVariants'])
             ->active();
 
+        // Si se proporciona un filtro avanzado (string con formato de FiltersCriteria)
+        if (isset($filters['advanced']) && !empty($filters['advanced'])) {
+            $this->pushCriteria(new FiltersCriteria($filters['advanced']));
+        }
+
         // Buscar por texto (nombre, descripción o marca)
         if (isset($filters['search']) && $filters['search']) {
             $search = $filters['search'];
             $query->where(function($q) use ($search) {
                 $q->where('name', 'LIKE', "%{$search}%")
                   ->orWhere('description', 'LIKE', "%{$search}%")
-                  ->orWhere('brand', 'LIKE', "%{$search}%");
+                  ->orWhereHas('brand', function($brandQuery) use ($search) {
+                      $brandQuery->where('name', 'LIKE', "%{$search}%");
+                  });
             });
         }
 
@@ -139,9 +149,14 @@ class ProductRepository extends BaseRepository
             $query->byCategory($filters['category_id']);
         }
 
-        // Filtrar por marca
+        // Filtrar por marca (acepta ID o nombre)
         if (isset($filters['brand']) && $filters['brand']) {
             $query->byBrand($filters['brand']);
+        }
+
+        // Filtrar por destacado
+        if (isset($filters['is_featured'])) {
+            $query->where('is_featured', (bool)$filters['is_featured']);
         }
 
         // Ordenar
@@ -172,12 +187,13 @@ class ProductRepository extends BaseRepository
 
     /**
      * Obtiene todas las marcas únicas de productos activos
+     * Agrupa las marcas de Sika en una sola opción
      *
      * @return \Illuminate\Support\Collection
      */
     public function getBrands()
     {
-        return $this->model
+        $brands = $this->model
             ->active()
             ->whereNotNull('brand_id')
             ->with('brand')
@@ -185,8 +201,40 @@ class ProductRepository extends BaseRepository
             ->pluck('brand')
             ->filter()
             ->unique('id')
-            ->sortBy('name')
+            ->sortBy(function($brand) {
+                return $brand->name ?? '';
+            })
             ->values();
+        
+        // Agrupar marcas de Sika: usar la primera marca de Sika encontrada como representante
+        $sikaBrands = $brands->filter(function($brand) {
+            return strpos(strtolower($brand->name), 'sika') !== false;
+        });
+        
+        if ($sikaBrands->count() > 1) {
+            // Obtener la primera marca de Sika (normalmente "SIKA" sin "constructor")
+            $mainSika = $sikaBrands->first();
+            
+            // Remover todas las marcas de Sika de la colección
+            $brands = $brands->reject(function($brand) {
+                return strpos(strtolower($brand->name), 'sika') !== false;
+            });
+            
+            // Agregar solo la marca principal de Sika
+            $brands = $brands->push($mainSika);
+            
+            // Reordenar
+            $brands = $brands->sortBy(function($brand) {
+                $name = strtolower($brand->name ?? '');
+                // Si es Sika, ponerlo en una posición especial
+                if (strpos($name, 'sika') !== false) {
+                    return '0_sika'; // Para que aparezca primero entre las que empiezan con S
+                }
+                return $brand->name ?? '';
+            })->values();
+        }
+        
+        return $brands;
     }
 
     /**

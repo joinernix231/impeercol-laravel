@@ -95,14 +95,47 @@ class Product extends Model
 
     /**
      * Scope para filtrar por marca (acepta ID o nombre)
+     * Si se selecciona Sika, también incluye SIKA constructor
      */
     public function scopeByBrand($query, $brand)
     {
         if (is_numeric($brand)) {
+            // Obtener la marca por ID
+            $brandModel = \App\Models\Brand::find($brand);
+            
+            if ($brandModel) {
+                $brandName = strtolower(trim($brandModel->name));
+                
+                // Si la marca contiene "sika", incluir también "SIKA constructor"
+                if (strpos($brandName, 'sika') !== false) {
+                    return $query->whereHas('brand', function ($q) {
+                        $q->where(function($subQ) {
+                            $subQ->where('name', 'LIKE', '%SIKA%')
+                                 ->orWhere('name', 'LIKE', '%Sika%')
+                                 ->orWhere('name', 'LIKE', '%sika%');
+                        });
+                    });
+                }
+            }
+            
+            // Para otras marcas, filtrar solo por ID
             return $query->where('brand_id', $brand);
         }
         
         // Si es un string, buscar por nombre de marca
+        $brandLower = strtolower(trim($brand));
+        
+        // Si contiene "sika", incluir todas las variantes
+        if (strpos($brandLower, 'sika') !== false) {
+            return $query->whereHas('brand', function ($q) {
+                $q->where(function($subQ) {
+                    $subQ->where('name', 'LIKE', '%SIKA%')
+                         ->orWhere('name', 'LIKE', '%Sika%')
+                         ->orWhere('name', 'LIKE', '%sika%');
+                });
+            });
+        }
+        
         return $query->whereHas('brand', function ($q) use ($brand) {
             $q->where('name', $brand);
         });
