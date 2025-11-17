@@ -34,6 +34,7 @@ class ProductController extends Controller
         $filters = [
             'category_id' => request('category_id'),
             'brand' => request('brand'),
+            'search' => request('search'),
         ];
 
         $products = $this->productRepository->getFiltered($filters, 12);
