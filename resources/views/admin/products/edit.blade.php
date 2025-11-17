@@ -180,15 +180,25 @@
                                                 <label class="form-label">Nombre *</label>
                                                 <input type="text" class="form-control" name="variants[{{ $index }}][name]" value="{{ $variant->name }}" required>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label">Precio</label>
-                                                <input type="number" step="0.01" class="form-control" name="variants[{{ $index }}][price]" value="{{ $variant->price ?? '' }}">
+                                            <div class="col-md-4">
+                                                <label class="form-label">Imagen</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control variant-image-input" name="variants[{{ $index }}][image]" value="{{ $variant->image ?? '' }}" placeholder="Ruta de la imagen o sube una nueva">
+                                                    <button type="button" class="btn btn-outline-secondary btn-upload-variant-image" data-variant-index="{{ $index }}">
+                                                        <i class="bi bi-upload"></i> Subir
+                                                    </button>
+                                                </div>
+                                                <div class="variant-image-preview mt-2" data-variant-index="{{ $index }}">
+                                                    @if($variant->image)
+                                                        <img src="{{ $variant->image_url }}" alt="Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px; object-fit: cover;">
+                                                    @endif
+                                                </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">Orden</label>
                                                 <input type="number" class="form-control" name="variants[{{ $index }}][order]" value="{{ $variant->order ?? 0 }}">
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <label class="form-label">Activo</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="variants[{{ $index }}][is_active]" value="1" {{ $variant->is_active ? 'checked' : '' }}>
@@ -255,15 +265,21 @@
                             <label class="form-label">Nombre *</label>
                             <input type="text" class="form-control" name="variants[${variantCount}][name]" placeholder="Ej: Galón" required>
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Precio</label>
-                            <input type="number" step="0.01" class="form-control" name="variants[${variantCount}][price]" placeholder="0.00">
+                        <div class="col-md-4">
+                            <label class="form-label">Imagen</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control variant-image-input" name="variants[${variantCount}][image]" placeholder="Ruta de la imagen o sube una nueva">
+                                <button type="button" class="btn btn-outline-secondary btn-upload-variant-image" data-variant-index="${variantCount}">
+                                    <i class="bi bi-upload"></i> Subir
+                                </button>
+                            </div>
+                            <div class="variant-image-preview mt-2" data-variant-index="${variantCount}"></div>
                         </div>
                         <div class="col-md-2">
                             <label class="form-label">Orden</label>
                             <input type="number" class="form-control" name="variants[${variantCount}][order]" value="0">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label">Activo</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="variants[${variantCount}][is_active]" value="1" checked>
@@ -369,6 +385,88 @@
                 });
             };
             input.click();
+        });
+
+        // Manejar subida de imágenes de variantes
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-upload-variant-image')) {
+                const button = e.target.closest('.btn-upload-variant-image');
+                const variantIndex = button.getAttribute('data-variant-index');
+                
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.onchange = function(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    const formData = new FormData();
+                    formData.append('images[]', file);
+                    formData.append('type', 'product-variants');
+
+                    fetch('{{ route("admin.upload.images") }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.files && data.files.length > 0) {
+                            const uploadedFile = data.files[0];
+                            const imageInput = document.querySelector(`input[name="variants[${variantIndex}][image]"]`);
+                            const preview = document.querySelector(`.variant-image-preview[data-variant-index="${variantIndex}"]`);
+                            
+                            if (imageInput) {
+                                imageInput.value = uploadedFile.path;
+                            }
+                            
+                            if (preview) {
+                                preview.innerHTML = `
+                                    <img src="${uploadedFile.url}" alt="Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px; object-fit: cover;">
+                                `;
+                            }
+                        } else {
+                            alert('Error al subir la imagen');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error al subir la imagen');
+                    });
+                };
+                input.click();
+            }
+        });
+
+        // Actualizar preview cuando se escribe manualmente una ruta
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('variant-image-input')) {
+                const variantIndex = e.target.name.match(/\[(\d+)\]/)[1];
+                const preview = document.querySelector(`.variant-image-preview[data-variant-index="${variantIndex}"]`);
+                const path = e.target.value;
+                
+                if (path && preview) {
+                    // Si es una URL completa o ruta de storage
+                    let imageUrl = path;
+                    if (!path.startsWith('http://') && !path.startsWith('https://')) {
+                        if (path.startsWith('storage/')) {
+                            imageUrl = '{{ asset("") }}' + path;
+                        } else if (!path.startsWith('assets/')) {
+                            imageUrl = '{{ asset("storage/") }}' + path;
+                        } else {
+                            imageUrl = '{{ asset("") }}' + path;
+                        }
+                    }
+                    
+                    preview.innerHTML = `
+                        <img src="${imageUrl}" alt="Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px; object-fit: cover;" onerror="this.parentElement.innerHTML=''">
+                    `;
+                } else if (preview && !path) {
+                    preview.innerHTML = '';
+                }
+            }
         });
     </script>
 @endpush

@@ -40,11 +40,21 @@ class FileUploadController extends Controller
      */
     public function uploadImages(ImageUploadRequest $request)
     {
-
+        // Determinar el tipo de almacenamiento según el parámetro opcional
+        $type = $request->input('type', 'projects'); // 'projects', 'products', 'product-variants'
+        
         $uploadedFiles = [];
         $year = date('Y');
         $month = date('m');
-        $basePath = "projects/images/{$year}/{$month}";
+        
+        // Definir la ruta base según el tipo
+        $basePathMap = [
+            'projects' => "projects/images/{$year}/{$month}",
+            'products' => "products/images/{$year}/{$month}",
+            'product-variants' => "product-variants/images/{$year}/{$month}",
+        ];
+        
+        $basePath = $basePathMap[$type] ?? $basePathMap['projects'];
 
         foreach ($request->file('images') as $file) {
             // Generar nombre único para el archivo

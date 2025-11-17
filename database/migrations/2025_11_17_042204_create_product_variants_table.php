@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('name'); // Nombre de la variante (ej: Cuñete, Galón, etc.)
             $table->string('sku')->nullable(); // SKU del producto
-            $table->decimal('price', 10, 2)->nullable(); // Precio (opcional)
             $table->string('unit')->nullable(); // Unidad (ej: kg, L, m², etc.)
             $table->integer('stock')->default(0); // Stock disponible
             $table->integer('order')->default(0); // Orden de visualización

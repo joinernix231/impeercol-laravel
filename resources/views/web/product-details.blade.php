@@ -137,49 +137,61 @@
 		<div class="container">
 			<div class="sh-de-wrapper">
 				<div class="sh-de-left">
-					@if($product->gallery && count($product->gallery) > 0)
+					@php
+						// Recopilar todas las imágenes: variantes con imagen, galería del producto, imagen principal
+						$allImages = [];
+						$imageLabels = [];
+						
+						// Agregar imágenes de variantes activas
+						foreach($product->activeVariants as $variant) {
+							if($variant->image) {
+								$allImages[] = $variant->image_url;
+								$imageLabels[] = $variant->name;
+							}
+						}
+						
+						// Agregar galería del producto
+						if($product->gallery && count($product->gallery) > 0) {
+							foreach($product->gallery_urls as $url) {
+								$allImages[] = $url;
+								$imageLabels[] = 'Galería';
+							}
+						}
+						
+						// Agregar imagen principal si existe
+						if($product->image) {
+							$allImages[] = $product->image_url;
+							$imageLabels[] = 'Principal';
+						}
+						
+						// Si no hay imágenes, usar una por defecto
+						if(count($allImages) === 0) {
+							$allImages[] = asset('assets/img/shop/1.jpg');
+							$imageLabels[] = 'Producto';
+						}
+					@endphp
+					
+					@if(count($allImages) > 0)
 						<div class="tab-content" id="nav-tabContent">
-							@foreach($product->gallery_urls as $index => $url)
+							@foreach($allImages as $index => $url)
 								<div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="nav-{{ $index }}" role="tabpanel" aria-labelledby="nav-{{ $index }}-tab">
 									<div class="shop-datails-pic">
 										<img src="{{ $url }}" alt="{{ $product->name }}">
 									</div>
 								</div>
 							@endforeach
-							@if($product->image)
-								<div class="tab-pane fade {{ count($product->gallery) === 0 ? 'show active' : '' }}" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
-									<div class="shop-datails-pic">
-										<img src="{{ $product->image_url }}" alt="{{ $product->name }}">
-									</div>
-								</div>
-							@endif
 						</div>
 						<nav>
-							<div class="nav grid-4 nav-tabs" id="nav-tab" role="tablist">
-								@foreach($product->gallery_urls as $index => $url)
-									<button class="nav-link {{ $index === 0 ? 'active' : '' }}" id="nav-{{ $index }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $index }}" type="button" role="tab" aria-controls="nav-{{ $index }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+							<div class="nav grid-4 nav-tabs" id="nav-tab" role="tablist" style="flex-direction: column;">
+								@foreach($allImages as $index => $url)
+									<button class="nav-link {{ $index === 0 ? 'active' : '' }}" id="nav-{{ $index }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $index }}" type="button" role="tab" aria-controls="nav-{{ $index }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}" style="margin-bottom: 10px; border: 2px solid {{ $index === 0 ? '#0d6efd' : 'transparent' }}; padding: 5px;">
 										<span class="sh-pic">
-											<img src="{{ $url }}" alt="thumb">
+											<img src="{{ $url }}" alt="thumb" style="width: 80px; height: 80px; object-fit: cover;">
 										</span>
 									</button>
 								@endforeach
-								@if($product->image)
-									<button class="nav-link {{ count($product->gallery) === 0 ? 'active' : '' }}" id="nav-main-tab" data-bs-toggle="tab" data-bs-target="#nav-main" type="button" role="tab" aria-controls="nav-main" aria-selected="{{ count($product->gallery) === 0 ? 'true' : 'false' }}">
-										<span class="sh-pic">
-											<img src="{{ $product->image_url }}" alt="thumb">
-										</span>
-									</button>
-								@endif
 							</div>
 						</nav>
-					@elseif($product->image)
-						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
-								<div class="shop-datails-pic">
-									<img src="{{ $product->image_url }}" alt="{{ $product->name }}">
-								</div>
-							</div>
-						</div>
 					@else
 						<div class="tab-content" id="nav-tabContent">
 							<div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
@@ -202,22 +214,6 @@
 						<p>{{ $product->description }}</p>
 					</div>
 					<div class="sh-de-bottom">
-						@if($product->activeVariants->count() > 0)
-							@php
-								$firstVariant = $product->activeVariants->first();
-							@endphp
-							<div class="sh-de-price">
-								@if($firstVariant->price)
-									<span>${{ number_format($firstVariant->price, 2) }}</span>
-								@else
-									<span>Consultar precio</span>
-								@endif
-							</div>
-						@else
-							<div class="sh-de-price">
-								<span>Consultar precio</span>
-							</div>
-						@endif
 						<div class="sh-de-btn">
 							<a href="{{ $product->whatsapp_url }}" target="_blank" class="sh-de-btn-1">
 								Cotizar <i class="fas fa-whatsapp"></i>
@@ -277,20 +273,12 @@
 										<thead>
 											<tr>
 												<th>Variante</th>
-												<th>Precio</th>
 											</tr>
 										</thead>
 										<tbody>
 											@foreach($product->activeVariants as $variant)
 												<tr>
 													<td>{{ $variant->name }}</td>
-													<td>
-														@if($variant->price)
-															${{ number_format($variant->price, 2) }}
-														@else
-															Consultar
-														@endif
-													</td>
 												</tr>
 											@endforeach
 										</tbody>
@@ -346,22 +334,6 @@
 								<a href="{{ route('web.product.show', $relatedProduct->slug) }}" target="_blank">
 									<h5>{{ $relatedProduct->name }}</h5>
 								</a>
-								@if($relatedProduct->activeVariants->count() > 0)
-									@php
-										$firstVariant = $relatedProduct->activeVariants->first();
-									@endphp
-									<div class="products-price">
-										@if($firstVariant->price)
-											<span>${{ number_format($firstVariant->price, 2) }}</span>
-										@else
-											<span>Consultar precio</span>
-										@endif
-									</div>
-								@else
-									<div class="products-price">
-										<span>Consultar precio</span>
-									</div>
-								@endif
 								<div class="add-to-cart">
 									<a href="{{ route('web.product.show', $relatedProduct->slug) }}" class="cart-btn">Ver detalle</a>
 								</div>
