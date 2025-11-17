@@ -39,7 +39,7 @@
                         </td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->category->name ?? 'N/A' }}</td>
-                        <td>{{ $product->brand ?? 'N/A' }}</td>
+                        <td>{{ $product->brand_name ?? 'N/A' }}</td>
                         <td>
                             <span class="badge bg-info">{{ $product->variants->count() }} variante(s)</span>
                         </td>
