@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Product\ProductRepository;
+use App\Repositories\Category\CategoryRepository;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Requests\Admin\ProductUpdateRequest;
-use App\Models\Category;
 use Illuminate\Support\Str;
 
 /**
@@ -19,10 +19,14 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     protected $productRepository;
+    protected $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository)
-    {   
+    public function __construct(
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository
+    ) {   
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -39,7 +43,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::active()->ordered()->get();
+        $categories = $this->categoryRepository->getAllActive();
         return view('admin.products.create', compact('categories'));
     }
 
@@ -99,7 +103,7 @@ class ProductController extends Controller
                 ->with('error', 'Producto no encontrado');
         }
 
-        $categories = Category::active()->ordered()->get();
+        $categories = $this->categoryRepository->getAllActive();
 
         return view('admin.products.edit', compact('product', 'categories'));
     }

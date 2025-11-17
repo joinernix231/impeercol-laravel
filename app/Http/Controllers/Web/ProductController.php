@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Product\ProductRepository;
-use App\Models\Category;
+use App\Repositories\Category\CategoryRepository;
 
 /**
  * ============================================
@@ -16,10 +16,14 @@ use App\Models\Category;
 class ProductController extends Controller
 {
     protected $productRepository;
+    protected $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository)
-    {
+    public function __construct(
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository
+    ) {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -33,7 +37,7 @@ class ProductController extends Controller
         ];
 
         $products = $this->productRepository->getFiltered($filters, 12);
-        $categories = Category::active()->ordered()->get();
+        $categories = $this->categoryRepository->getAllActive();
         
         // Obtener todas las marcas únicas usando el repositorio
         $brands = $this->productRepository->getBrands();

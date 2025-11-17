@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 	</div>
-	
+
 	<!-- Start Shop -->
 	<div class="shop-area de-padding">
 		<div class="container">
@@ -80,27 +80,13 @@
 						<div class="products-desc">
 							<h5><a href="{{ route('web.product.show', $product->slug) }}">{{ $product->name }}</a></h5>
 							@if($product->brand)
-								<p class="text-muted mb-2"><small>{{ $product->brand }}</small></p>
+								<p class="text-muted mb-2"><small>Marca:{{ $product->brand }}</small></p>
 							@endif
 							@if($product->category)
-								<p class="text-muted mb-2"><small>{{ $product->category->name }}</small></p>
+								<p class="text-muted mb-2"><small>Categoria: {{$product->category->name }}</small></p>
 							@endif
-							@if($product->activeVariants->count() > 0)
-								<div class="products-price mb-2">
-									@foreach($product->activeVariants->take(1) as $variant)
-										@if($variant->price)
-											<span>${{ number_format($variant->price, 2) }} {{ $variant->unit ? '/ ' . $variant->unit : '' }}</span>
-										@else
-											<span>Consultar precio</span>
-										@endif
-									@endforeach
-								</div>
-							@else
-								<div class="products-price mb-2">
-									<span>Consultar precio</span>
-								</div>
-							@endif
-							<div class="add-to-cart">
+
+							<div class="add-to-cart pt-3">
 								<a href="{{ route('web.product.show', $product->slug) }}" class="cart-btn">Ver Detalles</a>
 							</div>
 						</div>
@@ -125,6 +111,6 @@
 			@endif
 		</div>
 	</div>
-	
+
 	@include('web.components.contact-info-strip')
 @endsection

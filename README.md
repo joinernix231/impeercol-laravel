@@ -1,66 +1,287 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Impeercol Laravel - Sistema de Gestión
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema de gestión web desarrollado con Laravel 11 para la administración de proyectos, productos y categorías.
 
-## About Laravel
+## 📋 Requisitos Previos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Antes de comenzar, asegúrate de tener instalado:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **PHP 8.2 o superior**
+- **Composer** (gestor de dependencias de PHP)
+- **Node.js y NPM** (para assets frontend)
+- **Base de datos** (MySQL, PostgreSQL, SQLite, etc.)
+- **Git** (para clonar el repositorio)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Instalación Paso a Paso
 
-## Learning Laravel
+### 1. Clonar el Repositorio
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone <url-del-repositorio>
+cd impeercol-laravel
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2. Instalar Dependencias de PHP
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+composer install
+```
 
-## Laravel Sponsors
+### 3. Configurar Variables de Entorno
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+# Copiar el archivo de ejemplo
+cp .env.example .env
 
-### Premium Partners
+# Generar la clave de aplicación
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 4. Configurar la Base de Datos
 
-## Contributing
+Edita el archivo `.env` y configura tu base de datos:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nombre_de_tu_base_de_datos
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_contraseña
+```
 
-## Code of Conduct
+### 5. Ejecutar Migraciones y Seeders
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+# Ejecutar migraciones
+php artisan migrate
 
-## Security Vulnerabilities
+# (Opcional) Ejecutar seeders para datos de prueba
+php artisan db:seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. ⚠️ CREAR ENLACE SIMBÓLICO DE STORAGE (CRÍTICO)
 
-## License
+**Este paso es OBLIGATORIO** para que las imágenes y archivos se carguen correctamente. Sin este paso, verás el error:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> "No se pudo cargar la imagen. Verifica que la ruta sea correcta"
+
+```bash
+php artisan storage:link
+```
+
+Este comando crea un enlace simbólico desde `public/storage` hacia `storage/app/public`, permitiendo que los archivos almacenados sean accesibles públicamente.
+
+**Verificación:**
+Después de ejecutar el comando, verifica que existe el enlace:
+- En Windows: Debe existir la carpeta `public/storage`
+- En Linux/Mac: `ls -la public/storage` debe mostrar el enlace simbólico
+
+### 7. Configurar Permisos (Solo Linux/Mac)
+
+Si estás en Linux o Mac, asegúrate de que las carpetas tengan los permisos correctos:
+
+```bash
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+```
+
+### 8. Instalar Dependencias de Node.js
+
+```bash
+npm install
+```
+
+### 9. Compilar Assets (Desarrollo)
+
+```bash
+npm run dev
+```
+
+O para producción:
+
+```bash
+npm run build
+```
+
+### 10. Iniciar el Servidor de Desarrollo
+
+```bash
+php artisan serve
+```
+
+El proyecto estará disponible en: `http://localhost:8000`
+
+## 🔧 Solución de Problemas Comunes
+
+### Error: "No se pudo cargar la imagen. Verifica que la ruta sea correcta"
+
+**Causa:** No se ha ejecutado `php artisan storage:link` o el enlace se ha roto.
+
+**Solución:**
+
+1. Elimina el enlace existente (si existe):
+   ```bash
+   # Windows (Git Bash o PowerShell)
+   rm public/storage
+   
+   # Linux/Mac
+   rm public/storage
+   ```
+
+2. Crea el enlace nuevamente:
+   ```bash
+   php artisan storage:link
+   ```
+
+3. Verifica que el enlace existe:
+   - Debe existir la carpeta `public/storage`
+   - Debe apuntar a `storage/app/public`
+
+### Error: "The stream or file could not be opened"
+
+**Causa:** Permisos incorrectos en las carpetas de storage.
+
+**Solución (Linux/Mac):**
+```bash
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+```
+
+### Error: "Class not found" o errores de autoload
+
+**Solución:**
+```bash
+composer dump-autoload
+php artisan config:clear
+php artisan cache:clear
+```
+
+### Error: "SQLSTATE[HY000] [2002] No connection could be made"
+
+**Causa:** La base de datos no está configurada correctamente o el servidor no está corriendo.
+
+**Solución:**
+1. Verifica que tu servidor de base de datos esté corriendo
+2. Revisa la configuración en `.env`
+3. Prueba la conexión manualmente
+
+## 📁 Estructura de Almacenamiento de Archivos
+
+El proyecto almacena archivos en las siguientes ubicaciones:
+
+```
+storage/app/public/
+├── projects/
+│   ├── images/          # Imágenes de proyectos
+│   └── documents/       # Documentos de proyectos
+├── products/            # Imágenes de productos
+└── categories/          # Imágenes de categorías
+```
+
+Los archivos se acceden públicamente mediante:
+- `/storage/projects/images/...`
+- `/storage/products/...`
+- `/storage/categories/...`
+
+**Importante:** Estos archivos solo son accesibles si el enlace simbólico está creado (`php artisan storage:link`).
+
+## 🗄️ Base de Datos
+
+### Tablas Principales
+
+- `users` - Usuarios del sistema
+- `projects` - Proyectos
+- `products` - Productos
+- `product_variants` - Variantes de productos
+- `categories` - Categorías
+
+### Seeders Disponibles
+
+```bash
+# Ejecutar todos los seeders
+php artisan db:seed
+
+# Ejecutar un seeder específico
+php artisan db:seed --class=CategorySeeder
+php artisan db:seed --class=ProjectSeeder
+```
+
+## 🔐 Autenticación
+
+El sistema incluye autenticación de usuarios. Para crear un usuario administrador, puedes:
+
+1. Usar un seeder personalizado
+2. Crearlo manualmente desde la base de datos
+3. Usar Tinker:
+   ```bash
+   php artisan tinker
+   ```
+   ```php
+   User::create([
+       'name' => 'Admin',
+       'email' => 'admin@example.com',
+       'password' => bcrypt('password'),
+       'role' => 'admin'
+   ]);
+   ```
+
+## 🛠️ Comandos Útiles
+
+```bash
+# Limpiar caché
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Optimizar aplicación
+php artisan optimize
+
+# Ver rutas disponibles
+php artisan route:list
+
+# Ejecutar migraciones
+php artisan migrate
+php artisan migrate:fresh  # Elimina y recrea todas las tablas
+php artisan migrate:rollback  # Revierte la última migración
+
+# Acceder a Tinker (consola interactiva)
+php artisan tinker
+```
+
+## 📝 Notas Importantes
+
+1. **Storage Link:** Siempre ejecuta `php artisan storage:link` después de clonar o actualizar el proyecto.
+
+2. **Variables de Entorno:** Nunca subas el archivo `.env` al repositorio. Usa `.env.example` como referencia.
+
+3. **Permisos:** En servidores Linux/Mac, asegúrate de configurar los permisos correctos para `storage` y `bootstrap/cache`.
+
+4. **Base de Datos:** Si cambias la estructura de la base de datos, crea una migración en lugar de modificar directamente.
+
+## 👥 Contribución
+
+Para contribuir al proyecto:
+
+1. Crea una rama nueva para tu feature
+2. Realiza tus cambios
+3. Asegúrate de que todo funcione correctamente
+4. Crea un Pull Request
+
+## 📞 Soporte
+
+Si encuentras algún problema durante la instalación o el uso del sistema, verifica:
+
+1. ✅ Que todos los requisitos previos estén instalados
+2. ✅ Que el archivo `.env` esté configurado correctamente
+3. ✅ Que el enlace simbólico de storage esté creado (`php artisan storage:link`)
+4. ✅ Que los permisos de las carpetas sean correctos (Linux/Mac)
+5. ✅ Que la base de datos esté corriendo y accesible
+
+## 📄 Licencia
+
+Este proyecto es privado y de uso exclusivo para Impeercol.
+
+---
+
+**Última actualización:** 2025
