@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('product_variants', function (Blueprint $table) {
-            $table->dropColumn(['sku', 'unit', 'stock']);
-        });
+        if (Schema::hasTable('product_variants')) {
+            $columnsToDrop = collect(['sku', 'unit', 'stock'])
+                ->filter(fn ($column) => Schema::hasColumn('product_variants', $column))
+                ->values()
+                ->all();
+
+            if (!empty($columnsToDrop)) {
+                Schema::table('product_variants', function (Blueprint $table) use ($columnsToDrop) {
+                    $table->dropColumn($columnsToDrop);
+                });
+            }
+        }
     }
 
     /**
