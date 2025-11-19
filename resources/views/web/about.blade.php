@@ -132,7 +132,7 @@
 										</div>
 									</div>
 								</div>
-								<img src="{{ asset('assets/img/gallery/contactanos-convertido-de-jpg.webp') }}" alt="Contacto IMPEERCOL - Servicios de impermeabilización en Bogotá" loading="lazy">
+								<img src="{{ asset('assets/img/gallery/centro-general.png') }}" alt="Contacto IMPEERCOL - Servicios de impermeabilización en Bogotá" loading="lazy">
 							</div>
 						</div>
 					</div>
@@ -145,7 +145,7 @@
 	{{-- Misión y Visión --}}
 	<!-- Start Mission & Vision
 	============================================= -->
-	<div class="review-area about-page pos-rel bg-overlay de-padding hero-bg" style="background-image: url({{ asset('assets/img/bg/action-bg.png') }})">
+	<div class="review-area about-page pos-rel bg-overlay de-padding hero-bg" style="background-image: url({{ asset('assets/img/gallery/centro-general.png') }}); background-attachment: fixed; background-size: cover; background-position: center;">
 		<div class="review-shape">
 			<img src="{{ asset('assets/img/bg/bg-1.png') }}" alt="Fondo decorativo IMPEERCOL">
 		</div>
@@ -203,6 +203,73 @@
 		</div>
 	</div>
 	<!-- End Mission & Vision -->
+	
+	{{-- Nuestras Sedes --}}
+	<!-- Start Our Locations
+	============================================= -->
+	<div class="about-2-area de-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 offset-xl-2">
+					<div class="site-title text-center wow fadeInUp" data-wow-delay=".1s">
+						<h4 class="hero-sub-title mb-0">NUESTRAS SEDES</h4>
+						<h2 class="hero-title mb-30">Conoce Nuestras Oficinas</h2>
+						<div class="title-line"></div>
+						<p class="mb-0 mt-40">
+							Contamos con dos sedes estratégicamente ubicadas en Bogotá para brindarte un mejor servicio y atención personalizada.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-60">
+				<div class="col-xl-6 col-lg-6 mb-40">
+					<a href="https://www.google.com/maps?q=Cra.%2016%20%23%2012-09,%20Bogot%C3%A1,%20Colombia" target="_blank" rel="noopener noreferrer" class="sede-card-link">
+						<div class="sede-card wow fadeInLeft" data-wow-delay=".2s">
+							<div class="sede-image">
+								<img src="{{ asset('assets/img/gallery/sede-centro.jpg') }}" alt="Sede Centro - IMPEERCOL Bogotá" loading="lazy">
+							</div>
+							<div class="sede-info">
+								<h4 class="sede-title">Sede Centro</h4>
+								<div class="sede-details">
+									<div class="sede-detail-item">
+										<i class="icofont-location-pin"></i>
+										<span>Cra. 16 # 12–09, Bogotá, Colombia</span>
+									</div>
+									<div class="sede-detail-item">
+										<i class="icofont-ui-call"></i>
+										<a href="tel:+573025069825" onclick="event.stopPropagation();">302 5069825</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-6 col-lg-6 mb-40">
+					<a href="https://www.google.com/maps?q=Cra%2020%20%2368-15,%20Siete%20de%20Agosto,%20Bogot%C3%A1" target="_blank" rel="noopener noreferrer" class="sede-card-link">
+						<div class="sede-card wow fadeInRight" data-wow-delay=".3s">
+							<div class="sede-image">
+								<img src="{{ asset('assets/img/gallery/sede-siete-de-agosto.jpg') }}" alt="Sede Siete de Agosto - IMPEERCOL Bogotá" loading="lazy">
+							</div>
+							<div class="sede-info">
+								<h4 class="sede-title">Sede Siete de Agosto</h4>
+								<div class="sede-details">
+									<div class="sede-detail-item">
+										<i class="icofont-location-pin"></i>
+										<span>Cra 20 # 68 - 15, Siete de Agosto, Bogotá</span>
+									</div>
+									<div class="sede-detail-item">
+										<i class="icofont-ui-call"></i>
+										<a href="tel:+573237313633" onclick="event.stopPropagation();">323 7313633</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Our Locations -->
 	
 	{{-- Marcas --}}
 	<!-- Start IMPEERCOL Brands Section
@@ -267,40 +334,134 @@
 	<!-- End IMPEERCOL Brands Section -->
 	
 	{{-- Información de Contacto --}}
-	<!-- Contact Info Boxes -->
-	<div class="contact-info-strip">
-		<div class="container">
-			<div class="info-strip">
-				<div class="info-card wow animated fadeInUp" data-wow-delay=".1s" style="animation-delay:.1s">
-					<div class="info-icon"><i class="icofont-clock-time"></i></div>
-					<div class="info-text">
-						<div class="info-top">Lun - Sab 8 am–6 pm</div>
-						<div class="info-bold">Lun - Sab: 8 am - 6 pm</div>
-					</div>
-				</div>
-				<div class="info-card wow animated fadeInUp" data-wow-delay=".2s" style="animation-delay:.2s">
-					<div class="info-icon"><i class="icofont-email"></i></div>
-					<div class="info-text">
-						<div class="info-top">E-mail</div>
-						<div class="info-bold">info@impeercol.com</div>
-					</div>
-				</div>
-				<div class="info-card wow animated fadeInUp" data-wow-delay=".3s" style="animation-delay:.3s">
-					<div class="info-icon"><i class="icofont-google-map"></i></div>
-					<div class="info-text">
-						<div class="info-top">Cra. 16 # 12–09</div>
-						<div class="info-bold">Bogotá, Colombia</div>
-					</div>
-				</div>
-				<div class="info-card wow animated fadeInUp" data-wow-delay=".4s" style="animation-delay:.4s">
-					<div class="info-icon"><i class="icofont-google-map"></i></div>
-					<div class="info-text">
-						<div class="info-top">Cra 20 # 68 - 15</div>
-						<div class="info-bold">Siete de Agosto, Bogotá</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	@include('web.components.contact-info-strip')
+@endsection
+
+@section('styles')
+<style>
+	/* Estilos para las tarjetas de sedes */
+	.sede-card-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		cursor: pointer;
+	}
+
+	.sede-card-link:hover {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.sede-card {
+		background: #fff;
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+		transition: all 0.3s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.sede-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+	}
+
+	.sede-image {
+		width: 100%;
+		height: 400px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.sede-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.sede-card:hover .sede-image img {
+		transform: scale(1.05);
+	}
+
+	.sede-info {
+		padding: 2.5rem;
+		background: #fff;
+	}
+
+	.sede-title {
+		font-size: 2.2rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 2rem;
+		position: relative;
+		padding-bottom: 1rem;
+	}
+
+	.sede-title::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 60px;
+		height: 3px;
+		background: var(--clr-def, #e63946);
+		border-radius: 2px;
+	}
+
+	.sede-details {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.sede-detail-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.2rem;
+		color: #555;
+		font-size: 1.5rem;
+		line-height: 1.6;
+	}
+
+	.sede-detail-item i {
+		color: var(--clr-def, #e63946);
+		font-size: 2rem;
+		margin-top: 0.2rem;
+		flex-shrink: 0;
+	}
+
+	.sede-detail-item span {
+		color: #555;
+	}
+
+	.sede-detail-item a {
+		color: #1a1a1a;
+		text-decoration: none;
+		font-weight: 600;
+		transition: color 0.3s ease;
+	}
+
+	.sede-detail-item a:hover {
+		color: var(--clr-def, #e63946);
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.sede-image {
+			height: 300px;
+		}
+
+		.sede-info {
+			padding: 2rem;
+		}
+
+		.sede-title {
+			font-size: 1.8rem;
+		}
+	}
+</style>
 @endsection
 

@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository
-    ) {   
+    ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
     }
@@ -35,6 +35,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+
         $products = $this->productRepository->getAllForAdmin();
         return view('admin.products.index', compact('products'));
     }

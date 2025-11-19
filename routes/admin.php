@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\FileUploadController;
 use App\Http\Controllers\Cliente\DashboardController;
 
@@ -33,6 +36,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     // Productos - CRUD completo
     Route::resource('products', ProductController::class);
+
+    // Categorías - CRUD completo
+    Route::resource('categories', CategoryController::class);
+
+    // Marcas - CRUD completo
+    Route::resource('brands', BrandController::class);
+
+    // Blogs - CRUD completo
+    Route::resource('blogs', BlogController::class);
 
     // Subida de archivos
     Route::prefix('upload')->name('upload.')->group(function () {

@@ -47,6 +47,7 @@ Route::get('/producto/{slug}', [ProductController::class, 'show'])->name('web.pr
 
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('web.blog');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('web.blog.show');
 
 // Proyectos
 Route::get('/proyectos', [ProjectController::class, 'index'])->name('web.projects');

@@ -4,7 +4,6 @@ namespace App\Repositories\Product;
 
 use App\Models\Product;
 use App\Repositories\BaseRepository;
-use App\Utils\Criterias\BasicCriteria\FiltersCriteria;
 
 /**
  * ============================================
@@ -38,6 +37,7 @@ class ProductRepository extends BaseRepository
 {
     protected $fieldSearchable = [
         'name',
+        'category_id',
         'brand_id',
         'description',
         'is_active',
@@ -116,25 +116,28 @@ class ProductRepository extends BaseRepository
 
     /**
      * Obtiene productos con filtros y paginación
+     * Los filtros de categoría y marca se aplican desde el controlador usando FiltersCriteria
+     * Este método solo maneja la búsqueda por texto
      *
-     * @param array $filters
+     * @param string|null $search
      * @param int $perPage
      * @return mixed
      */
-    public function getFiltered(array $filters = [], int $perPage = 12)
+    public function getFiltered(?string $search = null, int $perPage = 12, ?int $brandId = null)
     {
+        // Construir la query base con relaciones y scope active
         $query = $this->model
             ->with(['category', 'brand', 'activeVariants'])
             ->active();
 
-        // Si se proporciona un filtro avanzado (string con formato de FiltersCriteria)
-        if (isset($filters['advanced']) && !empty($filters['advanced'])) {
-            $this->pushCriteria(new FiltersCriteria($filters['advanced']));
+        // Aplicar filtro de marca directamente si se proporciona
+        if ($brandId && $brandId > 0) {
+            $query->where('brand_id', $brandId);
         }
 
-        // Buscar por texto (nombre, descripción o marca)
-        if (isset($filters['search']) && $filters['search']) {
-            $search = $filters['search'];
+        // Para la búsqueda, necesitamos un OR entre name, description y brand.name
+        if (!empty($search)) {
+            $search = trim($search);
             $query->where(function($q) use ($search) {
                 $q->where('name', 'LIKE', "%{$search}%")
                   ->orWhere('description', 'LIKE', "%{$search}%")
@@ -144,19 +147,10 @@ class ProductRepository extends BaseRepository
             });
         }
 
-        // Filtrar por categoría
-        if (isset($filters['category_id']) && $filters['category_id']) {
-            $query->byCategory($filters['category_id']);
-        }
-
-        // Filtrar por marca (acepta ID o nombre)
-        if (isset($filters['brand']) && $filters['brand']) {
-            $query->byBrand($filters['brand']);
-        }
-
-        // Filtrar por destacado
-        if (isset($filters['is_featured'])) {
-            $query->where('is_featured', (bool)$filters['is_featured']);
+        // Aplicar los criterios que se pusieron desde el controlador
+        $criteria = $this->getCriteria();
+        foreach ($criteria as $criterion) {
+            $query = $criterion->apply($query, $this);
         }
 
         // Ordenar

@@ -47,10 +47,10 @@
 						<div class="col-xl-8 offset-xl-2">
 							<div class="hero-2-content text-center">
 								<h2 class="hero-title">
-									Productos que duran, resultados que se notan.
+									Productos especializados con la mejor asesoría tecnica.
 								</h2>
 								<p>
-									Ofrecemos calidad, respaldo y asesoría para que cada compra sea una inversión duradera.
+									Mejor asesoría tecnica y productos de alta calidad.
 								</p>
 								<div class="hero-btn d-flex justify-content-center">
 									<div class="button-container-1">
@@ -141,6 +141,119 @@
 		</div>
 	</div>
 	<!-- End about -->
+
+	{{-- Slider de Productos Destacados --}}
+	<!-- Start Featured Products
+	============================================= -->
+	<div class="featured-products-area de-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 offset-xl-2">
+					<div class="site-title text-center mb-60">
+						<h4 class="hero-sub-title mb-0">PRODUCTOS DESTACADOS</h4>
+						<h2 class="hero-title mb-30">Nuestros Productos Más Populares</h2>
+						<div class="title-line"></div>
+						<p class="mb-0 mt-40">
+							Descubre nuestra selección de impermeabilizantes de alta calidad, elegidos por su excelente rendimiento y durabilidad.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="featured-products-slider owl-carousel owl-theme">
+				@forelse($featuredProducts as $product)
+					<div class="featured-product-item">
+						<div class="products-box">
+							<div class="products-pic">
+								<a href="{{ route('web.product.show', $product->slug) }}">
+									<img src="{{ $product->image_url }}" alt="{{ $product->name }}" loading="lazy">
+								</a>
+							</div>
+							<div class="products-desc">
+								<h5>
+									<a href="{{ route('web.product.show', $product->slug) }}">{{ $product->name }}</a>
+								</h5>
+								@if($product->brand_name)
+									<p class="text-muted mb-2"><small>Marca: {{ $product->brand_name }}</small></p>
+								@endif
+								@if($product->category)
+									<p class="text-muted mb-2"><small>Categoría: {{ $product->category->name }}</small></p>
+								@endif
+								@if($product->description)
+									<p class="product-excerpt">{{ Str::limit(strip_tags($product->description), 80) }}</p>
+								@endif
+								<div class="add-to-cart pt-3">
+									<a href="{{ route('web.product.show', $product->slug) }}" class="cart-btn">Ver Detalles</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				@empty
+					<div class="col-12 text-center">
+						<p class="text-muted">No hay productos destacados disponibles en este momento.</p>
+					</div>
+				@endforelse
+			</div>
+		</div>
+	</div>
+	<!-- End Featured Products -->
+	
+	{{-- Sección Cómo Trabajamos --}}
+	<!-- Start Steps
+	============================================= -->
+	<div class="step-area de-pt pos-rel pb-256 hero-bg" style="background-image: url({{ asset('assets/img/gallery/Centro-frente.jpg') }}); background-attachment: fixed; background-size: cover; background-position: center;">
+		<div class="container">
+			<div class="step-wpr grid-2">
+				<div class="step-left d-flex align-items-center">
+					<div class="step-left-content">
+						<div class="step-left-header">
+							<h3 class="hero-sub-title">&nbsp;</h3>
+							<h2 class="hero-title mb-0">Cómo Trabajamos</h2>
+						</div>
+						<p class="mb-50 step-left-para">
+							En impeercol hacemos fácil y rápida la compra de impermeabilizantes. Te guiamos para elegir el producto ideal y proteger tus espacios con confianza.
+						</p>
+						<div class="button-container-2">
+							<span class="mas">Contáctanos</span>
+							<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
+						</div>
+					</div>
+				</div>
+				<div class="step-right">
+					<div class="step-box-wpr grid-2">
+						<div class="step-box wow fadeInUp" data-wow-delay=".1s">
+							<span class="step-number">01</span>
+							<h4 class="heading-6">Asesoría</h4>
+							<p>
+								Elegimos contigo el impermeabilizante ideal para tu superficie (techo, muro, terraza).
+							</p>
+						</div>
+						<div class="step-box wow fadeInUp" data-wow-delay=".2s">
+							<span class="step-number">02</span>
+							<h4 class="heading-6">Cotización</h4>
+							<p class="mb-0">
+								Cotización rápida y clara, con productos disponibles en nuestro catálogo.
+							</p>
+						</div>
+						<div class="step-box wow fadeInUp" data-wow-delay=".3s">
+							<span class="step-number">03</span>
+							<h4 class="heading-6">Compra</h4>
+							<p class="mb-0">
+								Haz tu pedido; te indicamos métodos de pago y disponibilidad inmediata.
+							</p>
+						</div>
+						<div class="step-box wow fadeInUp" data-wow-delay=".4s">
+							<span class="step-number">04</span>
+							<h4 class="heading-6">Entrega</h4>
+							<p class="mb-0">
+								Entrega rápida en Bogotá para que uses tus productos a tiempo.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Steps -->
 	
 	{{-- Galería de Trabajos --}}
 	<!-- Start Work
@@ -195,64 +308,6 @@
 		</div>
 	</div>
 	<!-- End Work -->
-	
-	{{-- Sección Cómo Trabajamos --}}
-	<!-- Start Steps
-	============================================= -->
-	<div class="step-area de-pt pos-rel pb-256 hero-bg" style="background-image: url({{ asset('assets/img/gallery/paquetes-convertido-de-jpg.webp') }})">
-		<div class="container">
-			<div class="step-wpr grid-2">
-				<div class="step-left d-flex align-items-center">
-					<div class="step-left-content">
-						<div class="step-left-header">
-							<h3 class="hero-sub-title">&nbsp;</h3>
-							<h2 class="hero-title mb-0">Cómo Trabajamos</h2>
-						</div>
-						<p class="mb-50 step-left-para">
-							En impeercol hacemos fácil y rápida la compra de impermeabilizantes. Te guiamos para elegir el producto ideal y proteger tus espacios con confianza.
-						</p>
-						<div class="button-container-2">
-							<span class="mas">Contáctanos</span>
-							<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
-						</div>
-					</div>
-				</div>
-				<div class="step-right">
-					<div class="step-box-wpr grid-2">
-						<div class="step-box wow fadeInUp" data-wow-delay=".1s">
-							<span class="step-number">01</span>
-							<h4 class="heading-6">Asesoría</h4>
-							<p>
-								Elegimos contigo el impermeabilizante ideal para tu superficie (techo, muro, terraza).
-							</p>
-						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".2s">
-							<span class="step-number">02</span>
-							<h4 class="heading-6">Cotización</h4>
-							<p class="mb-0">
-								Cotización rápida y clara, con productos disponibles en nuestro catálogo.
-							</p>
-						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".3s">
-							<span class="step-number">03</span>
-							<h4 class="heading-6">Compra</h4>
-							<p class="mb-0">
-								Haz tu pedido; te indicamos métodos de pago y disponibilidad inmediata.
-							</p>
-						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".4s">
-							<span class="step-number">04</span>
-							<h4 class="heading-6">Entrega</h4>
-							<p class="mb-0">
-								Entrega rápida en Bogotá para que uses tus productos a tiempo.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Steps -->
 	
 	{{-- Formulario de Contacto --}}
 	<!-- Start Contact
@@ -375,123 +430,60 @@
 				</div>
 			</div>
 			<div class="blog-wpr grid-3">
-				<div class="blog-box wow fadeInUp" data-wow-delay=".1s">
-					<div class="blog-pic">
-						<img src="{{ asset('assets/img/blog/1.jpg') }}" alt="Artículo del blog IMPEERCOL sobre ingeniería mecánica">
-						<div class="blog-date">
-							<i class="icofont-calendar"></i>
-							ABRIL 18, 2022
+				@forelse($latestBlogs as $index => $blog)
+					<div class="blog-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
+						<div class="blog-pic">
+							<a href="{{ route('web.blog.show', $blog->slug) }}">
+								<img src="{{ $blog->image_url }}" alt="{{ $blog->title }}">
+							</a>
+							@if($blog->published_at)
+								<div class="blog-date">
+									<i class="icofont-calendar"></i>
+									{{ strtoupper($blog->published_at->locale('es')->translatedFormat('F d, Y')) }}
+								</div>
+							@elseif($blog->created_at)
+								<div class="blog-date">
+									<i class="icofont-calendar"></i>
+									{{ strtoupper($blog->created_at->locale('es')->translatedFormat('F d, Y')) }}
+								</div>
+							@endif
+						</div>
+						<div class="blog-desc">
+							<ul class="blog-meta">
+								@if($blog->author)
+									<li>
+										<a href="{{ route('web.blog') }}">
+											<i class="icofont-ui-user"></i>
+											{{ $blog->author }}
+										</a>
+									</li>
+								@endif
+							</ul>
+							<div class="blog-content">
+								<a href="{{ route('web.blog.show', $blog->slug) }}">
+									<h4>
+										{{ $blog->title }}
+									</h4>
+								</a>
+								<p>
+									@if($blog->excerpt)
+										{{ Str::limit($blog->excerpt, 100) }}
+									@elseif($blog->content)
+										{{ Str::limit(strip_tags($blog->content), 100) }}
+									@endif
+								</p>
+								<a href="{{ route('web.blog.show', $blog->slug) }}" class="btn-2">
+									Leer más
+									<i class="icofont-long-arrow-right"></i>
+								</a>
+							</div>
 						</div>
 					</div>
-					<div class="blog-desc">
-						<ul class="blog-meta">
-							<li>
-								<a href="#">
-									<i class="icofont-ui-user"></i>
-									Kazi Jihad
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="icofont-comment"></i>
-									12 Comentarios
-								</a>
-							</li>
-						</ul>
-						<div class="blog-content">
-							<a href="{{ route('web.blog') }}" target="_blank">
-								<h4>
-									Ingeniería mecánica y suministros
-								</h4>
-							</a>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. In sit maxime nihil, corporis possimus dolore?
-							</p>
-							<a href="{{ route('web.blog') }}" class="btn-2">
-								Leer más
-								<i class="icofont-long-arrow-right"></i>
-							</a>
-						</div>
+				@empty
+					<div class="col-12 text-center">
+						<p class="text-muted">No hay artículos disponibles en este momento.</p>
 					</div>
-				</div>
-				<div class="blog-box wow fadeInUp" data-wow-delay=".2s">
-					<div class="blog-pic">
-						<img src="{{ asset('assets/img/blog/2.jpg') }}" alt="Artículo del blog IMPEERCOL sobre servicios">
-						<div class="blog-date">
-							<i class="icofont-calendar"></i>
-							ABRIL 18, 2022
-						</div>
-					</div>
-					<div class="blog-desc">
-						<ul class="blog-meta">
-							<li>
-								<a href="#">
-									<i class="icofont-ui-user"></i>
-									Philip Carouto
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="icofont-comment"></i>
-									12 Comentarios
-								</a>
-							</li>
-						</ul>
-						<div class="blog-content">
-							<a href="{{ route('web.blog') }}" target="_blank">
-								<h4>
-									Ingeniería mecánica y suministros
-								</h4>
-							</a>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. In sit maxime nihil, corporis possimus dolore?
-							</p>
-							<a href="{{ route('web.blog') }}" class="btn-2">
-								Leer más
-								<i class="icofont-long-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="blog-box wow fadeInUp" data-wow-delay=".3s">
-					<div class="blog-pic">
-						<img src="{{ asset('assets/img/blog/3.jpg') }}" alt="Artículo del blog IMPEERCOL sobre proyectos">
-						<div class="blog-date">
-							<i class="icofont-calendar"></i>
-							ABRIL 18, 2022
-						</div>
-					</div>
-					<div class="blog-desc">
-						<ul class="blog-meta">
-							<li>
-								<a href="#">
-									<i class="icofont-ui-user"></i>
-									John Mudi
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="icofont-comment"></i>
-									12 Comentarios
-								</a>
-							</li>
-						</ul>
-						<div class="blog-content">
-							<a href="{{ route('web.blog') }}" target="_blank">
-								<h4>
-									Ingeniería mecánica y suministros
-								</h4>
-							</a>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. In sit maxime nihil, corporis possimus dolore?
-							</p>
-							<a href="{{ route('web.blog') }}" class="btn-2">
-								Leer más
-								<i class="icofont-long-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-				</div>
+				@endforelse
 			</div>
 		</div>
 	</div>
@@ -565,7 +557,96 @@
 
 @section('styles')
 <style>
-	
+	.featured-products-area {
+		background: #f8f9fa;
+	}
+
+	.featured-products-slider {
+		margin-top: 4rem;
+	}
+
+	.featured-product-item {
+		padding: 0 15px;
+	}
+
+	.featured-product-item .products-box {
+		background: #fff;
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+		transition: all 0.3s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.featured-product-item .products-box:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+	}
+
+	.featured-product-item .products-pic {
+		width: 100%;
+		height: 250px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.featured-product-item .products-pic img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.featured-product-item .products-box:hover .products-pic img {
+		transform: scale(1.1);
+	}
+
+	.featured-product-item .products-desc {
+		padding: 2rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.featured-product-item .products-desc h5 {
+		margin-bottom: 1rem;
+		font-size: 1.8rem;
+		font-weight: 600;
+	}
+
+	.featured-product-item .products-desc h5 a {
+		color: #1a1a1a;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	.featured-product-item .products-desc h5 a:hover {
+		color: var(--clr-def, #e63946);
+	}
+
+	.featured-product-item .product-excerpt {
+		font-size: 1.4rem;
+		color: #666;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+		flex: 1;
+	}
+
+	.featured-product-item .cart-btn {
+		margin-top: auto;
+	}
+
+	@media (max-width: 768px) {
+		.featured-product-item .products-pic {
+			height: 200px;
+		}
+
+		.featured-product-item .products-desc {
+			padding: 1.5rem;
+		}
+	}
 </style>
 @endsection
 
@@ -596,6 +677,41 @@
 					},
 					992: {
 						items: 3,
+						margin: 30
+					}
+				}
+			});
+		}
+
+		// Inicializar slider de productos destacados
+		if ($('.featured-products-slider').length > 0) {
+			$('.featured-products-slider').owlCarousel({
+				loop: true,
+				margin: 30,
+				nav: true,
+				dots: true,
+				autoplay: true,
+				autoplayTimeout: 4000,
+				autoplayHoverPause: true,
+				navText: [
+					'<i class="icofont-long-arrow-left"></i>',
+					'<i class="icofont-long-arrow-right"></i>'
+				],
+				responsive: {
+					0: {
+						items: 1,
+						margin: 15
+					},
+					576: {
+						items: 2,
+						margin: 20
+					},
+					768: {
+						items: 3,
+						margin: 25
+					},
+					992: {
+						items: 4,
 						margin: 30
 					}
 				}

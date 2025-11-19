@@ -4,7 +4,7 @@
 .footer-new .footer-list-mini li { margin-bottom: 8px; }
 .footer-bottom { background: #15181c; color: #b0bec5; padding: 12px 0; text-align: center; }
 .footer-social.big li a i { font-size: 26px; }
-.footer-social-bar { background: #c60e0e; padding: 20px 0; text-align: center; }
+.footer-social-bar { background: #c60e0e; padding: 20px 0; text-align: center; position: relative; z-index: 1; }
 .footer-social-bar .social-title { color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; font-weight: 700; }
 .footer-social-bar .footer-social { justify-content: center !important; gap: 18px; }
 .footer-links-bar { background: #d21a3a; padding: 14px 0; }
@@ -2977,6 +2977,18 @@ input[type=number] {
         color: var(--clr-white);
         background-color: var(--clr-def);
         border-color: transparent; }
+    .tb-pagination ul li span.disabled {
+      display: inline-block;
+      height: 5rem;
+      width: 5rem;
+      line-height: 4.5rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      border: 2px solid #eef1f5;
+      border-radius: 50%;
+      color: #ccc;
+      cursor: not-allowed;
+      opacity: 0.5; }
 
 .select-opt {
   display: flex;
@@ -4662,17 +4674,29 @@ button:focus {
 footer {
   position: relative;
   z-index: 1;
-  background-color: #FF4D4D; }
+  background-color: #FF4D4D;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
   footer::before {
     position: absolute;
     content: '';
     height: 100%;
     width: 100%;
-    z-index: -1;
+    z-index: -2;
     background: linear-gradient(to right, #343a40 0%, #495057 100%);
-    opacity: 1;
+    opacity: 0;
     top: 0;
     right: 0; }
+  .footer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 0; }
   footer::after {
     position: absolute;
     content: '';
@@ -4694,7 +4718,9 @@ footer {
     content: ''; }
 
 .footer-widget {
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative;
+  z-index: 1; }
 
 .footer-right {
   background-color: var(--clr-white);
@@ -4709,7 +4735,9 @@ footer {
   justify-content: center; }
 
 .copyright {
-  padding-bottom: 5rem; }
+  padding-bottom: 5rem;
+  position: relative;
+  z-index: 1; }
   .copyright .copyright-content {
     display: flex;
     align-items: center;

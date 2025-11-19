@@ -69,6 +69,7 @@
                         @enderror
                     </div>
 
+                    {{-- Imagen principal --}}
                     <div class="mb-3">
                         <label for="image" class="form-label">Imagen Principal</label>
                         <div class="input-group">
@@ -77,6 +78,7 @@
                                 <i class="bi bi-upload"></i> Subir Imagen
                             </button>
                         </div>
+                        <small class="form-text text-muted">Puedes escribir una ruta manualmente o usar el botón para subir</small>
                         @error('image')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -93,6 +95,7 @@
                         <button type="button" class="btn btn-sm btn-primary mt-2" id="btn-upload-gallery">
                             <i class="bi bi-upload"></i> Subir Imágenes
                         </button>
+                        <small class="form-text text-muted">Puedes subir múltiples imágenes a la vez</small>
                         <div id="gallery-preview" class="mt-2 row">
                             @if($product->gallery && count($product->gallery) > 0)
                                 @foreach($product->gallery_urls as $index => $url)
@@ -167,7 +170,7 @@
             {{-- Variantes del Producto --}}
             <div class="row mt-4">
                 <div class="col-12">
-                    <h4>Variantes del Producto (Máximo 3)</h4>
+                    <h4>Variantes del Producto (Máximo 5)</h4>
                     <div id="variants-container">
                         @php
                             $variants = $product->variants ?? collect();
@@ -246,13 +249,11 @@
             $variantsCount = $product->variants ? $product->variants->count() : 0;
         @endphp
         let variantCount = {{ $variantsCount }};
-        const maxVariants = 3;
+        const maxVariants = 5;
         
-        console.log('Variantes cargadas:', {{ $variantsCount }});
-
         document.getElementById('add-variant')?.addEventListener('click', function() {
             if (variantCount >= maxVariants) {
-                alert('Solo se permiten máximo 3 variantes por producto');
+                alert('Solo se permiten máximo 5 variantes por producto');
                 return;
             }
 
@@ -342,16 +343,6 @@
             });
         }
 
-        // Cargar preview de imagen si existe
-        @if($product->image)
-            ImageUploader.updatePreviewFromInput();
-        @endif
-
-        // Cargar preview de galería si existe
-        @if($product->gallery && count($product->gallery) > 0)
-            ImageUploader.updateGalleryPreview({!! json_encode($product->gallery) !!});
-        @endif
-
         // Script para subir documentos PDF
         document.getElementById('btn-upload-document')?.addEventListener('click', function() {
             const input = document.createElement('input');
@@ -414,11 +405,22 @@
                     fetch('{{ route("admin.upload.images") }}', {
                         method: 'POST',
                         headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
                         },
                         body: formData
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        const contentType = response.headers.get('content-type');
+                        if (!contentType || !contentType.includes('application/json')) {
+                            return response.text().then(text => {
+                                console.error('Respuesta no JSON:', text.substring(0, 500));
+                                throw new Error('El servidor no devolvió una respuesta JSON válida');
+                            });
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         if (data.success && data.files && data.files.length > 0) {
                             const uploadedFile = data.files[0];
@@ -435,12 +437,14 @@
                                 `;
                             }
                         } else {
-                            alert('Error al subir la imagen');
+                            const errorMsg = data.message || data.error || 'Error desconocido';
+                            console.error('Error del servidor:', data);
+                            alert('Error al subir la imagen: ' + errorMsg);
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al subir la imagen');
+                        console.error('Error completo:', error);
+                        alert('Error al subir la imagen: ' + (error.message || 'Error de conexión'));
                     });
                 };
                 input.click();

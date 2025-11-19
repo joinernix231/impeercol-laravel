@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Project\ProjectRepository;
+use App\Repositories\Blog\BlogRepository;
+use App\Repositories\Product\ProductRepository;
 use App\Models\Brand;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 /**
@@ -18,10 +21,17 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     protected $projectRepository;
+    protected $blogRepository;
+    protected $productRepository;
 
-    public function __construct(ProjectRepository $projectRepository)
-    {
+    public function __construct(
+        ProjectRepository $projectRepository,
+        BlogRepository $blogRepository,
+        ProductRepository $productRepository
+    ) {
         $this->projectRepository = $projectRepository;
+        $this->blogRepository = $blogRepository;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -34,10 +44,19 @@ class HomeController extends Controller
         // Obtener proyectos destacados para mostrar en home (máximo 3)
         $featuredProjects = $this->projectRepository->getFeatured(10);
         
+        // Obtener los últimos 3 artículos del blog publicados
+        $latestBlogs = Blog::published()
+            ->ordered()
+            ->limit(3)
+            ->get();
+        
+        // Obtener productos destacados para el slider
+        $featuredProducts = $this->productRepository->getFeatured(8);
+        
         // Obtener marcas para los logos (mapear nombres a IDs)
         $brandsMap = $this->getBrandsMap();
 
-        return view('web.home', compact('featuredProjects', 'brandsMap'));
+        return view('web.home', compact('featuredProjects', 'brandsMap', 'latestBlogs', 'featuredProducts'));
     }
     
     /**

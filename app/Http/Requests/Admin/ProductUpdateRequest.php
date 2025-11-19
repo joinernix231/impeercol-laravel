@@ -46,7 +46,7 @@ class ProductUpdateRequest extends BaseFormRequest
             'order' => 'nullable|integer|min:0',
             'is_active' => 'nullable|boolean',
             'is_featured' => 'nullable|boolean',
-            'variants' => 'nullable|array|max:3',
+            'variants' => 'nullable|array|max:5',
             'variants.*.name' => 'required_with:variants|string|max:255',
             'variants.*.image' => 'nullable|string|max:500',
             'variants.*.order' => 'nullable|integer|min:0',
@@ -66,7 +66,7 @@ class ProductUpdateRequest extends BaseFormRequest
             'name.max' => 'El nombre no puede exceder 255 caracteres.',
             'slug.unique' => 'El slug ya está en uso. Por favor, elige otro.',
             'description.required' => 'La descripción es obligatoria.',
-            'variants.max' => 'Solo se permiten máximo 3 variantes por producto.',
+            'variants.max' => 'Solo se permiten máximo 5 variantes por producto.',
             'variants.*.name.required_with' => 'El nombre de la variante es obligatorio.',
         ];
     }

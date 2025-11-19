@@ -115,6 +115,85 @@
 		color: #dc3545;
 		font-weight: 700;
 	}
+
+	/* Botón de descarga de ficha técnica mejorado */
+	.technical-sheet-download-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 15px;
+		padding: 18px 40px;
+		background: linear-gradient(135deg, var(--clr-def, #cd0b0b) 0%, #a00909 100%);
+		color: #ffffff;
+		border: none;
+		border-radius: 12px;
+		font-size: 1.3rem;
+		font-weight: 700;
+		text-decoration: none;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow: 0 4px 15px rgba(205, 11, 11, 0.3);
+		position: relative;
+		overflow: hidden;
+		min-width: 320px;
+		text-align: center;
+	}
+
+	.technical-sheet-download-btn::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.2);
+		transform: translate(-50%, -50%);
+		transition: width 0.6s ease, height 0.6s ease;
+		z-index: 0;
+	}
+
+	.technical-sheet-download-btn:hover::before {
+		width: 400px;
+		height: 400px;
+	}
+
+	.technical-sheet-download-btn i,
+	.technical-sheet-download-btn span {
+		position: relative;
+		z-index: 1;
+		transition: all 0.3s ease;
+	}
+
+	.technical-sheet-download-btn:hover {
+		background: linear-gradient(135deg, #a00909 0%, var(--clr-def, #cd0b0b) 100%);
+		color: #ffffff;
+		transform: translateY(-4px);
+		box-shadow: 0 8px 25px rgba(205, 11, 11, 0.5);
+		text-decoration: none;
+	}
+
+	.technical-sheet-download-btn:hover i {
+		transform: scale(1.2) rotate(-5deg);
+	}
+
+	.technical-sheet-download-btn i {
+		font-size: 1.8rem;
+		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	/* Botón pequeño en la parte superior también mejorado */
+	.sh-de-btn-2 {
+		padding: 12px 24px;
+		font-size: 1rem;
+		font-weight: 600;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+	}
+
+	.sh-de-btn-2:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(205, 11, 11, 0.4);
+	}
 </style>
 @endsection
 
@@ -219,7 +298,7 @@
 								Cotizar <i class="fas fa-whatsapp"></i>
 							</a>
 							@if($product->technical_sheet_file)
-								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="sh-de-btn-2">
+								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="sh-de-btn-2" style="background-color: var(--clr-def, #cd0b0b); color: #ffffff; border-color: var(--clr-def, #cd0b0b);">
 									<i class="fas fa-file-pdf"></i> Ficha Técnica
 								</a>
 							@endif
@@ -289,12 +368,16 @@
 					@endif
 					@if($product->technical_sheet_file)
 						<div class="tab-pane fade" id="pills-technical" role="tabpanel" aria-labelledby="pills-technical-tab">
-							<div class="pro-rev-text">
-								<p>
-									<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="btn btn-primary">
-										<i class="fas fa-file-pdf"></i> Descargar Ficha Técnica PDF
-									</a>
-								</p>
+							<div class="pro-rev-text text-center">
+								<div class="mb-4">
+									<i class="fas fa-file-pdf" style="font-size: 4rem; color: var(--clr-def, #cd0b0b); margin-bottom: 20px;"></i>
+									<h4 class="mb-3">Ficha Técnica del Producto</h4>
+									<p class="text-muted mb-4">Descarga la información técnica completa de este producto en formato PDF</p>
+								</div>
+								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="technical-sheet-download-btn">
+									<i class="fas fa-file-pdf"></i>
+									<span>Descargar Ficha Técnica PDF</span>
+								</a>
 							</div>
 						</div>
 					@endif

@@ -157,6 +157,15 @@
             <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                 <i class="bi bi-box-seam"></i> Productos
             </a>
+            <a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+                <i class="bi bi-tags"></i> Categorías
+            </a>
+            <a href="{{ route('admin.brands.index') }}" class="{{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
+                <i class="bi bi-award"></i> Marcas
+            </a>
+            <a href="{{ route('admin.blogs.index') }}" class="{{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text"></i> Blog
+            </a>
         </nav>
         
         @auth
