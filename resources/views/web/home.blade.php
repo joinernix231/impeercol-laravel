@@ -546,6 +546,12 @@
 				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" style="cursor: pointer;">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
+				@php
+					$sikaIndustryId = $brandsMap['sika'] ?? null;
+				@endphp
+				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo" style="cursor: pointer;">
+					<img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
+				</a>
 			</div>
 		</div>
 	</div>
@@ -646,6 +652,33 @@
 		.featured-product-item .products-desc {
 			padding: 1.5rem;
 		}
+	}
+
+	/* Estilos para el logo de Sika Industry - mismo tamaño que el logo de Sika normal */
+	.partner-sldr-2 .sika-industry-logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+	}
+	
+	.partner-sldr-2 .sika-industry-logo img {
+		max-height: 120px !important;
+		max-width: 200px !important;
+		width: auto !important;
+		height: auto !important;
+		object-fit: contain;
+		filter: grayscale(100%);
+		opacity: .85;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		transform: scale(1);
+	}
+	
+	.partner-sldr-2 .sika-industry-logo:hover img {
+		filter: grayscale(0%);
+		opacity: 1;
+		transform: scale(1.08) translateY(-5px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 	}
 </style>
 @endsection
