@@ -82,7 +82,7 @@
 							<div class="row g-5">
 								<div class="col-xl-3">
 									<div class="about-right-2-pic">
-										<img src="{{ asset('assets/img/about/logimper.png    ') }}" alt="Equipo IMPEERCOL trabajando en proyectos de impermeabilización" loading="lazy">
+										<img src="{{ asset('assets/img/about/logimper.png') }}" alt="Equipo IMPEERCOL trabajando en proyectos de impermeabilización" loading="lazy">
 									</div>
 								</div>
 								<div class="col-xl-9">
