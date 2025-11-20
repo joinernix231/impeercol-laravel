@@ -46,13 +46,13 @@
 					<div class="row">
 						<div class="col-xl-8 offset-xl-2">
 							<div class="hero-2-content text-center">
-								<h2 class="hero-title">
+								<h2 class="hero-title fade-in-up">
 									Productos especializados con la mejor asesoría tecnica.
 								</h2>
-								<p>
+								<p class="fade-in-up-delay">
 									Mejor asesoría tecnica y productos de alta calidad.
 								</p>
-								<div class="hero-btn d-flex justify-content-center">
+								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
 									<div class="button-container-1">
 										<span class="mas">Contáctanos</span>
 										<a href="#contact" class="site-btn-1 smooth-menu">Contáctanos</a>
@@ -68,13 +68,13 @@
 					<div class="row">
 						<div class="col-xl-8 offset-xl-2">
 							<div class="hero-2-content text-center">
-								<h2 class="hero-title">
+								<h2 class="hero-title fade-in-up">
 									Impermeabiliza, protege y conserva
 								</h2>
-								<p>
+								<p class="fade-in-up-delay">
 									Todo lo que necesitas para mantener tus espacios en perfectas condiciones.
 								</p>
-								<div class="hero-btn d-flex justify-content-center">
+								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
 									<div class="button-container-2">
 										<span class="mas">Contáctanos</span>
 										<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
@@ -99,7 +99,7 @@
 					<div class="col-xl-5">
 						<div class="about-left">
 							<div class="about-left-content">
-								<div class="about-photo pos-rel">
+								<div class="about-photo pos-rel fade-in-left">
 									<span class="about-dotted"></span>
 									<img src="{{ asset('assets/img/gallery/inicio-convertido-de-jpg.webp') }}" class="about-main-pic" alt="IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá" loading="lazy">
 								</div>
@@ -109,26 +109,26 @@
 					<div class="col-xl-7">
 						<div class="about-right pl-60">
 							<div class="about-heading mb-40">
-								<h2 class="hero-title mb-30">¿Quiénes Somos?</h2>
-								<p class="mb-0">
+								<h2 class="hero-title mb-30 fade-in-right">¿Quiénes Somos?</h2>
+								<p class="mb-0 fade-in-right-delay">
 									En impeercol llevamos más de 15 años protegiendo los espacios de los colombianos con impermeabilizantes de alta calidad. Ofrecemos soluciones duraderas y confiables para techos, muros y cubiertas, garantizando resultados visibles y protección total contra la humedad. Somos tu aliado en impermeabilización, con productos fáciles de aplicar y pensados para durar.
 								</p>
 							</div>
 							<div class="about-features">
 								<div class="feature-grid">
-									<div class="feature-item">
+									<div class="feature-item fade-in-up-stagger" data-delay="0.1s">
 										<h4>Marcas Reconocidas</h4>
 										<p>Las mejores marcas del mercado</p>
 									</div>
-									<div class="feature-item">
+									<div class="feature-item fade-in-up-stagger" data-delay="0.2s">
 										<h4>Asesoría Técnica</h4>
 										<p>Te ayudamos a elegir el producto ideal</p>
 									</div>
-									<div class="feature-item">
+									<div class="feature-item fade-in-up-stagger" data-delay="0.3s">
 										<h4>Distribución Nacional</h4>
 										<p>Envíos a toda Colombia</p>
 									</div>
-									<div class="feature-item">
+									<div class="feature-item fade-in-up-stagger" data-delay="0.4s">
 										<h4>15+ Años</h4>
 										<p>Experiencia en el sector</p>
 									</div>
@@ -150,18 +150,18 @@
 			<div class="row">
 				<div class="col-xl-8 offset-xl-2">
 					<div class="site-title text-center mb-60">
-						<h4 class="hero-sub-title mb-0">PRODUCTOS DESTACADOS</h4>
-						<h2 class="hero-title mb-30">Nuestros Productos Más Populares</h2>
-						<div class="title-line"></div>
-						<p class="mb-0 mt-40">
+						<h4 class="hero-sub-title mb-0 fade-in-down">PRODUCTOS DESTACADOS</h4>
+						<h2 class="hero-title mb-30 fade-in-up">Nuestros Productos Más Populares</h2>
+						<div class="title-line fade-in-scale"></div>
+						<p class="mb-0 mt-40 fade-in-up-delay">
 							Descubre nuestra selección de impermeabilizantes de alta calidad, elegidos por su excelente rendimiento y durabilidad.
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="featured-products-slider owl-carousel owl-theme">
-				@forelse($featuredProducts as $product)
-					<div class="featured-product-item">
+				@forelse($featuredProducts as $index => $product)
+					<div class="featured-product-item fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="products-box">
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $product->slug) }}">
@@ -207,12 +207,12 @@
 					<div class="step-left-content">
 						<div class="step-left-header">
 							<h3 class="hero-sub-title">&nbsp;</h3>
-							<h2 class="hero-title mb-0">Cómo Trabajamos</h2>
+							<h2 class="hero-title mb-0 fade-in-left">Cómo Trabajamos</h2>
 						</div>
-						<p class="mb-50 step-left-para">
+						<p class="mb-50 step-left-para fade-in-left-delay">
 							En impeercol hacemos fácil y rápida la compra de impermeabilizantes. Te guiamos para elegir el producto ideal y proteger tus espacios con confianza.
 						</p>
-						<div class="button-container-2">
+						<div class="button-container-2 fade-in-left-delay-2">
 							<span class="mas">Contáctanos</span>
 							<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
 						</div>
@@ -220,28 +220,28 @@
 				</div>
 				<div class="step-right">
 					<div class="step-box-wpr grid-2">
-						<div class="step-box wow fadeInUp" data-wow-delay=".1s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.1s">
 							<span class="step-number">01</span>
 							<h4 class="heading-6">Asesoría</h4>
 							<p>
 								Elegimos contigo el impermeabilizante ideal para tu superficie (techo, muro, terraza).
 							</p>
 						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".2s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.2s">
 							<span class="step-number">02</span>
 							<h4 class="heading-6">Cotización</h4>
 							<p class="mb-0">
 								Cotización rápida y clara, con productos disponibles en nuestro catálogo.
 							</p>
 						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".3s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.3s">
 							<span class="step-number">03</span>
 							<h4 class="heading-6">Compra</h4>
 							<p class="mb-0">
 								Haz tu pedido; te indicamos métodos de pago y disponibilidad inmediata.
 							</p>
 						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".4s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.4s">
 							<span class="step-number">04</span>
 							<h4 class="heading-6">Entrega</h4>
 							<p class="mb-0">
@@ -265,8 +265,8 @@
 				<div class="row mb-60 align-items-center">
 					<div class="col-xl-8">
 						<div class="site-title mb-0">
-							<h2>Nuestros Trabajos de Impermeabilización</h2>
-							<p class="mb-0 work-title-para">
+							<h2 class="fade-in-left">Nuestros Trabajos de Impermeabilización</h2>
+							<p class="mb-0 work-title-para fade-in-left-delay">
 								Casos de éxito con sistemas impeercol: soluciones duraderas para techos, juntas
 								y recubrimientos que detienen filtraciones y protegen tus estructuras.
 							</p>
@@ -278,10 +278,7 @@
 			<div class="work-wpr gallery-sldr owl-carousel owl-theme">
 				
 				@forelse($featuredProjects as $index => $project)
-					@php
-						$delay = '.' . ($index + 1);
-					@endphp
-					<div class="work-box wow fadeInUp" data-wow-delay="{{ $delay }}s">
+					<div class="work-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="work-pic">
 							<img src="{{ $project->image_url }}" alt="{{ $project->title }}">
 							<div class="work-ovarlay">
@@ -320,8 +317,8 @@
 			<div class="contact-wpr grid-2">
 				<div class="contact-left">
 					<div class="contact-form-header mb-30">
-						<h4 class="hero-sub-title mb-0">Contáctanos</h4>
-						<h2 class="hero-title mb-0">¿Tienes alguna consulta?</h2>
+						<h4 class="hero-sub-title mb-0 fade-in-right">Contáctanos</h4>
+						<h2 class="hero-title mb-0 fade-in-right-delay">¿Tienes alguna consulta?</h2>
 					</div>
 					<div class="addr-box">
 						<div class="addr-box-single">
@@ -422,8 +419,8 @@
 			<div class="row">
 				<div class="col-xl-6 offset-xl-3">
 					<div class="site-title text-center">
-						<h2>Últimas noticias</h2>
-						<p class="mb-0">
+						<h2 class="fade-in-up">Últimas noticias</h2>
+						<p class="mb-0 fade-in-up-delay">
 							Noticias y artículos recientes sobre impermeabilización, productos y consejos de mantenimiento.
 						</p>
 					</div>
@@ -431,7 +428,7 @@
 			</div>
 			<div class="blog-wpr grid-3">
 				@forelse($latestBlogs as $index => $blog)
-					<div class="blog-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
+					<div class="blog-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="blog-pic">
 							<a href="{{ route('web.blog.show', $blog->slug) }}">
 								<img src="{{ $blog->image_url }}" alt="{{ $blog->title }}">
@@ -497,10 +494,10 @@
 			<div class="row">
 				<div class="col-xl-8 offset-xl-2">
 					<div class="site-title text-center">
-						<h4 class="hero-sub-title mb-0">NUESTRAS MARCAS</h4>
-						<h2 class="hero-title mb-30">Marcas de Confianza</h2>
-						<div class="title-line"></div>
-						<p class="mb-0 mt-40">
+						<h4 class="hero-sub-title mb-0 fade-in-down">NUESTRAS MARCAS</h4>
+						<h2 class="hero-title mb-30 fade-in-up">Marcas de Confianza</h2>
+						<div class="title-line fade-in-scale"></div>
+						<p class="mb-0 mt-40 fade-in-up-delay">
 							En IMPEERCOL trabajamos con las mejores marcas del mercado de impermeabilización. Cada producto que ofrecemos ha sido seleccionado por su calidad, durabilidad y resultados comprobados. Confía en nosotros para proteger tus espacios con soluciones de las marcas líderes en el sector.
 						</p>
 					</div>
@@ -586,11 +583,6 @@
 		flex-direction: column;
 	}
 
-	.featured-product-item .products-box:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-	}
-
 	.featured-product-item .products-pic {
 		width: 100%;
 		height: 250px;
@@ -602,11 +594,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		transition: transform 0.3s ease;
-	}
-
-	.featured-product-item .products-box:hover .products-pic img {
-		transform: scale(1.1);
+		transition: transform 0.4s ease-out;
 	}
 
 	.featured-product-item .products-desc {
@@ -680,6 +668,246 @@
 		transform: scale(1.08) translateY(-5px);
 		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 	}
+
+	/* ============================================
+	   ANIMACIONES SUTILES Y PROFESIONALES
+	   Modernas, elegantes y empresariales
+	   ============================================ */
+
+	/* Fade In Up - Entrada suave desde abajo */
+	.fade-in-up {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeInUp 0.8s ease-out forwards;
+	}
+
+	.fade-in-up-delay {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeInUp 0.8s ease-out 0.2s forwards;
+	}
+
+	.fade-in-up-delay-2 {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeInUp 0.8s ease-out 0.4s forwards;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Fade In Down - Entrada suave desde arriba */
+	.fade-in-down {
+		opacity: 0;
+		transform: translateY(-20px);
+		animation: fadeInDown 0.8s ease-out forwards;
+	}
+
+	@keyframes fadeInDown {
+		from {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Fade In Left - Entrada suave desde la izquierda */
+	.fade-in-left {
+		opacity: 0;
+		transform: translateX(-40px);
+		animation: fadeInLeft 0.8s ease-out forwards;
+	}
+
+	.fade-in-left-delay {
+		opacity: 0;
+		transform: translateX(-40px);
+		animation: fadeInLeft 0.8s ease-out 0.2s forwards;
+	}
+
+	.fade-in-left-delay-2 {
+		opacity: 0;
+		transform: translateX(-40px);
+		animation: fadeInLeft 0.8s ease-out 0.4s forwards;
+	}
+
+	@keyframes fadeInLeft {
+		from {
+			opacity: 0;
+			transform: translateX(-40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	/* Fade In Right - Entrada suave desde la derecha */
+	.fade-in-right {
+		opacity: 0;
+		transform: translateX(40px);
+		animation: fadeInRight 0.8s ease-out forwards;
+	}
+
+	.fade-in-right-delay {
+		opacity: 0;
+		transform: translateX(40px);
+		animation: fadeInRight 0.8s ease-out 0.2s forwards;
+	}
+
+	@keyframes fadeInRight {
+		from {
+			opacity: 0;
+			transform: translateX(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	/* Fade In Scale - Entrada con ligero zoom */
+	.fade-in-scale {
+		opacity: 0;
+		transform: scale(0.95);
+		animation: fadeInScale 0.8s ease-out forwards;
+	}
+
+	@keyframes fadeInScale {
+		from {
+			opacity: 0;
+			transform: scale(0.95);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	/* Fade In Scale Stagger - Para productos con delay */
+	.fade-in-scale-stagger {
+		opacity: 0;
+		transform: scale(0.95) translateY(20px);
+		animation: fadeInScaleStagger 0.6s ease-out forwards;
+	}
+
+	.fade-in-scale-stagger[data-delay="0s"] { animation-delay: 0s; }
+	.fade-in-scale-stagger[data-delay="0.1s"] { animation-delay: 0.1s; }
+	.fade-in-scale-stagger[data-delay="0.2s"] { animation-delay: 0.2s; }
+	.fade-in-scale-stagger[data-delay="0.3s"] { animation-delay: 0.3s; }
+	.fade-in-scale-stagger[data-delay="0.4s"] { animation-delay: 0.4s; }
+
+	@keyframes fadeInScaleStagger {
+		from {
+			opacity: 0;
+			transform: scale(0.95) translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
+	}
+
+	/* Fade In Up Stagger - Para tarjetas con delay */
+	.fade-in-up-stagger {
+		opacity: 0;
+		transform: translateY(25px);
+		animation: fadeInUpStagger 0.6s ease-out forwards;
+	}
+
+	.fade-in-up-stagger[data-delay="0.1s"] { animation-delay: 0.1s; }
+	.fade-in-up-stagger[data-delay="0.2s"] { animation-delay: 0.2s; }
+	.fade-in-up-stagger[data-delay="0.3s"] { animation-delay: 0.3s; }
+	.fade-in-up-stagger[data-delay="0.4s"] { animation-delay: 0.4s; }
+
+	@keyframes fadeInUpStagger {
+		from {
+			opacity: 0;
+			transform: translateY(25px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Hover effects sutiles y profesionales */
+	.featured-product-item .products-box:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.featured-product-item .products-box:hover .products-pic img {
+		transform: scale(1.08);
+		transition: transform 0.4s ease-out;
+	}
+
+	.feature-item:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(230, 57, 70, 0.15);
+		transition: all 0.3s ease-out;
+	}
+
+	.work-box:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+		transition: all 0.3s ease-out;
+	}
+
+	.blog-box:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+		transition: all 0.3s ease-out;
+	}
+
+	/* Scroll reveal con Intersection Observer - Solo para elementos visibles */
+	@media (prefers-reduced-motion: no-preference) {
+		.fade-in-up,
+		.fade-in-up-delay,
+		.fade-in-up-delay-2,
+		.fade-in-down,
+		.fade-in-left,
+		.fade-in-left-delay,
+		.fade-in-left-delay-2,
+		.fade-in-right,
+		.fade-in-right-delay,
+		.fade-in-scale,
+		.fade-in-scale-stagger,
+		.fade-in-up-stagger {
+			opacity: 0;
+		}
+	}
+
+	/* Desactivar animaciones en móviles para mejor rendimiento */
+	@media (max-width: 768px) {
+		.fade-in-up,
+		.fade-in-up-delay,
+		.fade-in-up-delay-2,
+		.fade-in-down,
+		.fade-in-left,
+		.fade-in-left-delay,
+		.fade-in-left-delay-2,
+		.fade-in-right,
+		.fade-in-right-delay,
+		.fade-in-scale,
+		.fade-in-scale-stagger,
+		.fade-in-up-stagger {
+			animation: none !important;
+			opacity: 1 !important;
+			transform: none !important;
+		}
+	}
 </style>
 @endsection
 
@@ -750,6 +978,44 @@
 				}
 			});
 		}
+
+		// Activar animaciones sutiles cuando los elementos entran en viewport
+		if ('IntersectionObserver' in window) {
+			const animateObserver = new IntersectionObserver(function(entries) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						entry.target.style.animationPlayState = 'running';
+						animateObserver.unobserve(entry.target);
+					}
+				});
+			}, {
+				threshold: 0.1,
+				rootMargin: '0px 0px -30px 0px'
+			});
+
+			// Observar todos los elementos con animaciones fade-in
+			document.querySelectorAll('[class*="fade-in-"]').forEach(function(el) {
+				el.style.animationPlayState = 'paused';
+				animateObserver.observe(el);
+			});
+		}
+
+		// Animación del hero slider al cambiar slide
+		if ($('.hero-sldr').length > 0) {
+			$('.hero-sldr').on('changed.owl.carousel', function(event) {
+				var $activeItem = $(event.target).find('.owl-item.active .hero-2-content');
+				
+				// Reiniciar animaciones suavemente
+				$activeItem.find('.fade-in-up, .fade-in-up-delay, .fade-in-up-delay-2').each(function() {
+					var $this = $(this);
+					$this.css('animation', 'none');
+					setTimeout(function() {
+						$this.css('animation', '');
+					}, 10);
+				});
+			});
+		}
+
 	});
 </script>
 @endsection
