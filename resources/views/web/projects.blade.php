@@ -2,9 +2,11 @@
 
 @section('title', 'Proyectos - IMPEERCOL')
 
+@section('description', 'Galería de proyectos de impermeabilización realizados por IMPEERCOL. Conoce casos de éxito con sistemas de impermeabilización para techos, juntas, recubrimientos y más. Soluciones duraderas que detienen filtraciones y protegen estructuras. Verifica la calidad de nuestros trabajos y encuentra inspiración para tu próximo proyecto.')
+
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/breadcrumb/breadcrumb.jpg') }})">
+	<div class="site-breadcrumb breadcrumb-bg-default">
 		<div class="container">
 			<h2 class="breadcrumb-title">Nuestros Proyectos</h2>
 			<ul class="breadcrumb-menu clearfix">

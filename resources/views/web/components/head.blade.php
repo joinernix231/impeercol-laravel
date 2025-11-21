@@ -28,11 +28,14 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>@yield('title', 'IMPEERCOL')</title>
-<meta name="description" content="@yield('description', 'IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá')">
+<meta name="description" content="@yield('description', 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas como Sika, Texsa, Metic y más. Asesoría técnica especializada, distribución nacional y soluciones duraderas para techos, muros y cubiertas.')">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Place favicon.ico in the root directory -->
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/logo.png') }}">
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" href="{{ asset('assets/img/logo/logo.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/logo/logo.png') }}">
 
 <!-- ========== Start Stylesheet ========== -->
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -48,6 +51,7 @@
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/common.css') }}" rel="stylesheet">
 <!-- ========== End Stylesheet ========== -->
 
 {{-- Sección para agregar estilos adicionales desde las vistas --}}

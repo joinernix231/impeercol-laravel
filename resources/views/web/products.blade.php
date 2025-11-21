@@ -2,62 +2,16 @@
 
 @section('title', 'Productos - IMPEERCOL')
 
+@section('description', 'Catálogo completo de impermeabilizantes y recubrimientos en IMPEERCOL. Encuentra productos de las mejores marcas: Sika, Texsa, Metic, FiberGlass, Kaudal y Tekbond. Filtra por categoría, marca o busca el producto ideal para tu proyecto. Asesoría técnica gratuita y envíos a toda Colombia. Protege tus espacios con productos de alta calidad y durabilidad comprobada.')
+
 @section('styles')
-    {{-- Enlace al archivo CSS de productos --}}
+    {{-- Archivo CSS externo para mejor rendimiento y organización --}}
     <link href="{{ asset('assets/css/products.css') }}" rel="stylesheet">
-    <style>
-        .no-products-message {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 6rem 2rem;
-            margin: 2rem 0;
-        }
-
-        .no-products-icon {
-            font-size: 6rem;
-            color: var(--clr-def, #e63946);
-            margin-bottom: 2rem;
-            opacity: 0.6;
-        }
-
-        .no-products-message h3 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-        }
-
-        .no-products-message p {
-            font-size: 1.6rem;
-            color: #666;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .no-products-message {
-                padding: 4rem 1.5rem;
-            }
-
-            .no-products-icon {
-                font-size: 4.5rem;
-            }
-
-            .no-products-message h3 {
-                font-size: 2rem;
-            }
-
-            .no-products-message p {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
 @endsection
 
 @section('content')
     <!-- Start Breadcrumb -->
-    <div class="site-breadcrumb" style="background: url({{ asset('assets/img/breadcrumb/breadcrumb.jpg') }})">
+    <div class="site-breadcrumb breadcrumb-bg-default">
         <div class="container">
             <h2 class="breadcrumb-title">Productos</h2>
             <ul class="breadcrumb-menu clearfix">

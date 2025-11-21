@@ -1,2 +1,74 @@
+# ============================================
+# Robots.txt para IMPEERCOL
+# ============================================
+# Este archivo indica a los motores de búsqueda qué páginas
+# pueden rastrear y cuáles no.
+
+# Permitir todos los bots a todas las páginas públicas
 User-agent: *
-Disallow:
+Allow: /
+
+# Bloquear directorios sensibles y administrativos
+Disallow: /admin/
+Disallow: /cliente/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /impeercol/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /api/
+
+# Permitir acceso a assets públicos (CSS, JS, imágenes)
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+Allow: /*.eot$
+
+# Reglas específicas para bots principales
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /cliente/
+Disallow: /storage/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /cliente/
+Disallow: /storage/
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+Disallow: /cliente/
+Disallow: /storage/
+
+# Bloquear bots maliciosos o no deseados
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Crawl-delay (opcional, en segundos)
+# Reduce la frecuencia de rastreo para no sobrecargar el servidor
+Crawl-delay: 1
+
+# Sitemap (descomentar cuando se genere el sitemap)
+# Sitemap: https://www.impeercol.com/sitemap.xml

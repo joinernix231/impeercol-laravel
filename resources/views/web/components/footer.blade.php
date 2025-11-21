@@ -24,7 +24,7 @@
 
 <!-- Start Footer
 ============================================= -->
-<footer style="background-image: url('{{ asset('assets/img/gallery/Impeercol.jpg') }}');">
+<footer class="footer-bg">
 	<div class="footer-overlay"></div>
 	<div class="top-shape"></div>
 	<div class="footer-widget de-pb">
