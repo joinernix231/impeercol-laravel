@@ -266,8 +266,8 @@
 				<div class="row mb-60 align-items-center">
 					<div class="col-xl-8">
 						<div class="site-title mb-0">
-							<h2 class="fade-in-left">Nuestros Trabajos de Impermeabilización</h2>
-							<p class="mb-0 work-title-para fade-in-left-delay">
+							<h2>Nuestros Trabajos de Impermeabilización</h2>
+							<p class="mb-0 work-title-para">
 								Casos de éxito con sistemas impeercol: soluciones duraderas para techos, juntas
 								y recubrimientos que detienen filtraciones y protegen tus estructuras.
 							</p>
@@ -279,13 +279,13 @@
 			<div class="work-wpr gallery-sldr owl-carousel owl-theme">
 				
 				@forelse($featuredProjects as $index => $project)
-					<div class="work-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
+					<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
 						<div class="work-pic">
 							<img src="{{ $project->image_url }}" alt="{{ $project->title }}">
 							<div class="work-ovarlay">
 								<div class="work-overlay-content">
 									<div class="work-overlay-header">
-										<h3 class="heading-5">{{ $project->title }}</h3>
+										<h4 class="heading-5">{{ $project->title }}</h4>
 										<a href="{{ route('web.project.show', $project->slug) }}" class="work-link">
 											<i class="ti ti-plus"></i>
 										</a>
