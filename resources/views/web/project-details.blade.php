@@ -2,9 +2,18 @@
 
 @section('title', $project->title . ' - IMPEERCOL')
 
+@php
+    use Illuminate\Support\Str;
+    $metaDesc = ($project->description ? Str::limit(strip_tags($project->description), 120) . ' ' : '') . 
+        'Proyecto de impermeabilización ' . $project->title . 
+        ' realizado por IMPEERCOL. Caso de éxito con soluciones duraderas para techos, juntas y recubrimientos. Verifica la calidad de nuestros trabajos y encuentra inspiración para tu próximo proyecto de impermeabilización.';
+@endphp
+
+@section('description', $metaDesc)
+
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/gallery/IMG_2798-convertido-de-jpg.webp') }})">
+	<div class="site-breadcrumb breadcrumb-bg-blog">
 		<div class="container">
 			<h2 class="breadcrumb-title">{{ $project->title }}</h2>
 			<ul class="breadcrumb-menu clearfix">
@@ -107,28 +116,7 @@
 @endsection
 
 @section('scripts')
-<script>
-	// Asegurar que el carousel se inicialice correctamente
-	$(document).ready(function() {
-		if ($('.project-details-carousel').length > 0) {
-			// Reinicializar el carousel si ya existe
-			if ($('.project-details-carousel').data('owl.carousel')) {
-				$('.project-details-carousel').trigger('destroy.owl.carousel');
-			}
-			$('.project-details-carousel').owlCarousel({
-				loop: true,
-				margin: 0,
-				nav: true,
-				navText: [
-					"<i class='icofont-long-arrow-left'></i>",
-					"<i class='icofont-long-arrow-right'></i>"
-				],
-				dots: false,
-				autoplay: false,
-				items: 1
-			});
-		}
-	});
-</script>
+{{-- Archivo JavaScript externo para mejor rendimiento y organización --}}
+<script src="{{ asset('assets/js/project-details.js') }}"></script>
 @endsection
 

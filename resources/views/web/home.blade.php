@@ -31,6 +31,8 @@
 
 @section('title', 'IMPEERCOL - Expertos en Impermeabilización en Bogotá')
 
+@section('description', 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas como Sika, Texsa, Metic y más. Asesoría técnica especializada, distribución nacional y soluciones duraderas para techos, muros y cubiertas. Protege tus espacios con los mejores impermeabilizantes del mercado.')
+
 @php
     use Illuminate\Support\Str;
 @endphp
@@ -41,16 +43,16 @@
 	============================================= -->
 	<div class="hero-section pos-rel">
 		<div class="hero-section-content hero-sldr owl-carousel owl-theme">
-			<div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/BO-convertido-de-jpg.webp') }})">
+			<div class="hero-2-single hero-overlay hero-bg hero-bg-slide-1">
 				<div class="container g-0">
 					<div class="row">
 						<div class="col-xl-8 offset-xl-2">
 							<div class="hero-2-content text-center">
-								<h2 class="hero-title fade-in-up">
-									Productos especializados con la mejor asesoría tecnica.
-								</h2>
+								<h1 class="hero-title fade-in-up">
+									Productos especializados con la mejor asesoría técnica
+								</h1>
 								<p class="fade-in-up-delay">
-									Mejor asesoría tecnica y productos de alta calidad.
+									Mejor asesoría técnica y productos de alta calidad
 								</p>
 								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
 									<div class="button-container-1">
@@ -63,7 +65,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/Bogata-convertido-de-jpg.webp') }})">
+			<div class="hero-2-single hero-overlay hero-bg hero-bg-slide-2">
 				<div class="container g-0">
 					<div class="row">
 						<div class="col-xl-8 offset-xl-2">
@@ -117,19 +119,19 @@
 							<div class="about-features">
 								<div class="feature-grid">
 									<div class="feature-item fade-in-up-stagger" data-delay="0.1s">
-										<h4>Marcas Reconocidas</h4>
+										<h3>Marcas Reconocidas</h3>
 										<p>Las mejores marcas del mercado</p>
 									</div>
 									<div class="feature-item fade-in-up-stagger" data-delay="0.2s">
-										<h4>Asesoría Técnica</h4>
+										<h3>Asesoría Técnica</h3>
 										<p>Te ayudamos a elegir el producto ideal</p>
 									</div>
 									<div class="feature-item fade-in-up-stagger" data-delay="0.3s">
-										<h4>Distribución Nacional</h4>
+										<h3>Distribución Nacional</h3>
 										<p>Envíos a toda Colombia</p>
 									</div>
 									<div class="feature-item fade-in-up-stagger" data-delay="0.4s">
-										<h4>15+ Años</h4>
+										<h3>15+ Años</h3>
 										<p>Experiencia en el sector</p>
 									</div>
 								</div>
@@ -169,9 +171,9 @@
 								</a>
 							</div>
 							<div class="products-desc">
-								<h5>
+								<h3>
 									<a href="{{ route('web.product.show', $product->slug) }}">{{ $product->name }}</a>
-								</h5>
+								</h3>
 								@if($product->brand_name)
 									<p class="text-muted mb-2"><small>Marca: {{ $product->brand_name }}</small></p>
 								@endif
@@ -200,13 +202,12 @@
 	{{-- Sección Cómo Trabajamos --}}
 	<!-- Start Steps
 	============================================= -->
-	<div class="step-area de-pt pos-rel pb-256 hero-bg" style="background-image: url({{ asset('assets/img/gallery/Centro-frente.jpg') }}); background-attachment: fixed; background-size: cover; background-position: center;">
+	<div class="step-area de-pt pos-rel pb-256 hero-bg step-area-bg">
 		<div class="container">
 			<div class="step-wpr grid-2">
 				<div class="step-left d-flex align-items-center">
 					<div class="step-left-content">
 						<div class="step-left-header">
-							<h3 class="hero-sub-title">&nbsp;</h3>
 							<h2 class="hero-title mb-0 fade-in-left">Cómo Trabajamos</h2>
 						</div>
 						<p class="mb-50 step-left-para fade-in-left-delay">
@@ -222,28 +223,28 @@
 					<div class="step-box-wpr grid-2">
 						<div class="step-box fade-in-up-stagger" data-delay="0.1s">
 							<span class="step-number">01</span>
-							<h4 class="heading-6">Asesoría</h4>
+							<h3 class="heading-6">Asesoría</h3>
 							<p>
 								Elegimos contigo el impermeabilizante ideal para tu superficie (techo, muro, terraza).
 							</p>
 						</div>
 						<div class="step-box fade-in-up-stagger" data-delay="0.2s">
 							<span class="step-number">02</span>
-							<h4 class="heading-6">Cotización</h4>
+							<h3 class="heading-6">Cotización</h3>
 							<p class="mb-0">
 								Cotización rápida y clara, con productos disponibles en nuestro catálogo.
 							</p>
 						</div>
 						<div class="step-box fade-in-up-stagger" data-delay="0.3s">
 							<span class="step-number">03</span>
-							<h4 class="heading-6">Compra</h4>
+							<h3 class="heading-6">Compra</h3>
 							<p class="mb-0">
 								Haz tu pedido; te indicamos métodos de pago y disponibilidad inmediata.
 							</p>
 						</div>
 						<div class="step-box fade-in-up-stagger" data-delay="0.4s">
 							<span class="step-number">04</span>
-							<h4 class="heading-6">Entrega</h4>
+							<h3 class="heading-6">Entrega</h3>
 							<p class="mb-0">
 								Entrega rápida en Bogotá para que uses tus productos a tiempo.
 							</p>
@@ -284,7 +285,7 @@
 							<div class="work-ovarlay">
 								<div class="work-overlay-content">
 									<div class="work-overlay-header">
-										<h4 class="heading-5">{{ $project->title }}</h4>
+										<h3 class="heading-5">{{ $project->title }}</h3>
 										<a href="{{ route('web.project.show', $project->slug) }}" class="work-link">
 											<i class="ti ti-plus"></i>
 										</a>
@@ -326,7 +327,7 @@
 								<i class="icofont-google-map"></i>
 							</div>
 							<div class="addr-desc">
-								<h4>Dirección</h4>
+								<h3>Dirección</h3>
 								<p class="mb-0">
 									<a href="https://www.google.com/maps/search/?api=1&query=Cra.%2016%20%23%2012-09,%20Bogot%C3%A1,%20Colombia" target="_blank" rel="noopener noreferrer">
 										Cra. 16 # 12-09<br>
@@ -340,7 +341,7 @@
 								<i class="icofont-phone"></i>
 							</div>
 							<div class="addr-desc">
-								<h4>Teléfono</h4>
+								<h3>Teléfono</h3>
 								<p class="mb-0">
 									<a href="tel:+573025069825">Centro: 302 5069825</a><br>
 									<a href="tel:+573237313633">7 de Agosto: 323 7313633</a>
@@ -352,7 +353,7 @@
 								<i class="icofont-email"></i>
 							</div>
 							<div class="addr-desc">
-								<h4>Correo electrónico</h4>
+								<h3>Correo electrónico</h3>
 								<p class="mb-0">
 									<a href="mailto:impeercol@gmail.com?subject=Consulta%20desde%20la%20web">impeercol@gmail.com</a>
 								</p>
@@ -458,9 +459,9 @@
 							</ul>
 							<div class="blog-content">
 								<a href="{{ route('web.blog.show', $blog->slug) }}">
-									<h4>
+									<h3>
 										{{ $blog->title }}
-									</h4>
+									</h3>
 								</a>
 								<p>
 									@if($blog->excerpt)
@@ -504,49 +505,49 @@
 				</div>
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
-				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" style="cursor: pointer;">
+				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
 				</a>
 				@php
 					$sikaId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" style="cursor: pointer;">
+				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
 				</a>
 				@php
 					$texsaId = $brandsMap['texsa'] ?? null;
 				@endphp
-				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" style="cursor: pointer;">
+				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
 				</a>
 				@php
 					$meticId = $brandsMap['metic'] ?? null;
 				@endphp
-				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" style="cursor: pointer;">
+				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
 				</a>
 				@php
 					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
 				@endphp
-				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" style="cursor: pointer;">
+				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
 				</a>
 				@php
 					$kaudalId = $brandsMap['kaudal'] ?? null;
 				@endphp
-				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" style="cursor: pointer;">
+				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
 				</a>
 				@php
 					$tekbondId = $brandsMap['tekbond'] ?? null;
 				@endphp
-				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" style="cursor: pointer;">
+				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
 				@php
 					$sikaIndustryId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo" style="cursor: pointer;">
+				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
 				</a>
 			</div>
@@ -559,464 +560,14 @@
 @endsection
 
 @section('styles')
-<style>
-	.featured-products-area {
-		background: #f8f9fa;
-	}
-
-	.featured-products-slider {
-		margin-top: 4rem;
-	}
-
-	.featured-product-item {
-		padding: 0 15px;
-	}
-
-	.featured-product-item .products-box {
-		background: #fff;
-		border-radius: 10px;
-		overflow: hidden;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-		transition: all 0.3s ease;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.featured-product-item .products-pic {
-		width: 100%;
-		height: 250px;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.featured-product-item .products-pic img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.4s ease-out;
-	}
-
-	.featured-product-item .products-desc {
-		padding: 2rem;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.featured-product-item .products-desc h5 {
-		margin-bottom: 1rem;
-		font-size: 1.8rem;
-		font-weight: 600;
-	}
-
-	.featured-product-item .products-desc h5 a {
-		color: #1a1a1a;
-		text-decoration: none;
-		transition: color 0.3s ease;
-	}
-
-	.featured-product-item .products-desc h5 a:hover {
-		color: var(--clr-def, #e63946);
-	}
-
-	.featured-product-item .product-excerpt {
-		font-size: 1.4rem;
-		color: #666;
-		line-height: 1.6;
-		margin-bottom: 1.5rem;
-		flex: 1;
-	}
-
-	.featured-product-item .cart-btn {
-		margin-top: auto;
-	}
-
-	@media (max-width: 768px) {
-		.featured-product-item .products-pic {
-			height: 200px;
-		}
-
-		.featured-product-item .products-desc {
-			padding: 1.5rem;
-		}
-	}
-
-	/* Estilos para el logo de Sika Industry - mismo tamaño que el logo de Sika normal */
-	.partner-sldr-2 .sika-industry-logo {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 15px;
-	}
-	
-	.partner-sldr-2 .sika-industry-logo img {
-		max-height: 120px !important;
-		max-width: 200px !important;
-		width: auto !important;
-		height: auto !important;
-		object-fit: contain;
-		filter: grayscale(100%);
-		opacity: .85;
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		transform: scale(1);
-	}
-	
-	.partner-sldr-2 .sika-industry-logo:hover img {
-		filter: grayscale(0%);
-		opacity: 1;
-		transform: scale(1.08) translateY(-5px);
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-	}
-
-	/* ============================================
-	   ANIMACIONES SUTILES Y PROFESIONALES
-	   Modernas, elegantes y empresariales
-	   ============================================ */
-
-	/* Fade In Up - Entrada suave desde abajo */
-	.fade-in-up {
-		opacity: 0;
-		transform: translateY(30px);
-		animation: fadeInUp 0.8s ease-out forwards;
-	}
-
-	.fade-in-up-delay {
-		opacity: 0;
-		transform: translateY(30px);
-		animation: fadeInUp 0.8s ease-out 0.2s forwards;
-	}
-
-	.fade-in-up-delay-2 {
-		opacity: 0;
-		transform: translateY(30px);
-		animation: fadeInUp 0.8s ease-out 0.4s forwards;
-	}
-
-	@keyframes fadeInUp {
-		from {
-			opacity: 0;
-			transform: translateY(30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	/* Fade In Down - Entrada suave desde arriba */
-	.fade-in-down {
-		opacity: 0;
-		transform: translateY(-20px);
-		animation: fadeInDown 0.8s ease-out forwards;
-	}
-
-	@keyframes fadeInDown {
-		from {
-			opacity: 0;
-			transform: translateY(-20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	/* Fade In Left - Entrada suave desde la izquierda */
-	.fade-in-left {
-		opacity: 0;
-		transform: translateX(-40px);
-		animation: fadeInLeft 0.8s ease-out forwards;
-	}
-
-	.fade-in-left-delay {
-		opacity: 0;
-		transform: translateX(-40px);
-		animation: fadeInLeft 0.8s ease-out 0.2s forwards;
-	}
-
-	.fade-in-left-delay-2 {
-		opacity: 0;
-		transform: translateX(-40px);
-		animation: fadeInLeft 0.8s ease-out 0.4s forwards;
-	}
-
-	@keyframes fadeInLeft {
-		from {
-			opacity: 0;
-			transform: translateX(-40px);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	/* Fade In Right - Entrada suave desde la derecha */
-	.fade-in-right {
-		opacity: 0;
-		transform: translateX(40px);
-		animation: fadeInRight 0.8s ease-out forwards;
-	}
-
-	.fade-in-right-delay {
-		opacity: 0;
-		transform: translateX(40px);
-		animation: fadeInRight 0.8s ease-out 0.2s forwards;
-	}
-
-	@keyframes fadeInRight {
-		from {
-			opacity: 0;
-			transform: translateX(40px);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	/* Fade In Scale - Entrada con ligero zoom */
-	.fade-in-scale {
-		opacity: 0;
-		transform: scale(0.95);
-		animation: fadeInScale 0.8s ease-out forwards;
-	}
-
-	@keyframes fadeInScale {
-		from {
-			opacity: 0;
-			transform: scale(0.95);
-		}
-		to {
-			opacity: 1;
-			transform: scale(1);
-		}
-	}
-
-	/* Fade In Scale Stagger - Para productos con delay */
-	.fade-in-scale-stagger {
-		opacity: 0;
-		transform: scale(0.95) translateY(20px);
-		animation: fadeInScaleStagger 0.6s ease-out forwards;
-	}
-
-	.fade-in-scale-stagger[data-delay="0s"] { animation-delay: 0s; }
-	.fade-in-scale-stagger[data-delay="0.1s"] { animation-delay: 0.1s; }
-	.fade-in-scale-stagger[data-delay="0.2s"] { animation-delay: 0.2s; }
-	.fade-in-scale-stagger[data-delay="0.3s"] { animation-delay: 0.3s; }
-	.fade-in-scale-stagger[data-delay="0.4s"] { animation-delay: 0.4s; }
-
-	@keyframes fadeInScaleStagger {
-		from {
-			opacity: 0;
-			transform: scale(0.95) translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: scale(1) translateY(0);
-		}
-	}
-
-	/* Fade In Up Stagger - Para tarjetas con delay */
-	.fade-in-up-stagger {
-		opacity: 0;
-		transform: translateY(25px);
-		animation: fadeInUpStagger 0.6s ease-out forwards;
-	}
-
-	.fade-in-up-stagger[data-delay="0.1s"] { animation-delay: 0.1s; }
-	.fade-in-up-stagger[data-delay="0.2s"] { animation-delay: 0.2s; }
-	.fade-in-up-stagger[data-delay="0.3s"] { animation-delay: 0.3s; }
-	.fade-in-up-stagger[data-delay="0.4s"] { animation-delay: 0.4s; }
-
-	@keyframes fadeInUpStagger {
-		from {
-			opacity: 0;
-			transform: translateY(25px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	/* Hover effects sutiles y profesionales */
-	.featured-product-item .products-box:hover {
-		transform: translateY(-8px);
-		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.featured-product-item .products-box:hover .products-pic img {
-		transform: scale(1.08);
-		transition: transform 0.4s ease-out;
-	}
-
-	.feature-item:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 10px 25px rgba(230, 57, 70, 0.15);
-		transition: all 0.3s ease-out;
-	}
-
-	.work-box:hover {
-		transform: translateY(-8px);
-		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-		transition: all 0.3s ease-out;
-	}
-
-	.blog-box:hover {
-		transform: translateY(-6px);
-		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-		transition: all 0.3s ease-out;
-	}
-
-	/* Scroll reveal con Intersection Observer - Solo para elementos visibles */
-	@media (prefers-reduced-motion: no-preference) {
-		.fade-in-up,
-		.fade-in-up-delay,
-		.fade-in-up-delay-2,
-		.fade-in-down,
-		.fade-in-left,
-		.fade-in-left-delay,
-		.fade-in-left-delay-2,
-		.fade-in-right,
-		.fade-in-right-delay,
-		.fade-in-scale,
-		.fade-in-scale-stagger,
-		.fade-in-up-stagger {
-			opacity: 0;
-		}
-	}
-
-	/* Desactivar animaciones en móviles para mejor rendimiento */
-	@media (max-width: 768px) {
-		.fade-in-up,
-		.fade-in-up-delay,
-		.fade-in-up-delay-2,
-		.fade-in-down,
-		.fade-in-left,
-		.fade-in-left-delay,
-		.fade-in-left-delay-2,
-		.fade-in-right,
-		.fade-in-right-delay,
-		.fade-in-scale,
-		.fade-in-scale-stagger,
-		.fade-in-up-stagger {
-			animation: none !important;
-			opacity: 1 !important;
-			transform: none !important;
-		}
-	}
-</style>
+{{-- Archivos CSS externos para mejor rendimiento y organización --}}
+<link href="{{ asset('assets/css/animations.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
 @endsection
 
 @section('scripts')
-<script>
-	$(document).ready(function() {
-		// Reinicializar el carousel con menos margin
-		if ($('.gallery-sldr').length > 0) {
-			if ($('.gallery-sldr').data('owl.carousel')) {
-				$('.gallery-sldr').trigger('destroy.owl.carousel');
-			}
-			$('.gallery-sldr').owlCarousel({
-				loop: true,
-				margin: 0,
-				nav: false,
-				dots: true,
-				autoplay: true,
-				autoplayTimeout: 5000,
-				autoplayHoverPause: true,
-				responsive: {
-					0: {
-						items: 1,
-						margin: 10
-					},
-					768: {
-						items: 2,
-						margin: 20
-					},
-					992: {
-						items: 3,
-						margin: 30
-					}
-				}
-			});
-		}
-
-		// Inicializar slider de productos destacados
-		if ($('.featured-products-slider').length > 0) {
-			$('.featured-products-slider').owlCarousel({
-				loop: true,
-				margin: 30,
-				nav: true,
-				dots: true,
-				autoplay: true,
-				autoplayTimeout: 4000,
-				autoplayHoverPause: true,
-				navText: [
-					'<i class="icofont-long-arrow-left"></i>',
-					'<i class="icofont-long-arrow-right"></i>'
-				],
-				responsive: {
-					0: {
-						items: 1,
-						margin: 15
-					},
-					576: {
-						items: 2,
-						margin: 20
-					},
-					768: {
-						items: 3,
-						margin: 25
-					},
-					992: {
-						items: 4,
-						margin: 30
-					}
-				}
-			});
-		}
-
-		// Activar animaciones sutiles cuando los elementos entran en viewport
-		if ('IntersectionObserver' in window) {
-			const animateObserver = new IntersectionObserver(function(entries) {
-				entries.forEach(function(entry) {
-					if (entry.isIntersecting) {
-						entry.target.style.animationPlayState = 'running';
-						animateObserver.unobserve(entry.target);
-					}
-				});
-			}, {
-				threshold: 0.1,
-				rootMargin: '0px 0px -30px 0px'
-			});
-
-			// Observar todos los elementos con animaciones fade-in
-			document.querySelectorAll('[class*="fade-in-"]').forEach(function(el) {
-				el.style.animationPlayState = 'paused';
-				animateObserver.observe(el);
-			});
-		}
-
-		// Animación del hero slider al cambiar slide
-		if ($('.hero-sldr').length > 0) {
-			$('.hero-sldr').on('changed.owl.carousel', function(event) {
-				var $activeItem = $(event.target).find('.owl-item.active .hero-2-content');
-				
-				// Reiniciar animaciones suavemente
-				$activeItem.find('.fade-in-up, .fade-in-up-delay, .fade-in-up-delay-2').each(function() {
-					var $this = $(this);
-					$this.css('animation', 'none');
-					setTimeout(function() {
-						$this.css('animation', '');
-					}, 10);
-				});
-			});
-		}
-
-	});
-</script>
+{{-- Archivos JavaScript externos para mejor rendimiento y organización --}}
+<script src="{{ asset('assets/js/animations.js') }}"></script>
+<script src="{{ asset('assets/js/home.js') }}"></script>
 @endsection
 
