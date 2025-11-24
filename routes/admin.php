@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FileUploadController;
 
 /*
@@ -27,8 +26,10 @@ use App\Http\Controllers\Admin\FileUploadController;
 */
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
-    // Dashboard
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    // Dashboard (se implementará más adelante)
+    Route::get('/', function () {
+        return redirect()->route('admin.projects.index');
+    })->name('dashboard');
 
     // Proyectos - CRUD completo
     Route::resource('projects', ProjectController::class);
