@@ -9,6 +9,12 @@ use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Brand\BrandRepository;
 use App\Repositories\Blog\BlogRepository;
 use App\Repositories\Banner\BannerRepository;
+use App\Models\Project;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Blog;
+use App\Models\Banner;
 
 /**
  * ============================================
@@ -47,14 +53,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Obtener estadísticas usando count() directamente en el modelo
+        // Obtener estadísticas usando los modelos directamente
         $stats = [
-            'projects' => $this->projectRepository->model->count(),
-            'products' => $this->productRepository->model->count(),
-            'categories' => $this->categoryRepository->model->count(),
-            'brands' => $this->brandRepository->model->count(),
-            'blogs' => $this->blogRepository->model->count(),
-            'banners' => $this->bannerRepository->model->count(),
+            'projects' => Project::count(),
+            'products' => Product::count(),
+            'categories' => Category::count(),
+            'brands' => Brand::count(),
+            'blogs' => Blog::count(),
+            'banners' => Banner::count(),
             'active_banners' => $this->bannerRepository->getAllActive()->count(),
         ];
 
