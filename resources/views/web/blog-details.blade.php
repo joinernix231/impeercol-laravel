@@ -2,15 +2,19 @@
 
 @section('title', ($blog->meta_title ?? $blog->title) . ' - IMPEERCOL')
 
-@section('meta')
-    @if($blog->meta_description)
-        <meta name="description" content="{{ $blog->meta_description }}">
-    @endif
-@endsection
+@php
+    use Illuminate\Support\Str;
+    $metaDesc = $blog->meta_description ?? 
+        ($blog->excerpt ? Str::limit(strip_tags($blog->excerpt), 120) . ' ' : '') . 
+        ($blog->content ? Str::limit(strip_tags($blog->content), 120) . ' ' : '') . 
+        'Artículo sobre impermeabilización en el blog de IMPEERCOL. Consejos, guías y soluciones para proteger tus espacios. Lee más sobre ' . $blog->title . ' y encuentra información útil sobre productos y técnicas de impermeabilización.';
+@endphp
+
+@section('description', $metaDesc)
 
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/gallery/IMG_2798-convertido-de-jpg.webp') }})">
+	<div class="site-breadcrumb breadcrumb-bg-blog">
 		<div class="container">
 			<h2 class="breadcrumb-title">{{ $blog->title }}</h2>
 			<ul class="breadcrumb-menu clearfix">
@@ -58,7 +62,7 @@
 											</ul>
 										</div>
 										<div class="theme-meta-right">
-											<a href="#" class="shr-btn" onclick="shareArticle(); return false;">
+											<a href="#" class="shr-btn" onclick="shareArticle(); return false;" data-blog-title="{{ $blog->title }}" data-blog-text="{{ $blog->excerpt ?? '' }}">
 												<i class="icofont-share-alt"></i> Compartir
 											</a>
 										</div>
@@ -147,7 +151,7 @@
 											@endif
 											<div class="recent-post-bio">
 												<h6>
-													<a href="{{ route('web.blog.show', $relatedBlog->slug) }}" style="text-decoration: none; color: inherit;">
+													<a href="{{ route('web.blog.show', $relatedBlog->slug) }}" class="link-no-decoration">
 														{{ $relatedBlog->title }}
 													</a>
 												</h6>
@@ -197,30 +201,6 @@
 @endsection
 
 @section('scripts')
-<script>
-function shareArticle() {
-    if (navigator.share) {
-        navigator.share({
-            title: '{{ $blog->title }}',
-            text: '{{ $blog->excerpt ?? "" }}',
-            url: window.location.href
-        }).catch(err => console.log('Error al compartir', err));
-    } else {
-        // Fallback: copiar al portapapeles
-        const url = window.location.href;
-        navigator.clipboard.writeText(url).then(() => {
-            alert('Enlace copiado al portapapeles');
-        }).catch(err => {
-            // Fallback más antiguo
-            const textArea = document.createElement('textarea');
-            textArea.value = url;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            alert('Enlace copiado al portapapeles');
-        });
-    }
-}
-</script>
+{{-- Archivo JavaScript externo para mejor rendimiento y organización --}}
+<script src="{{ asset('assets/js/blog-details.js') }}"></script>
 @endsection

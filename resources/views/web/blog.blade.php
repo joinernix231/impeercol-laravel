@@ -2,9 +2,11 @@
 
 @section('title', 'Blog - IMPEERCOL')
 
+@section('description', 'Blog de IMPEERCOL: consejos, guías y artículos sobre impermeabilización, mantenimiento de techos, aplicación de productos, soluciones para filtraciones y más. Aprende de nuestros expertos sobre cómo proteger y mantener tus espacios. Información actualizada sobre productos, técnicas y mejores prácticas en impermeabilización.')
+
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/gallery/IMG_2798-convertido-de-jpg.webp') }})">
+	<div class="site-breadcrumb breadcrumb-bg-blog">
 		<div class="container">
 			<h2 class="breadcrumb-title">Blog</h2>
 			<ul class="breadcrumb-menu">
@@ -35,7 +37,7 @@
 							</form>
 							@if($search ?? false)
 								<div class="mt-3">
-									<a href="{{ route('web.blog') }}" class="tags-link" style="display: inline-block; margin-top: 10px;">
+									<a href="{{ route('web.blog') }}" class="tags-link">
 										<i class="icofont-close"></i> Limpiar búsqueda
 									</a>
 								</div>
@@ -68,7 +70,7 @@
 											@endif
 										</div>
 										<h3 class="blog-page-title mb-30">
-											<a href="{{ route('web.blog.show', $blog->slug) }}" style="text-decoration: none; color: inherit;">
+											<a href="{{ route('web.blog.show', $blog->slug) }}" class="link-no-decoration">
 												{{ $blog->title }}
 											</a>
 										</h3>

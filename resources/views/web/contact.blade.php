@@ -2,9 +2,11 @@
 
 @section('title', 'Contacto - IMPEERCOL')
 
+@section('description', 'Contáctanos en IMPEERCOL. Estamos ubicados en Bogotá con dos sedes: Centro (Cra. 16 # 12-09) y Siete de Agosto (Cra 20 # 68-15). Horario de atención: Lun-Sab 8am-6pm. Teléfonos: Centro 302 5069825, 7 de Agosto 323 7313633. Email: impeercol@gmail.com. Recibe asesoría técnica gratuita para tu proyecto de impermeabilización.')
+
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/gallery/IMG_2798-convertido-de-jpg.webp') }})">
+	<div class="site-breadcrumb breadcrumb-bg-blog">
 		<div class="container">
 			<h2 class="breadcrumb-title">Contacto</h2>
 			<ul class="breadcrumb-menu clearfix">

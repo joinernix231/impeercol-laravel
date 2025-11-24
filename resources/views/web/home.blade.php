@@ -31,6 +31,8 @@
 
 @section('title', 'IMPEERCOL - Expertos en Impermeabilización en Bogotá')
 
+@section('description', 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas como Sika, Texsa, Metic y más. Asesoría técnica especializada, distribución nacional y soluciones duraderas para techos, muros y cubiertas. Protege tus espacios con los mejores impermeabilizantes del mercado.')
+
 @php
     use Illuminate\Support\Str;
 @endphp
@@ -41,18 +43,18 @@
 	============================================= -->
 	<div class="hero-section pos-rel">
 		<div class="hero-section-content hero-sldr owl-carousel owl-theme">
-			<div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/BO-convertido-de-jpg.webp') }})">
+			<div class="hero-2-single hero-overlay hero-bg hero-bg-slide-1">
 				<div class="container g-0">
 					<div class="row">
 						<div class="col-xl-8 offset-xl-2">
 							<div class="hero-2-content text-center">
-								<h2 class="hero-title">
-									Productos especializados con la mejor asesoría tecnica.
-								</h2>
-								<p>
-									Mejor asesoría tecnica y productos de alta calidad.
+								<h1 class="hero-title fade-in-up">
+									Productos especializados con la mejor asesoría técnica
+								</h1>
+								<p class="fade-in-up-delay">
+									Mejor asesoría técnica y productos de alta calidad
 								</p>
-								<div class="hero-btn d-flex justify-content-center">
+								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
 									<div class="button-container-1">
 										<span class="mas">Contáctanos</span>
 										<a href="#contact" class="site-btn-1 smooth-menu">Contáctanos</a>
@@ -63,18 +65,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/Bogata-convertido-de-jpg.webp') }})">
+			<div class="hero-2-single hero-overlay hero-bg hero-bg-slide-2">
 				<div class="container g-0">
 					<div class="row">
 						<div class="col-xl-8 offset-xl-2">
 							<div class="hero-2-content text-center">
-								<h2 class="hero-title">
+								<h2 class="hero-title fade-in-up">
 									Impermeabiliza, protege y conserva
 								</h2>
-								<p>
+								<p class="fade-in-up-delay">
 									Todo lo que necesitas para mantener tus espacios en perfectas condiciones.
 								</p>
-								<div class="hero-btn d-flex justify-content-center">
+								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
 									<div class="button-container-2">
 										<span class="mas">Contáctanos</span>
 										<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
@@ -99,7 +101,7 @@
 					<div class="col-xl-5">
 						<div class="about-left">
 							<div class="about-left-content">
-								<div class="about-photo pos-rel">
+								<div class="about-photo pos-rel fade-in-left">
 									<span class="about-dotted"></span>
 									<img src="{{ asset('assets/img/gallery/inicio-convertido-de-jpg.webp') }}" class="about-main-pic" alt="IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá" loading="lazy">
 								</div>
@@ -109,27 +111,27 @@
 					<div class="col-xl-7">
 						<div class="about-right pl-60">
 							<div class="about-heading mb-40">
-								<h2 class="hero-title mb-30">¿Quiénes Somos?</h2>
-								<p class="mb-0">
+								<h2 class="hero-title mb-30 fade-in-right">¿Quiénes Somos?</h2>
+								<p class="mb-0 fade-in-right-delay">
 									En impeercol llevamos más de 15 años protegiendo los espacios de los colombianos con impermeabilizantes de alta calidad. Ofrecemos soluciones duraderas y confiables para techos, muros y cubiertas, garantizando resultados visibles y protección total contra la humedad. Somos tu aliado en impermeabilización, con productos fáciles de aplicar y pensados para durar.
 								</p>
 							</div>
 							<div class="about-features">
 								<div class="feature-grid">
-									<div class="feature-item">
-										<h4>Marcas Reconocidas</h4>
+									<div class="feature-item fade-in-up-stagger" data-delay="0.1s">
+										<h3>Marcas Reconocidas</h3>
 										<p>Las mejores marcas del mercado</p>
 									</div>
-									<div class="feature-item">
-										<h4>Asesoría Técnica</h4>
+									<div class="feature-item fade-in-up-stagger" data-delay="0.2s">
+										<h3>Asesoría Técnica</h3>
 										<p>Te ayudamos a elegir el producto ideal</p>
 									</div>
-									<div class="feature-item">
-										<h4>Distribución Nacional</h4>
+									<div class="feature-item fade-in-up-stagger" data-delay="0.3s">
+										<h3>Distribución Nacional</h3>
 										<p>Envíos a toda Colombia</p>
 									</div>
-									<div class="feature-item">
-										<h4>15+ Años</h4>
+									<div class="feature-item fade-in-up-stagger" data-delay="0.4s">
+										<h3>15+ Años</h3>
 										<p>Experiencia en el sector</p>
 									</div>
 								</div>
@@ -150,18 +152,18 @@
 			<div class="row">
 				<div class="col-xl-8 offset-xl-2">
 					<div class="site-title text-center mb-60">
-						<h4 class="hero-sub-title mb-0">PRODUCTOS DESTACADOS</h4>
-						<h2 class="hero-title mb-30">Nuestros Productos Más Populares</h2>
-						<div class="title-line"></div>
-						<p class="mb-0 mt-40">
+						<h4 class="hero-sub-title mb-0 fade-in-down">PRODUCTOS DESTACADOS</h4>
+						<h2 class="hero-title mb-30 fade-in-up">Nuestros Productos Más Populares</h2>
+						<div class="title-line fade-in-scale"></div>
+						<p class="mb-0 mt-40 fade-in-up-delay">
 							Descubre nuestra selección de impermeabilizantes de alta calidad, elegidos por su excelente rendimiento y durabilidad.
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="featured-products-slider owl-carousel owl-theme">
-				@forelse($featuredProducts as $product)
-					<div class="featured-product-item">
+				@forelse($featuredProducts as $index => $product)
+					<div class="featured-product-item fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="products-box">
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $product->slug) }}">
@@ -169,9 +171,9 @@
 								</a>
 							</div>
 							<div class="products-desc">
-								<h5>
+								<h3>
 									<a href="{{ route('web.product.show', $product->slug) }}">{{ $product->name }}</a>
-								</h5>
+								</h3>
 								@if($product->brand_name)
 									<p class="text-muted mb-2"><small>Marca: {{ $product->brand_name }}</small></p>
 								@endif
@@ -200,19 +202,18 @@
 	{{-- Sección Cómo Trabajamos --}}
 	<!-- Start Steps
 	============================================= -->
-	<div class="step-area de-pt pos-rel pb-256 hero-bg" style="background-image: url({{ asset('assets/img/gallery/Centro-frente.jpg') }}); background-attachment: fixed; background-size: cover; background-position: center;">
+	<div class="step-area de-pt pos-rel pb-256 hero-bg step-area-bg">
 		<div class="container">
 			<div class="step-wpr grid-2">
 				<div class="step-left d-flex align-items-center">
 					<div class="step-left-content">
 						<div class="step-left-header">
-							<h3 class="hero-sub-title">&nbsp;</h3>
-							<h2 class="hero-title mb-0">Cómo Trabajamos</h2>
+							<h2 class="hero-title mb-0 fade-in-left">Cómo Trabajamos</h2>
 						</div>
-						<p class="mb-50 step-left-para">
+						<p class="mb-50 step-left-para fade-in-left-delay">
 							En impeercol hacemos fácil y rápida la compra de impermeabilizantes. Te guiamos para elegir el producto ideal y proteger tus espacios con confianza.
 						</p>
-						<div class="button-container-2">
+						<div class="button-container-2 fade-in-left-delay-2">
 							<span class="mas">Contáctanos</span>
 							<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
 						</div>
@@ -220,30 +221,30 @@
 				</div>
 				<div class="step-right">
 					<div class="step-box-wpr grid-2">
-						<div class="step-box wow fadeInUp" data-wow-delay=".1s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.1s">
 							<span class="step-number">01</span>
-							<h4 class="heading-6">Asesoría</h4>
+							<h3 class="heading-6">Asesoría</h3>
 							<p>
 								Elegimos contigo el impermeabilizante ideal para tu superficie (techo, muro, terraza).
 							</p>
 						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".2s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.2s">
 							<span class="step-number">02</span>
-							<h4 class="heading-6">Cotización</h4>
+							<h3 class="heading-6">Cotización</h3>
 							<p class="mb-0">
 								Cotización rápida y clara, con productos disponibles en nuestro catálogo.
 							</p>
 						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".3s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.3s">
 							<span class="step-number">03</span>
-							<h4 class="heading-6">Compra</h4>
+							<h3 class="heading-6">Compra</h3>
 							<p class="mb-0">
 								Haz tu pedido; te indicamos métodos de pago y disponibilidad inmediata.
 							</p>
 						</div>
-						<div class="step-box wow fadeInUp" data-wow-delay=".4s">
+						<div class="step-box fade-in-up-stagger" data-delay="0.4s">
 							<span class="step-number">04</span>
-							<h4 class="heading-6">Entrega</h4>
+							<h3 class="heading-6">Entrega</h3>
 							<p class="mb-0">
 								Entrega rápida en Bogotá para que uses tus productos a tiempo.
 							</p>
@@ -278,10 +279,7 @@
 			<div class="work-wpr gallery-sldr owl-carousel owl-theme">
 				
 				@forelse($featuredProjects as $index => $project)
-					@php
-						$delay = '.' . ($index + 1);
-					@endphp
-					<div class="work-box wow fadeInUp" data-wow-delay="{{ $delay }}s">
+					<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
 						<div class="work-pic">
 							<img src="{{ $project->image_url }}" alt="{{ $project->title }}">
 							<div class="work-ovarlay">
@@ -320,8 +318,8 @@
 			<div class="contact-wpr grid-2">
 				<div class="contact-left">
 					<div class="contact-form-header mb-30">
-						<h4 class="hero-sub-title mb-0">Contáctanos</h4>
-						<h2 class="hero-title mb-0">¿Tienes alguna consulta?</h2>
+						<h4 class="hero-sub-title mb-0 fade-in-right">Contáctanos</h4>
+						<h2 class="hero-title mb-0 fade-in-right-delay">¿Tienes alguna consulta?</h2>
 					</div>
 					<div class="addr-box">
 						<div class="addr-box-single">
@@ -329,7 +327,7 @@
 								<i class="icofont-google-map"></i>
 							</div>
 							<div class="addr-desc">
-								<h4>Dirección</h4>
+								<h3>Dirección</h3>
 								<p class="mb-0">
 									<a href="https://www.google.com/maps/search/?api=1&query=Cra.%2016%20%23%2012-09,%20Bogot%C3%A1,%20Colombia" target="_blank" rel="noopener noreferrer">
 										Cra. 16 # 12-09<br>
@@ -357,7 +355,7 @@
 								<i class="icofont-phone"></i>
 							</div>
 							<div class="addr-desc">
-								<h4>Teléfono</h4>
+								<h3>Teléfono</h3>
 								<p class="mb-0">
 									<a href="tel:+573025069825">Centro: 302 5069825</a><br>
 									<a href="tel:+573237313633">7 de Agosto: 323 7313633</a>
@@ -369,7 +367,7 @@
 								<i class="icofont-email"></i>
 							</div>
 							<div class="addr-desc">
-								<h4>Correo electrónico</h4>
+								<h3>Correo electrónico</h3>
 								<p class="mb-0">
 									<a href="mailto:impeercol@gmail.com?subject=Consulta%20desde%20la%20web">impeercol@gmail.com</a>
 								</p>
@@ -436,8 +434,8 @@
 			<div class="row">
 				<div class="col-xl-6 offset-xl-3">
 					<div class="site-title text-center">
-						<h2>Últimas noticias</h2>
-						<p class="mb-0">
+						<h2 class="fade-in-up">Últimas noticias</h2>
+						<p class="mb-0 fade-in-up-delay">
 							Noticias y artículos recientes sobre impermeabilización, productos y consejos de mantenimiento.
 						</p>
 					</div>
@@ -445,7 +443,7 @@
 			</div>
 			<div class="blog-wpr grid-3">
 				@forelse($latestBlogs as $index => $blog)
-					<div class="blog-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
+					<div class="blog-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="blog-pic">
 							<a href="{{ route('web.blog.show', $blog->slug) }}">
 								<img src="{{ $blog->image_url }}" alt="{{ $blog->title }}">
@@ -475,9 +473,9 @@
 							</ul>
 							<div class="blog-content">
 								<a href="{{ route('web.blog.show', $blog->slug) }}">
-									<h4>
+									<h3>
 										{{ $blog->title }}
-									</h4>
+									</h3>
 								</a>
 								<p>
 									@if($blog->excerpt)
@@ -511,59 +509,59 @@
 			<div class="row">
 				<div class="col-xl-8 offset-xl-2">
 					<div class="site-title text-center">
-						<h4 class="hero-sub-title mb-0">NUESTRAS MARCAS</h4>
-						<h2 class="hero-title mb-30">Marcas de Confianza</h2>
-						<div class="title-line"></div>
-						<p class="mb-0 mt-40">
+						<h4 class="hero-sub-title mb-0 fade-in-down">NUESTRAS MARCAS</h4>
+						<h2 class="hero-title mb-30 fade-in-up">Marcas de Confianza</h2>
+						<div class="title-line fade-in-scale"></div>
+						<p class="mb-0 mt-40 fade-in-up-delay">
 							En IMPEERCOL trabajamos con las mejores marcas del mercado de impermeabilización. Cada producto que ofrecemos ha sido seleccionado por su calidad, durabilidad y resultados comprobados. Confía en nosotros para proteger tus espacios con soluciones de las marcas líderes en el sector.
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
-				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" style="cursor: pointer;">
+				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
 				</a>
 				@php
 					$sikaId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" style="cursor: pointer;">
+				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
 				</a>
 				@php
 					$texsaId = $brandsMap['texsa'] ?? null;
 				@endphp
-				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" style="cursor: pointer;">
+				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
 				</a>
 				@php
 					$meticId = $brandsMap['metic'] ?? null;
 				@endphp
-				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" style="cursor: pointer;">
+				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
 				</a>
 				@php
 					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
 				@endphp
-				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" style="cursor: pointer;">
+				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
 				</a>
 				@php
 					$kaudalId = $brandsMap['kaudal'] ?? null;
 				@endphp
-				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" style="cursor: pointer;">
+				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
 				</a>
 				@php
 					$tekbondId = $brandsMap['tekbond'] ?? null;
 				@endphp
-				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" style="cursor: pointer;">
+				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
 				@php
 					$sikaIndustryId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo" style="cursor: pointer;">
+				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer">
 					<img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
 				</a>
 			</div>
@@ -576,195 +574,14 @@
 @endsection
 
 @section('styles')
-<style>
-	.featured-products-area {
-		background: #f8f9fa;
-	}
-
-	.featured-products-slider {
-		margin-top: 4rem;
-	}
-
-	.featured-product-item {
-		padding: 0 15px;
-	}
-
-	.featured-product-item .products-box {
-		background: #fff;
-		border-radius: 10px;
-		overflow: hidden;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-		transition: all 0.3s ease;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.featured-product-item .products-box:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-	}
-
-	.featured-product-item .products-pic {
-		width: 100%;
-		height: 250px;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.featured-product-item .products-pic img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.3s ease;
-	}
-
-	.featured-product-item .products-box:hover .products-pic img {
-		transform: scale(1.1);
-	}
-
-	.featured-product-item .products-desc {
-		padding: 2rem;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.featured-product-item .products-desc h5 {
-		margin-bottom: 1rem;
-		font-size: 1.8rem;
-		font-weight: 600;
-	}
-
-	.featured-product-item .products-desc h5 a {
-		color: #1a1a1a;
-		text-decoration: none;
-		transition: color 0.3s ease;
-	}
-
-	.featured-product-item .products-desc h5 a:hover {
-		color: var(--clr-def, #e63946);
-	}
-
-	.featured-product-item .product-excerpt {
-		font-size: 1.4rem;
-		color: #666;
-		line-height: 1.6;
-		margin-bottom: 1.5rem;
-		flex: 1;
-	}
-
-	.featured-product-item .cart-btn {
-		margin-top: auto;
-	}
-
-	@media (max-width: 768px) {
-		.featured-product-item .products-pic {
-			height: 200px;
-		}
-
-		.featured-product-item .products-desc {
-			padding: 1.5rem;
-		}
-	}
-
-	/* Estilos para el logo de Sika Industry - mismo tamaño que el logo de Sika normal */
-	.partner-sldr-2 .sika-industry-logo {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 15px;
-	}
-	
-	.partner-sldr-2 .sika-industry-logo img {
-		max-height: 120px !important;
-		max-width: 200px !important;
-		width: auto !important;
-		height: auto !important;
-		object-fit: contain;
-		filter: grayscale(100%);
-		opacity: .85;
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		transform: scale(1);
-	}
-	
-	.partner-sldr-2 .sika-industry-logo:hover img {
-		filter: grayscale(0%);
-		opacity: 1;
-		transform: scale(1.08) translateY(-5px);
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-	}
-</style>
+{{-- Archivos CSS externos para mejor rendimiento y organización --}}
+<link href="{{ asset('assets/css/animations.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
 @endsection
 
 @section('scripts')
-<script>
-	$(document).ready(function() {
-		// Reinicializar el carousel con menos margin
-		if ($('.gallery-sldr').length > 0) {
-			if ($('.gallery-sldr').data('owl.carousel')) {
-				$('.gallery-sldr').trigger('destroy.owl.carousel');
-			}
-			$('.gallery-sldr').owlCarousel({
-				loop: true,
-				margin: 0,
-				nav: false,
-				dots: true,
-				autoplay: true,
-				autoplayTimeout: 5000,
-				autoplayHoverPause: true,
-				responsive: {
-					0: {
-						items: 1,
-						margin: 10
-					},
-					768: {
-						items: 2,
-						margin: 20
-					},
-					992: {
-						items: 3,
-						margin: 30
-					}
-				}
-			});
-		}
-
-		// Inicializar slider de productos destacados
-		if ($('.featured-products-slider').length > 0) {
-			$('.featured-products-slider').owlCarousel({
-				loop: true,
-				margin: 30,
-				nav: true,
-				dots: true,
-				autoplay: true,
-				autoplayTimeout: 4000,
-				autoplayHoverPause: true,
-				navText: [
-					'<i class="icofont-long-arrow-left"></i>',
-					'<i class="icofont-long-arrow-right"></i>'
-				],
-				responsive: {
-					0: {
-						items: 1,
-						margin: 15
-					},
-					576: {
-						items: 2,
-						margin: 20
-					},
-					768: {
-						items: 3,
-						margin: 25
-					},
-					992: {
-						items: 4,
-						margin: 30
-					}
-				}
-			});
-		}
-	});
-</script>
+{{-- Archivos JavaScript externos para mejor rendimiento y organización --}}
+<script src="{{ asset('assets/js/animations.js') }}"></script>
+<script src="{{ asset('assets/js/home.js') }}"></script>
 @endsection
 

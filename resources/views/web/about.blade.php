@@ -17,11 +17,13 @@
 
 @section('title', 'Sobre Nosotros - IMPEERCOL')
 
+@section('description', 'Conoce IMPEERCOL, líderes en impermeabilización en Bogotá con más de 15 años de experiencia. Ofrecemos productos de alta calidad de las mejores marcas del mercado, asesoría técnica especializada y distribución nacional. Nuestra misión es proteger los espacios de los colombianos con soluciones duraderas y confiables. Visítanos en nuestras sedes en Bogotá.')
+
 @section('content')
 	{{-- Breadcrumb --}}
 	<!-- Start Breadcrumb
 	============================================= -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/gallery/IMG_2798-convertido-de-jpg.webp') }})">
+	<div class="site-breadcrumb breadcrumb-bg-blog">
 		<div class="container">
 			<h2 class="breadcrumb-title">Sobre Nosotros</h2>
 			<ul class="breadcrumb-menu clearfix">
@@ -145,7 +147,7 @@
 	{{-- Misión y Visión --}}
 	<!-- Start Mission & Vision
 	============================================= -->
-	<div class="review-area about-page pos-rel bg-overlay de-padding hero-bg" style="background-image: url({{ asset('assets/img/gallery/centro-general.png') }}); background-attachment: fixed; background-size: cover; background-position: center;">
+	<div class="review-area about-page pos-rel bg-overlay de-padding hero-bg about-review-bg">
 		<div class="review-shape">
 			<img src="{{ asset('assets/img/bg/bg-1.png') }}" alt="Fondo decorativo IMPEERCOL">
 		</div>
@@ -164,7 +166,7 @@
 				<div class="review-box wow fadeInLeft" data-wow-delay=".2s">
 					<div class="review-pic">
 						<div class="review-icon-box">
-							<i class="icofont-bullseye" style="font-size: 6rem; color: var(--clr-def);"></i>
+							<i class="icofont-bullseye icon-large"></i>
 						</div>
 						<div class="review-bio">
 							<h4>Nuestra Misión</h4>
@@ -183,7 +185,7 @@
 				<div class="review-box wow fadeInRight" data-wow-delay=".3s">
 					<div class="review-pic">
 						<div class="review-icon-box">
-							<i class="icofont-eye-alt" style="font-size: 6rem; color: var(--clr-def);"></i>
+							<i class="icofont-eye-alt icon-large"></i>
 						</div>
 						<div class="review-bio">
 							<h4>Nuestra Visión</h4>
@@ -289,49 +291,49 @@
 				</div>
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
-				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="wow fadeInUp" data-wow-delay=".2s" style="cursor: pointer;">
+				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="wow fadeInUp cursor-pointer" data-wow-delay=".2s">
 					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
 				</a>
 				@php
 					$sikaId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="wow fadeInUp" data-wow-delay=".25s" style="cursor: pointer;">
+				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="wow fadeInUp cursor-pointer" data-wow-delay=".25s">
 					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
 				</a>
 				@php
 					$texsaId = $brandsMap['texsa'] ?? null;
 				@endphp
-				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="wow fadeInUp" data-wow-delay=".3s" style="cursor: pointer;">
+				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="wow fadeInUp cursor-pointer" data-wow-delay=".3s">
 					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
 				</a>
 				@php
 					$meticId = $brandsMap['metic'] ?? null;
 				@endphp
-				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="wow fadeInUp" data-wow-delay=".35s" style="cursor: pointer;">
+				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="wow fadeInUp cursor-pointer" data-wow-delay=".35s">
 					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
 				</a>
 				@php
 					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
 				@endphp
-				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="wow fadeInUp" data-wow-delay=".4s" style="cursor: pointer;">
+				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="wow fadeInUp cursor-pointer" data-wow-delay=".4s">
 					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
 				</a>
 				@php
 					$kaudalId = $brandsMap['kaudal'] ?? null;
 				@endphp
-				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="wow fadeInUp" data-wow-delay=".45s" style="cursor: pointer;">
+				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="wow fadeInUp cursor-pointer" data-wow-delay=".45s">
 					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
 				</a>
 				@php
 					$tekbondId = $brandsMap['tekbond'] ?? null;
 				@endphp
-				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="wow fadeInUp" data-wow-delay=".5s" style="cursor: pointer;">
+				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="wow fadeInUp cursor-pointer" data-wow-delay=".5s">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
                 @php
                     $sikaIndustryId = $brandsMap['sika'] ?? null;
                 @endphp
-                <a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="wow fadeInUp sika-industry-logo" data-wow-delay=".55s" style="cursor: pointer;">
+                <a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="wow fadeInUp sika-industry-logo cursor-pointer" data-wow-delay=".55s">
                     <img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
                 </a>
 
@@ -345,157 +347,7 @@
 @endsection
 
 @section('styles')
-<style>
-	/* Estilos para las tarjetas de sedes */
-	.sede-card-link {
-		text-decoration: none;
-		color: inherit;
-		display: block;
-		cursor: pointer;
-	}
-
-	.sede-card-link:hover {
-		text-decoration: none;
-		color: inherit;
-	}
-
-	.sede-card {
-		background: #fff;
-		border-radius: 12px;
-		overflow: hidden;
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-		transition: all 0.3s ease;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.sede-card:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-	}
-
-	.sede-image {
-		width: 100%;
-		height: 400px;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.sede-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.3s ease;
-	}
-
-	.sede-card:hover .sede-image img {
-		transform: scale(1.05);
-	}
-
-	.sede-info {
-		padding: 2.5rem;
-		background: #fff;
-	}
-
-	.sede-title {
-		font-size: 2.2rem;
-		font-weight: 700;
-		color: #1a1a1a;
-		margin-bottom: 2rem;
-		position: relative;
-		padding-bottom: 1rem;
-	}
-
-	.sede-title::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 60px;
-		height: 3px;
-		background: var(--clr-def, #e63946);
-		border-radius: 2px;
-	}
-
-	.sede-details {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
-
-	.sede-detail-item {
-		display: flex;
-		align-items: flex-start;
-		gap: 1.2rem;
-		color: #555;
-		font-size: 1.5rem;
-		line-height: 1.6;
-	}
-
-	.sede-detail-item i {
-		color: var(--clr-def, #e63946);
-		font-size: 2rem;
-		margin-top: 0.2rem;
-		flex-shrink: 0;
-	}
-
-	.sede-detail-item span {
-		color: #555;
-	}
-
-	.sede-detail-item a {
-		color: #1a1a1a;
-		text-decoration: none;
-		font-weight: 600;
-		transition: color 0.3s ease;
-	}
-
-	.sede-detail-item a:hover {
-		color: var(--clr-def, #e63946);
-	}
-
-	/* Responsive */
-	@media (max-width: 768px) {
-		.sede-image {
-			height: 300px;
-		}
-
-		.sede-info {
-			padding: 2rem;
-		}
-
-		.sede-title {
-			font-size: 1.8rem;
-		}
-	}
-
-	/* Estilos para el logo de Sika Industry - mismo tamaño que el logo de Sika normal */
-	.partner-sldr-2 .sika-industry-logo {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 15px;
-	}
-	
-	.partner-sldr-2 .sika-industry-logo img {
-		max-height: 120px !important;
-		max-width: 200px !important;
-		width: auto !important;
-		height: auto !important;
-		object-fit: contain;
-		filter: grayscale(100%);
-		opacity: .85;
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		transform: scale(1);
-	}
-	
-	.partner-sldr-2 .sika-industry-logo:hover img {
-		filter: grayscale(0%);
-		opacity: 1;
-		transform: scale(1.08) translateY(-5px);
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-	}
-</style>
+{{-- Archivo CSS externo para mejor rendimiento y organización --}}
+<link href="{{ asset('assets/css/about.css') }}" rel="stylesheet">
 @endsection
 

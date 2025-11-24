@@ -1,0 +1,155 @@
+/* ============================================
+   ESTILOS ESPECÍFICOS DE LA PÁGINA ABOUT
+   ============================================ */
+
+/* Estilos para las tarjetas de sedes */
+.sede-card-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+	cursor: pointer;
+}
+
+.sede-card-link:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+.sede-card {
+	background: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	transition: all 0.3s ease;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.sede-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.sede-image {
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+	position: relative;
+}
+
+.sede-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.sede-card:hover .sede-image img {
+	transform: scale(1.05);
+}
+
+.sede-info {
+	padding: 2.5rem;
+	background: #fff;
+}
+
+.sede-title {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #1a1a1a;
+	margin-bottom: 2rem;
+	position: relative;
+	padding-bottom: 1rem;
+}
+
+.sede-title::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 60px;
+	height: 3px;
+	background: var(--clr-def, #e63946);
+	border-radius: 2px;
+}
+
+.sede-details {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.sede-detail-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 1.2rem;
+	color: #555;
+	font-size: 1.5rem;
+	line-height: 1.6;
+}
+
+.sede-detail-item i {
+	color: var(--clr-def, #e63946);
+	font-size: 2rem;
+	margin-top: 0.2rem;
+	flex-shrink: 0;
+}
+
+.sede-detail-item span {
+	color: #555;
+}
+
+.sede-detail-item a {
+	color: #1a1a1a;
+	text-decoration: none;
+	font-weight: 600;
+	transition: color 0.3s ease;
+}
+
+.sede-detail-item a:hover {
+	color: var(--clr-def, #e63946);
+}
+
+/* Estilos para el logo de Sika Industry - mismo tamaño que el logo de Sika normal */
+.partner-sldr-2 .sika-industry-logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px;
+}
+
+.partner-sldr-2 .sika-industry-logo img {
+	max-height: 120px !important;
+	max-width: 200px !important;
+	width: auto !important;
+	height: auto !important;
+	object-fit: contain;
+	filter: grayscale(100%);
+	opacity: .85;
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	transform: scale(1);
+}
+
+.partner-sldr-2 .sika-industry-logo:hover img {
+	filter: grayscale(0%);
+	opacity: 1;
+	transform: scale(1.08) translateY(-5px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.sede-image {
+		height: 300px;
+	}
+
+	.sede-info {
+		padding: 2rem;
+	}
+
+	.sede-title {
+		font-size: 1.8rem;
+	}
+}
+

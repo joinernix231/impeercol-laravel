@@ -2,9 +2,11 @@
 
 @section('title', 'Servicios - IMPEERCOL')
 
+@section('description', 'Servicios de IMPEERCOL: asesoría técnica especializada en impermeabilización, distribución de productos de alta calidad, cotización rápida y entrega en Bogotá. Trabajamos con las mejores marcas del mercado. Te ayudamos a elegir el producto ideal para techos, muros, terrazas y cubiertas. Más de 15 años protegiendo espacios en Colombia.')
+
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/gallery/IMG_2798-convertido-de-jpg.webp') }})">
+	<div class="site-breadcrumb breadcrumb-bg-blog">
 		<div class="container">
 			<h2 class="breadcrumb-title">Servicios</h2>
 			<ul class="breadcrumb-menu clearfix">

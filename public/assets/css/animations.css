@@ -1,0 +1,240 @@
+/* ============================================
+   ANIMACIONES SUTILES Y PROFESIONALES
+   Modernas, elegantes y empresariales
+   ============================================ */
+
+/* Fade In Up - Entrada suave desde abajo */
+.fade-in-up {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-up-delay {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.fade-in-up-delay-2 {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Fade In Down - Entrada suave desde arriba */
+.fade-in-down {
+	opacity: 0;
+	transform: translateY(-20px);
+	animation: fadeInDown 0.8s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Fade In Left - Entrada suave desde la izquierda */
+.fade-in-left {
+	opacity: 0;
+	transform: translateX(-40px);
+	animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.fade-in-left-delay {
+	opacity: 0;
+	transform: translateX(-40px);
+	animation: fadeInLeft 0.8s ease-out 0.2s forwards;
+}
+
+.fade-in-left-delay-2 {
+	opacity: 0;
+	transform: translateX(-40px);
+	animation: fadeInLeft 0.8s ease-out 0.4s forwards;
+}
+
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-40px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Fade In Right - Entrada suave desde la derecha */
+.fade-in-right {
+	opacity: 0;
+	transform: translateX(40px);
+	animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.fade-in-right-delay {
+	opacity: 0;
+	transform: translateX(40px);
+	animation: fadeInRight 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translateX(40px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Fade In Scale - Entrada con ligero zoom */
+.fade-in-scale {
+	opacity: 0;
+	transform: scale(0.95);
+	animation: fadeInScale 0.8s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Fade In Scale Stagger - Para productos con delay */
+.fade-in-scale-stagger {
+	opacity: 0;
+	transform: scale(0.95) translateY(20px);
+	animation: fadeInScaleStagger 0.6s ease-out forwards;
+}
+
+.fade-in-scale-stagger[data-delay="0s"] { animation-delay: 0s; }
+.fade-in-scale-stagger[data-delay="0.1s"] { animation-delay: 0.1s; }
+.fade-in-scale-stagger[data-delay="0.2s"] { animation-delay: 0.2s; }
+.fade-in-scale-stagger[data-delay="0.3s"] { animation-delay: 0.3s; }
+.fade-in-scale-stagger[data-delay="0.4s"] { animation-delay: 0.4s; }
+
+@keyframes fadeInScaleStagger {
+	from {
+		opacity: 0;
+		transform: scale(0.95) translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+/* Fade In Up Stagger - Para tarjetas con delay */
+.fade-in-up-stagger {
+	opacity: 0;
+	transform: translateY(25px);
+	animation: fadeInUpStagger 0.6s ease-out forwards;
+}
+
+.fade-in-up-stagger[data-delay="0.1s"] { animation-delay: 0.1s; }
+.fade-in-up-stagger[data-delay="0.2s"] { animation-delay: 0.2s; }
+.fade-in-up-stagger[data-delay="0.3s"] { animation-delay: 0.3s; }
+.fade-in-up-stagger[data-delay="0.4s"] { animation-delay: 0.4s; }
+
+@keyframes fadeInUpStagger {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Hover effects sutiles y profesionales */
+.featured-product-item .products-box:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-product-item .products-box:hover .products-pic img {
+	transform: scale(1.08);
+	transition: transform 0.4s ease-out;
+}
+
+.feature-item:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 25px rgba(230, 57, 70, 0.15);
+	transition: all 0.3s ease-out;
+}
+
+.work-box:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+	transition: all 0.3s ease-out;
+}
+
+.blog-box:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+	transition: all 0.3s ease-out;
+}
+
+/* Scroll reveal con Intersection Observer - Solo para elementos visibles */
+@media (prefers-reduced-motion: no-preference) {
+	.fade-in-up,
+	.fade-in-up-delay,
+	.fade-in-up-delay-2,
+	.fade-in-down,
+	.fade-in-left,
+	.fade-in-left-delay,
+	.fade-in-left-delay-2,
+	.fade-in-right,
+	.fade-in-right-delay,
+	.fade-in-scale,
+	.fade-in-scale-stagger,
+	.fade-in-up-stagger {
+		opacity: 0;
+	}
+}
+
+/* Desactivar animaciones en móviles para mejor rendimiento */
+@media (max-width: 768px) {
+	.fade-in-up,
+	.fade-in-up-delay,
+	.fade-in-up-delay-2,
+	.fade-in-down,
+	.fade-in-left,
+	.fade-in-left-delay,
+	.fade-in-left-delay-2,
+	.fade-in-right,
+	.fade-in-right-delay,
+	.fade-in-scale,
+	.fade-in-scale-stagger,
+	.fade-in-up-stagger {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+	}
+}
+

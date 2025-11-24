@@ -1,0 +1,110 @@
+/* ============================================
+   ESTILOS COMUNES REUTILIZABLES
+   Clases globales para reemplazar estilos inline
+   ============================================ */
+
+/* Cursor pointer - Reemplaza style="cursor: pointer;" */
+.cursor-pointer {
+	cursor: pointer;
+}
+
+/* Breadcrumb backgrounds */
+.breadcrumb-bg-default {
+	background: url('../img/breadcrumb/breadcrumb.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.breadcrumb-bg-blog {
+	background: url('../img/gallery/IMG_2798-convertido-de-jpg.webp');
+	background-size: cover;
+	background-position: center;
+}
+
+/* Footer background */
+.footer-bg {
+	background-image: url('../img/gallery/Impeercol.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+/* Hero backgrounds */
+.hero-bg-slide-1 {
+	background-image: url('../img/gallery/BO-convertido-de-jpg.webp');
+}
+
+.hero-bg-slide-2 {
+	background-image: url('../img/gallery/Bogata-convertido-de-jpg.webp');
+}
+
+/* Step area background */
+.step-area-bg {
+	background-image: url('../img/gallery/Centro-frente.jpg');
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+}
+
+/* About page backgrounds */
+.about-review-bg {
+	background-image: url('../img/gallery/centro-general.png');
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+}
+
+/* Iconos grandes */
+.icon-large {
+	font-size: 6rem;
+	color: var(--clr-def, #e63946);
+}
+
+.icon-extra-large {
+	font-size: 4rem;
+	color: var(--clr-def, #cd0b0b);
+}
+
+/* Enlaces sin decoración */
+.link-no-decoration {
+	text-decoration: none;
+	color: inherit;
+}
+
+.link-no-decoration:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Tabs verticales en product details */
+.nav-tabs-vertical {
+	flex-direction: column;
+}
+
+.nav-tab-item {
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.nav-tab-item.active {
+	border: 2px solid #0d6efd;
+}
+
+.nav-tab-thumb {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+}
+
+/* Botón de ficha técnica */
+.btn-technical-sheet {
+	background-color: var(--clr-def, #cd0b0b);
+	color: #ffffff;
+	border-color: var(--clr-def, #cd0b0b);
+}
+
+/* Tags link */
+.tags-link {
+	display: inline-block;
+	margin-top: 10px;
+}
+

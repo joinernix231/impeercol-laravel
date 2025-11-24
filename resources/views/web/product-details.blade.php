@@ -2,204 +2,25 @@
 
 @section('title', $product->name . ' - IMPEERCOL')
 
+@php
+    use Illuminate\Support\Str;
+    $metaDesc = $product->meta_description ?? 
+        ($product->description ? Str::limit(strip_tags($product->description), 120) . ' ' : '') . 
+        'Producto de impermeabilización ' . $product->name . 
+        ($product->brand_name ? ' de la marca ' . $product->brand_name : '') . 
+        ' disponible en IMPEERCOL. Asesoría técnica gratuita, envíos a toda Colombia y garantía de calidad. Protege tus espacios con productos de alta durabilidad.';
+@endphp
+
+@section('description', $metaDesc)
+
 @section('styles')
-<style>
-	/* Animaciones simples al pasar el mouse */
-	.shop-datails-pic img {
-		transition: transform 0.3s ease;
-	}
-
-	.shop-datails-pic:hover img {
-		transform: scale(1.05);
-	}
-
-	.sh-pic {
-		transition: all 0.3s ease;
-		cursor: pointer;
-	}
-
-	.sh-pic:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
-		border-color: #dc3545 !important;
-	}
-
-	.sh-pic img {
-		transition: all 0.3s ease;
-	}
-
-	.sh-pic:hover img {
-		border-color: #dc3545 !important;
-	}
-
-	/* Botones con animación y color rojo */
-	.sh-de-btn-1 {
-		transition: all 0.3s ease;
-	}
-
-	.sh-de-btn-1:hover {
-		background-color: #dc3545 !important;
-		transform: translateY(-3px);
-		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
-	}
-
-	.sh-de-btn-2 {
-		transition: all 0.3s ease;
-		border-color: #dc3545 !important;
-		color: #dc3545 !important;
-	}
-
-	.sh-de-btn-2:hover {
-		background-color: #dc3545 !important;
-		color: #ffffff !important;
-		transform: translateY(-3px);
-		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
-	}
-
-	/* Pestañas con animación */
-	.nav-pills .nav-link {
-		transition: all 0.3s ease;
-	}
-
-	.nav-pills .nav-link:hover {
-		background-color: rgba(220, 53, 69, 0.1);
-		color: #dc3545;
-	}
-
-	.nav-pills .nav-link.active {
-		background-color: #dc3545 !important;
-		color: #ffffff !important;
-	}
-
-	/* Tabla con hover */
-	.table tbody tr {
-		transition: all 0.3s ease;
-	}
-
-	.table tbody tr:hover {
-		background-color: rgba(220, 53, 69, 0.05);
-		transform: translateX(5px);
-	}
-
-	/* Productos relacionados con hover */
-	.products-box {
-		transition: all 0.3s ease;
-	}
-
-	.products-box:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 10px 25px rgba(220, 53, 69, 0.2);
-	}
-
-	.products-box:hover .products-pic img {
-		transform: scale(1.1);
-	}
-
-	.products-pic img {
-		transition: transform 0.3s ease;
-	}
-
-	.cart-btn {
-		transition: all 0.3s ease;
-	}
-
-	.cart-btn:hover {
-		background-color: #dc3545 !important;
-		color: #ffffff !important;
-		transform: translateY(-2px);
-		box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
-	}
-
-	/* Precio destacado */
-	.sh-de-price span {
-		color: #dc3545;
-		font-weight: 700;
-	}
-
-	/* Botón de descarga de ficha técnica mejorado */
-	.technical-sheet-download-btn {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 15px;
-		padding: 18px 40px;
-		background: linear-gradient(135deg, var(--clr-def, #cd0b0b) 0%, #a00909 100%);
-		color: #ffffff;
-		border: none;
-		border-radius: 12px;
-		font-size: 1.3rem;
-		font-weight: 700;
-		text-decoration: none;
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		box-shadow: 0 4px 15px rgba(205, 11, 11, 0.3);
-		position: relative;
-		overflow: hidden;
-		min-width: 320px;
-		text-align: center;
-	}
-
-	.technical-sheet-download-btn::before {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 0;
-		height: 0;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.2);
-		transform: translate(-50%, -50%);
-		transition: width 0.6s ease, height 0.6s ease;
-		z-index: 0;
-	}
-
-	.technical-sheet-download-btn:hover::before {
-		width: 400px;
-		height: 400px;
-	}
-
-	.technical-sheet-download-btn i,
-	.technical-sheet-download-btn span {
-		position: relative;
-		z-index: 1;
-		transition: all 0.3s ease;
-	}
-
-	.technical-sheet-download-btn:hover {
-		background: linear-gradient(135deg, #a00909 0%, var(--clr-def, #cd0b0b) 100%);
-		color: #ffffff;
-		transform: translateY(-4px);
-		box-shadow: 0 8px 25px rgba(205, 11, 11, 0.5);
-		text-decoration: none;
-	}
-
-	.technical-sheet-download-btn:hover i {
-		transform: scale(1.2) rotate(-5deg);
-	}
-
-	.technical-sheet-download-btn i {
-		font-size: 1.8rem;
-		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	/* Botón pequeño en la parte superior también mejorado */
-	.sh-de-btn-2 {
-		padding: 12px 24px;
-		font-size: 1rem;
-		font-weight: 600;
-		border-radius: 8px;
-		transition: all 0.3s ease;
-	}
-
-	.sh-de-btn-2:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(205, 11, 11, 0.4);
-	}
-</style>
+{{-- Archivo CSS externo para mejor rendimiento y organización --}}
+<link href="{{ asset('assets/css/product-details.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 	<!-- Start Breadcrumb -->
-	<div class="site-breadcrumb" style="background: url({{ asset('assets/img/breadcrumb/breadcrumb.jpg') }})">
+	<div class="site-breadcrumb breadcrumb-bg-default">
 		<div class="container">
 			<h2 class="breadcrumb-title">{{ $product->name }}</h2>
 			<ul class="breadcrumb-menu clearfix">
@@ -261,11 +82,11 @@
 							@endforeach
 						</div>
 						<nav>
-							<div class="nav grid-4 nav-tabs" id="nav-tab" role="tablist" style="flex-direction: column;">
+							<div class="nav grid-4 nav-tabs nav-tabs-vertical" id="nav-tab" role="tablist">
 								@foreach($allImages as $index => $url)
-									<button class="nav-link {{ $index === 0 ? 'active' : '' }}" id="nav-{{ $index }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $index }}" type="button" role="tab" aria-controls="nav-{{ $index }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}" style="margin-bottom: 10px; border: 2px solid {{ $index === 0 ? '#0d6efd' : 'transparent' }}; padding: 5px;">
+									<button class="nav-link nav-tab-item {{ $index === 0 ? 'active' : '' }}" id="nav-{{ $index }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $index }}" type="button" role="tab" aria-controls="nav-{{ $index }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
 										<span class="sh-pic">
-											<img src="{{ $url }}" alt="thumb" style="width: 80px; height: 80px; object-fit: cover;">
+											<img src="{{ $url }}" alt="thumb" class="nav-tab-thumb">
 										</span>
 									</button>
 								@endforeach
@@ -298,7 +119,7 @@
 								Cotizar <i class="fas fa-whatsapp"></i>
 							</a>
 							@if($product->technical_sheet_file)
-								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="sh-de-btn-2" style="background-color: var(--clr-def, #cd0b0b); color: #ffffff; border-color: var(--clr-def, #cd0b0b);">
+								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="sh-de-btn-2 btn-technical-sheet">
 									<i class="fas fa-file-pdf"></i> Ficha Técnica
 								</a>
 							@endif
@@ -370,7 +191,7 @@
 						<div class="tab-pane fade" id="pills-technical" role="tabpanel" aria-labelledby="pills-technical-tab">
 							<div class="pro-rev-text text-center">
 								<div class="mb-4">
-									<i class="fas fa-file-pdf" style="font-size: 4rem; color: var(--clr-def, #cd0b0b); margin-bottom: 20px;"></i>
+									<i class="fas fa-file-pdf icon-pdf-large"></i>
 									<h4 class="mb-3">Ficha Técnica del Producto</h4>
 									<p class="text-muted mb-4">Descarga la información técnica completa de este producto en formato PDF</p>
 								</div>
