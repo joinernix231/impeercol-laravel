@@ -40,46 +40,83 @@ class FileUploadController extends Controller
      */
     public function uploadImages(ImageUploadRequest $request)
     {
-        // Determinar el tipo de almacenamiento según el parámetro opcional
-        $type = $request->input('type', 'projects'); // 'projects', 'products', 'product-variants'
-        
-        $uploadedFiles = [];
-        $year = date('Y');
-        $month = date('m');
-        
-        // Definir la ruta base según el tipo
-        $basePathMap = [
-            'projects' => "projects/images/{$year}/{$month}",
-            'products' => "products/images/{$year}/{$month}",
-            'product-variants' => "product-variants/images/{$year}/{$month}",
-        ];
-        
-        $basePath = $basePathMap[$type] ?? $basePathMap['projects'];
-
-        foreach ($request->file('images') as $file) {
-            // Generar nombre único para el archivo
-            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $fileName = Str::slug($originalName) . '_' . time() . '_' . Str::random(8) . '.' . $extension;
+        try {
+            // Determinar el tipo de almacenamiento según el parámetro opcional
+            $type = $request->input('type', 'projects'); // 'projects', 'products', 'product-variants', 'banners', 'blogs'
             
-            // Guardar el archivo
-            $path = $file->storeAs($basePath, $fileName, 'public');
+            $uploadedFiles = [];
+            $year = date('Y');
+            $month = date('m');
             
-            $uploadedFiles[] = [
-                'original_name' => $file->getClientOriginalName(),
-                'file_name' => $fileName,
-                'path' => $path,
-                'url' => Storage::disk('public')->url($path),
-                'size' => $file->getSize(),
-                'mime_type' => $file->getMimeType(),
+            // Definir la ruta base según el tipo
+            $basePathMap = [
+                'projects' => "projects/images/{$year}/{$month}",
+                'products' => "products/images/{$year}/{$month}",
+                'product-variants' => "product-variants/images/{$year}/{$month}",
+                'banners' => "banners/images/{$year}/{$month}",
+                'blogs' => "blogs/images/{$year}/{$month}",
             ];
-        }
+            
+            $basePath = $basePathMap[$type] ?? $basePathMap['projects'];
 
-        return response()->json([
-            'success' => true,
-            'message' => count($uploadedFiles) . ' imagen(es) subida(s) exitosamente',
-            'files' => $uploadedFiles,
-        ]);
+            if (!$request->hasFile('images')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No se recibieron archivos para subir.',
+                ], 400);
+            }
+
+            foreach ($request->file('images') as $file) {
+                if (!$file || !$file->isValid()) {
+                    continue;
+                }
+
+                // Generar nombre único para el archivo
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileName = Str::slug($originalName) . '_' . time() . '_' . Str::random(8) . '.' . $extension;
+                
+                // Guardar el archivo
+                $path = $file->storeAs($basePath, $fileName, 'public');
+                
+                if (!$path) {
+                    throw new \Exception('Error al guardar el archivo en el servidor.');
+                }
+                
+                $uploadedFiles[] = [
+                    'original_name' => $file->getClientOriginalName(),
+                    'file_name' => $fileName,
+                    'path' => $path,
+                    'url' => Storage::disk('public')->url($path),
+                    'size' => $file->getSize(),
+                    'mime_type' => $file->getMimeType(),
+                ];
+            }
+
+            if (empty($uploadedFiles)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No se pudo subir ninguna imagen. Verifica que los archivos sean válidos.',
+                ], 400);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => count($uploadedFiles) . ' imagen(es) subida(s) exitosamente',
+                'files' => $uploadedFiles,
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación: ' . implode(', ', $e->errors()),
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al subir la imagen: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**

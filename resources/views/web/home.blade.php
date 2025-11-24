@@ -1,8 +1,8 @@
-{{-- 
+{{--
     ============================================
     VISTA: HOME (Página de Inicio)
     ============================================
-    
+
     PROPÓSITO:
     Esta es la página principal del sitio web. Muestra:
     - Slider principal con imágenes y mensajes
@@ -12,14 +12,14 @@
     - Formulario de contacto
     - Blog reciente
     - Marcas de confianza
-    
+
     CÓMO FUNCIONA:
     Extiende el layout principal (layouts.main) y define el contenido único
     dentro de @section('content'). Todas las rutas de assets se convierten usando {{ asset() }}.
-    
+
     QUÉ REEMPLAZA:
     Reemplaza el contenido principal del archivo index.html original (líneas 138-726).
-    
+
     INSTRUCCIONES PARA DESARROLLADORES:
     1. Para modificar el slider, edita la sección "hero-section"
     2. Para cambiar el contenido de "Sobre Nosotros", modifica la sección "about-area"
@@ -41,56 +41,84 @@
 	{{-- Slider Principal --}}
 	<!-- Start Slider
 	============================================= -->
-	<div class="hero-section pos-rel">
-		<div class="hero-section-content hero-sldr owl-carousel owl-theme">
-			<div class="hero-2-single hero-overlay hero-bg hero-bg-slide-1">
-				<div class="container g-0">
-					<div class="row">
-						<div class="col-xl-8 offset-xl-2">
-							<div class="hero-2-content text-center">
-								<h1 class="hero-title fade-in-up">
-									Productos especializados con la mejor asesoría técnica
-								</h1>
-								<p class="fade-in-up-delay">
-									Mejor asesoría técnica y productos de alta calidad
-								</p>
-								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
-									<div class="button-container-1">
-										<span class="mas">Contáctanos</span>
-										<a href="#contact" class="site-btn-1 smooth-menu">Contáctanos</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="hero-2-single hero-overlay hero-bg hero-bg-slide-2">
-				<div class="container g-0">
-					<div class="row">
-						<div class="col-xl-8 offset-xl-2">
-							<div class="hero-2-content text-center">
-								<h2 class="hero-title fade-in-up">
-									Impermeabiliza, protege y conserva
-								</h2>
-								<p class="fade-in-up-delay">
-									Todo lo que necesitas para mantener tus espacios en perfectas condiciones.
-								</p>
-								<div class="hero-btn d-flex justify-content-center fade-in-up-delay-2">
-									<div class="button-container-2">
-										<span class="mas">Contáctanos</span>
-										<a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="hero-section pos-rel">
+        <div class="hero-section-content hero-sldr owl-carousel owl-theme">
+            @forelse($banners as $index => $banner)
+                <div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ $banner->image_url }})">
+                    <div class="container g-0">
+                        <div class="row">
+                            <div class="col-xl-8 offset-xl-2">
+                                <div class="hero-2-content text-center">
+                                    <h{{ $index === 0 ? '1' : '2' }} class="hero-title">
+                                        {{ $banner->title }}
+                                    </h{{ $index === 0 ? '1' : '2' }}>
+                                    @if($banner->subtitle)
+                                        <p>
+                                            {{ $banner->subtitle }}
+                                        </p>
+                                    @endif
+                                    <div class="hero-btn d-flex justify-content-center">
+                                        <div class="button-container-{{ $index + 1 }}">
+                                            <span class="mas">Contáctanos</span>
+                                            <a href="#contact" class="site-btn-{{ $index + 1 }} smooth-menu">Contáctanos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                {{-- Banners por defecto si no hay ninguno configurado --}}
+                <div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/BO-convertido-de-jpg.webp') }})">
+                    <div class="container g-0">
+                        <div class="row">
+                            <div class="col-xl-8 offset-xl-2">
+                                <div class="hero-2-content text-center">
+                                    <h1 class="hero-title">
+                                        Productos especializados con la mejor asesoría técnica
+                                    </h1>
+                                    <p>
+                                        Mejor asesoría técnica y productos de alta calidad
+                                    </p>
+                                    <div class="hero-btn d-flex justify-content-center">
+                                        <div class="button-container-1">
+                                            <span class="mas">Contáctanos</span>
+                                            <a href="#contact" class="site-btn-1 smooth-menu">Contáctanos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/Bogata-convertido-de-jpg.webp') }})">
+                    <div class="container g-0">
+                        <div class="row">
+                            <div class="col-xl-8 offset-xl-2">
+                                <div class="hero-2-content text-center">
+                                    <h2 class="hero-title">
+                                        Impermeabiliza, protege y conserva
+                                    </h2>
+                                    <p>
+                                        Todo lo que necesitas para mantener tus espacios en perfectas condiciones.
+                                    </p>
+                                    <div class="hero-btn d-flex justify-content-center">
+                                        <div class="button-container-2">
+                                            <span class="mas">Contáctanos</span>
+                                            <a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
 	<!-- End Slider -->
-	
+
 	{{-- Sección Sobre Nosotros --}}
 	<!-- Start About
 	============================================= -->
@@ -198,7 +226,7 @@
 		</div>
 	</div>
 	<!-- End Featured Products -->
-	
+
 	{{-- Sección Cómo Trabajamos --}}
 	<!-- Start Steps
 	============================================= -->
@@ -255,7 +283,7 @@
 		</div>
 	</div>
 	<!-- End Steps -->
-	
+
 	{{-- Galería de Trabajos --}}
 	<!-- Start Work
 	============================================= -->
@@ -277,7 +305,7 @@
 			</div>
 
 			<div class="work-wpr gallery-sldr owl-carousel owl-theme">
-				
+
 				@forelse($featuredProjects as $index => $project)
 					<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
 						<div class="work-pic">
@@ -297,16 +325,16 @@
 							</div>
 						</div>
 					</div>
-			
+
 				@empty
 					<p>No hay proyectos destacados por el momento.</p>
 				@endforelse
 			</div>
-			
+
 		</div>
 	</div>
 	<!-- End Work -->
-	
+
 	{{-- Formulario de Contacto --}}
 	<!-- Start Contact
 	============================================= -->
@@ -409,7 +437,7 @@
 								</div>
 								<div class="contact-sub-btn text-center">
 									<button type="submit" name="submit" id="submit" class="btn-3">
-										Enviar mensaje 
+										Enviar mensaje
 										<i class="fas fa-chevron-right"></i>
 									</button>
 								</div>
@@ -425,7 +453,7 @@
 		</div>
 	</div>
 	<!-- End Contact-->
-	
+
 	{{-- Sección Blog --}}
 	<!-- Start Blog
 	============================================= -->
@@ -500,7 +528,7 @@
 		</div>
 	</div>
 	<!-- End Blog -->
-	
+
 	{{-- Sección de Marcas --}}
 	<!-- Start IMPEERCOL Brands Section
 	============================================= -->
@@ -568,7 +596,7 @@
 		</div>
 	</div>
 	<!-- End IMPEERCOL Brands Section -->
-	
+
 	{{-- Información de Contacto --}}
 	@include('web.components.contact-info-strip')
 @endsection
