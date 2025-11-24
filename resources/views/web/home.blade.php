@@ -338,6 +338,20 @@
 						</div>
 						<div class="addr-box-single">
 							<div class="addr-icon">
+								<i class="icofont-google-map"></i>
+							</div>
+							<div class="addr-desc">
+								<h4>Dirección</h4>
+								<p class="mb-0">
+									<a href="https://www.google.com/maps/search/?api=1&query=Cra%2020%20%2368-15,%20Siete%20de%20Agosto,%20Bogot%C3%A1" target="_blank" rel="noopener noreferrer">
+										Cra 20 # 68 - 15<br>
+										Siete de Agosto, Bogotá
+									</a>
+								</p>
+							</div>
+						</div>
+						<div class="addr-box-single">
+							<div class="addr-icon">
 								<i class="icofont-phone"></i>
 							</div>
 							<div class="addr-desc">
