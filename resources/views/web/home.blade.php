@@ -43,50 +43,78 @@
 	============================================= -->
     <div class="hero-section pos-rel">
         <div class="hero-section-content hero-sldr owl-carousel owl-theme">
-            <div class="hero-2-single hero-overlay hero-bg" style="background-image: url(assets/img/gallery/BO-convertido-de-jpg.webp)">
-                <div class="container g-0">
-                    <div class="row">
-                        <div class="col-xl-8 offset-xl-2">
-                            <div class="hero-2-content text-center">
-                                <h1 class="hero-title">
-									Productos especializados con la mejor asesoría técnica
-								</h1>
-								<p>
-									Mejor asesoría técnica y productos de alta calidad
-								</p>
-                                <div class="hero-btn d-flex justify-content-center">
-                                    <div class="button-container-1">
-                                        <span class="mas">Contáctanos</span>
-                                        <a href="#contact" class="site-btn-1 smooth-menu">Contáctanos</a>
+            @forelse($banners as $index => $banner)
+                <div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ $banner->image_url }})">
+                    <div class="container g-0">
+                        <div class="row">
+                            <div class="col-xl-8 offset-xl-2">
+                                <div class="hero-2-content text-center">
+                                    <h{{ $index === 0 ? '1' : '2' }} class="hero-title">
+                                        {{ $banner->title }}
+                                    </h{{ $index === 0 ? '1' : '2' }}>
+                                    @if($banner->subtitle)
+                                        <p>
+                                            {{ $banner->subtitle }}
+                                        </p>
+                                    @endif
+                                    <div class="hero-btn d-flex justify-content-center">
+                                        <div class="button-container-{{ $index + 1 }}">
+                                            <span class="mas">Contáctanos</span>
+                                            <a href="#contact" class="site-btn-{{ $index + 1 }} smooth-menu">Contáctanos</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hero-2-single hero-overlay hero-bg" style="background-image: url(assets/img/gallery/Bogata-convertido-de-jpg.webp)">
-                <div class="container g-0">
-                    <div class="row">
-                        <div class="col-xl-8 offset-xl-2">
-                            <div class="hero-2-content text-center">
-                                <h2 class="hero-title">
-									Impermeabiliza, protege y conserva
-                                </h2>
-                                <p>
-                                    Todo lo que necesitas para mantener tus espacios en perfectas condiciones.
-                                </p>
-                                <div class="hero-btn d-flex justify-content-center">
-                                    <div class="button-container-2">
-                                        <span class="mas">Contáctanos</span>
-                                        <a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
+            @empty
+                {{-- Banners por defecto si no hay ninguno configurado --}}
+                <div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/BO-convertido-de-jpg.webp') }})">
+                    <div class="container g-0">
+                        <div class="row">
+                            <div class="col-xl-8 offset-xl-2">
+                                <div class="hero-2-content text-center">
+                                    <h1 class="hero-title">
+                                        Productos especializados con la mejor asesoría técnica
+                                    </h1>
+                                    <p>
+                                        Mejor asesoría técnica y productos de alta calidad
+                                    </p>
+                                    <div class="hero-btn d-flex justify-content-center">
+                                        <div class="button-container-1">
+                                            <span class="mas">Contáctanos</span>
+                                            <a href="#contact" class="site-btn-1 smooth-menu">Contáctanos</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="hero-2-single hero-overlay hero-bg" style="background-image: url({{ asset('assets/img/gallery/Bogata-convertido-de-jpg.webp') }})">
+                    <div class="container g-0">
+                        <div class="row">
+                            <div class="col-xl-8 offset-xl-2">
+                                <div class="hero-2-content text-center">
+                                    <h2 class="hero-title">
+                                        Impermeabiliza, protege y conserva
+                                    </h2>
+                                    <p>
+                                        Todo lo que necesitas para mantener tus espacios en perfectas condiciones.
+                                    </p>
+                                    <div class="hero-btn d-flex justify-content-center">
+                                        <div class="button-container-2">
+                                            <span class="mas">Contáctanos</span>
+                                            <a href="#contact" class="site-btn-2 smooth-menu">Contáctanos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 	<!-- End Slider -->
