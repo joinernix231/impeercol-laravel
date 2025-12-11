@@ -49,7 +49,7 @@
 							<a class="nav-link" href="{{ route('web.about') }}">Sobre nosotros</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('web.services') }}">Servicios</a>
+							<a class="nav-link" href="{{ route('web.projects') }}">Proyectos</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('web.products') }}">Productos</a>
