@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Project\ProjectRepository;
 use App\Repositories\Blog\BlogRepository;
 use App\Repositories\Product\ProductRepository;
+use App\Repositories\Banner\BannerRepository;
 use App\Models\Brand;
 use App\Models\Blog;
 use Illuminate\Http\Request;
@@ -23,15 +24,18 @@ class HomeController extends Controller
     protected $projectRepository;
     protected $blogRepository;
     protected $productRepository;
+    protected $bannerRepository;
 
     public function __construct(
         ProjectRepository $projectRepository,
         BlogRepository $blogRepository,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        BannerRepository $bannerRepository
     ) {
         $this->projectRepository = $projectRepository;
         $this->blogRepository = $blogRepository;
         $this->productRepository = $productRepository;
+        $this->bannerRepository = $bannerRepository;
     }
 
     /**
@@ -55,8 +59,11 @@ class HomeController extends Controller
         
         // Obtener marcas para los logos (mapear nombres a IDs)
         $brandsMap = $this->getBrandsMap();
+        
+        // Obtener banners activos para el slider
+        $banners = $this->bannerRepository->getAllActive();
 
-        return view('web.home', compact('featuredProjects', 'brandsMap', 'latestBlogs', 'featuredProducts'));
+        return view('web.home', compact('featuredProjects', 'brandsMap', 'latestBlogs', 'featuredProducts', 'banners'));
     }
     
     /**

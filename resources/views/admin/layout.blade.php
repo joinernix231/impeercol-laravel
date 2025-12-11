@@ -166,6 +166,9 @@
             <a href="{{ route('admin.blogs.index') }}" class="{{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
                 <i class="bi bi-journal-text"></i> Blog
             </a>
+            <a href="{{ route('admin.banners.index') }}" class="{{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
+                <i class="bi bi-images"></i> Banners
+            </a>
         </nav>
         
         @auth

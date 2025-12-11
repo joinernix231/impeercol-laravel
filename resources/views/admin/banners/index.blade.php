@@ -1,12 +1,12 @@
 @extends('admin.layout')
 
-@section('title', 'Blogs - Admin')
+@section('title', 'Banners - Admin')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Gestión de Artículos de Blog</h2>
-    <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-circle"></i> Nuevo Artículo
+    <h2>Gestión de Banners</h2>
+    <a href="{{ route('admin.banners.create') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Nuevo Banner
     </a>
 </div>
 
@@ -32,49 +32,41 @@
                     <th>ID</th>
                     <th>Imagen</th>
                     <th>Título</th>
-                    <th>Autor</th>
-                    <th>Fecha Publicación</th>
-                    <th>Destacado</th>
+                    <th>Subtítulo</th>
+                    <th>Orden</th>
                     <th>Activo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($blogs as $blog)
+                @forelse($banners as $banner)
                     <tr>
-                        <td>{{ $blog->id }}</td>
+                        <td>{{ $banner->id }}</td>
                         <td>
-                            @if($blog->image)
-                                <img src="{{ $blog->image_url }}" alt="{{ $blog->title }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                            @if($banner->image)
+                                <img src="{{ $banner->image_url }}" alt="{{ $banner->title }}" style="width: 100px; height: 60px; object-fit: cover; border-radius: 5px;">
                             @else
                                 <span class="text-muted">Sin imagen</span>
                             @endif
                         </td>
-                        <td>{{ $blog->title }}</td>
-                        <td>{{ $blog->author ?? 'N/A' }}</td>
-                        <td>{{ $blog->published_at ? $blog->published_at->format('d/m/Y') : 'No publicada' }}</td>
+                        <td>{{ $banner->title }}</td>
+                        <td>{{ $banner->subtitle ?? 'N/A' }}</td>
+                        <td>{{ $banner->order }}</td>
                         <td>
-                            @if($blog->is_featured)
-                                <span class="badge bg-success">Sí</span>
-                            @else
-                                <span class="badge bg-secondary">No</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if($blog->is_active)
+                            @if($banner->is_active)
                                 <span class="badge bg-success">Activo</span>
                             @else
                                 <span class="badge bg-danger">Inactivo</span>
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.blogs.show', $blog->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.banners.show', $banner->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form action="{{ route('admin.blogs.destroy', $blog->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar este artículo?');">
+                            <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar este banner?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
@@ -85,7 +77,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center">No hay artículos registrados</td>
+                        <td colspan="7" class="text-center">No hay banners registrados</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -93,8 +85,4 @@
     </div>
 </div>
 @endsection
-
-
-
-
 

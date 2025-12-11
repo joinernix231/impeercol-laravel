@@ -6,8 +6,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\FileUploadController;
-use App\Http\Controllers\Cliente\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     // Blogs - CRUD completo
     Route::resource('blogs', BlogController::class);
+
+    // Banners - CRUD completo
+    Route::resource('banners', BannerController::class);
 
     // Subida de archivos
     Route::prefix('upload')->name('upload.')->group(function () {
