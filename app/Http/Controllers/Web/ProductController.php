@@ -123,6 +123,9 @@ class ProductController extends Controller
             );
         }
 
-        return view('web.product-details', compact('product', 'relatedProducts'));
+        // Obtener todos los productos destacados (sin límite o con límite alto)
+        $featuredProducts = $this->productRepository->getFeatured(100);
+
+        return view('web.product-details', compact('product', 'relatedProducts', 'featuredProducts'));
     }
 }

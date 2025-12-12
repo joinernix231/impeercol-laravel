@@ -250,5 +250,60 @@
 		<!-- End feature product -->
 	@endif
 	
+	@if(isset($featuredProducts) && $featuredProducts->count() > 0)
+		<!-- Start Featured Products -->
+		<div class="feature-product de-pb">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-8 offset-xl-2">
+						<div class="site-title text-center mb-60">
+							<h4 class="hero-sub-title mb-0">PRODUCTOS DESTACADOS</h4>
+							<h2 class="hero-title mb-30">Nuestros Productos Más Populares</h2>
+							<p class="mb-0 mt-40">
+								Descubre nuestra selección de impermeabilizantes de alta calidad, elegidos por su excelente rendimiento y durabilidad.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="feature-product-wrapper grid-4">
+					@foreach($featuredProducts as $featuredProduct)
+						<div class="products-box">
+							<div class="products-pic">
+								<a href="{{ route('web.product.show', $featuredProduct->slug) }}">
+									<img src="{{ $featuredProduct->image_url }}" alt="{{ $featuredProduct->name }}" loading="lazy">
+								</a>
+								<ul class="carts d-flex align-items-center">
+									<li>
+										<a href="{{ route('web.product.show', $featuredProduct->slug) }}">
+											<i class="icofont-eye-alt"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="products-desc">
+								<a href="{{ route('web.product.show', $featuredProduct->slug) }}">
+									<h5>{{ $featuredProduct->name }}</h5>
+								</a>
+								@if($featuredProduct->brand_name)
+									<p class="text-muted mb-2"><small>Marca: {{ $featuredProduct->brand_name }}</small></p>
+								@endif
+								@if($featuredProduct->category)
+									<p class="text-muted mb-2"><small>Categoría: {{ $featuredProduct->category->name }}</small></p>
+								@endif
+								@if($featuredProduct->description)
+									<p class="product-excerpt mb-3">{{ Str::limit(strip_tags($featuredProduct->description), 80) }}</p>
+								@endif
+								<div class="add-to-cart">
+									<a href="{{ route('web.product.show', $featuredProduct->slug) }}" class="cart-btn">Ver Detalles</a>
+								</div>
+							</div>
+						</div>
+					@endforeach
+				</div>
+			</div>
+		</div>
+		<!-- End Featured Products -->
+	@endif
+	
 	@include('web.components.contact-info-strip')
 @endsection
