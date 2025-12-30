@@ -17,6 +17,7 @@ Disallow: /node_modules/
 Disallow: /impeercol/
 Disallow: /*.json$
 Disallow: /*.xml$
+Allow: /sitemap.xml
 Disallow: /api/
 
 # Permitir acceso a assets públicos (CSS, JS, imágenes)
@@ -70,5 +71,6 @@ Disallow: /
 # Reduce la frecuencia de rastreo para no sobrecargar el servidor
 Crawl-delay: 1
 
-# Sitemap (descomentar cuando se genere el sitemap)
-# Sitemap: https://www.impeercol.com/sitemap.xml
+# Sitemap
+Sitemap: https://www.impeercol.com/sitemap.xml
+# Para desarrollo local, usar: Sitemap: http://localhost:8000/sitemap.xml

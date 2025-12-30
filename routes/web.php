@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\ProjectController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Cliente\DashboardController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,9 @@ use App\Http\Controllers\Cliente\DashboardController;
 | 2. Para usar una ruta en una vista: route('web.home')
 | 3. Para agregar una nueva ruta, sigue el mismo patrón
 */
+
+// Sitemap para SEO
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('web.home');
