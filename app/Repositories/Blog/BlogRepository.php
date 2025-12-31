@@ -106,6 +106,20 @@ class BlogRepository extends BaseRepository
     }
 
     /**
+     * Obtiene todos los artículos publicados (sin paginación)
+     * Útil para sitemaps y otras operaciones que requieren todos los registros
+     *
+     * @return mixed
+     */
+    public function getAllPublished()
+    {
+        return $this->model
+            ->published()
+            ->ordered()
+            ->get();
+    }
+
+    /**
      * Obtiene todos los artículos para el panel admin (incluye inactivos)
      *
      * @return mixed

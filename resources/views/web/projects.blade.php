@@ -4,6 +4,69 @@
 
 @section('description', 'Galería de proyectos de impermeabilización realizados por IMPEERCOL. Conoce casos de éxito con sistemas de impermeabilización para techos, juntas, recubrimientos y más. Soluciones duraderas que detienen filtraciones y protegen estructuras. Verifica la calidad de nuestros trabajos y encuentra inspiración para tu próximo proyecto.')
 
+@section('styles')
+<style>
+	.project-card {
+		background: #fff;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+		transition: all 0.3s ease;
+		margin-bottom: 30px;
+	}
+
+	.project-card:hover {
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+		transform: translateY(-5px);
+	}
+
+	.project-content {
+		padding: 20px;
+		background: #fff;
+	}
+
+	.project-title {
+		font-size: 1.8rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		margin-bottom: 12px;
+		line-height: 1.4;
+		transition: color 0.3s ease;
+	}
+
+	.project-card:hover .project-title {
+		color: var(--clr-def, #007bff);
+	}
+
+	.project-description {
+		font-size: 1.4rem;
+		color: #666;
+		line-height: 1.6;
+		margin: 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	@media (max-width: 768px) {
+		.project-title {
+			font-size: 1.6rem;
+		}
+
+		.project-description {
+			font-size: 1.3rem;
+			-webkit-line-clamp: 2;
+		}
+
+		.project-content {
+			padding: 15px;
+		}
+	}
+</style>
+@endsection
+
 @section('content')
 	<!-- Start Breadcrumb -->
 	<div class="site-breadcrumb breadcrumb-bg-default">
@@ -45,6 +108,12 @@
 									</a>
 								</div>
 							</div>
+						</div>
+						<div class="project-content">
+							<h4 class="project-title">{{ $project->title }}</h4>
+							@if($project->description)
+								<p class="project-description">{{ Str::limit(strip_tags($project->description), 120, '...') }}</p>
+							@endif
 						</div>
 					</div>
 				@empty

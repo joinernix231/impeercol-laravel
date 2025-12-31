@@ -147,7 +147,7 @@
 					@if($product->activeVariants->count() > 0)
 						<li class="nav-item" role="presentation">
 							<button class="nav-link" id="pills-variants-tab" data-bs-toggle="pill" data-bs-target="#pills-variants" type="button" role="tab" aria-controls="pills-variants" aria-selected="false">
-								VARIANTES
+								PRESENTACIONES
 							</button>
 						</li>
 					@endif
@@ -172,7 +172,7 @@
 									<table class="table table-bordered">
 										<thead>
 											<tr>
-												<th>Variante</th>
+												<th>PRESENTACIÓN</th>
 											</tr>
 										</thead>
 										<tbody>
