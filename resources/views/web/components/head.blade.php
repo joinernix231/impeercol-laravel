@@ -31,11 +31,11 @@
 <meta name="description" content="@yield('description', 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas como Sika, Texsa, Metic y más. Asesoría técnica especializada, distribución nacional y soluciones duraderas para techos, muros y cubiertas.')">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Place favicon.ico in the root directory -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+<!-- Favicons -->
+<link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon.png') }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+
 
 <!-- ========== Start Stylesheet ========== -->
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
