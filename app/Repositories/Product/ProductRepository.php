@@ -58,18 +58,22 @@ class ProductRepository extends BaseRepository
     /**
      * Obtiene productos destacados para mostrar en home
      *
-     * @param int $limit
+     * @param int|null $limit Si es null, obtiene todos sin límite
      * @return mixed
      */
-    public function getFeatured(int $limit = 3)
+    public function getFeatured(?int $limit = 3)
     {
-        return $this->model
+        $query = $this->model
             ->with(['category', 'brand', 'activeVariants'])
             ->active()
             ->featured()
-            ->ordered()
-            ->limit($limit)
-            ->get();
+            ->ordered();
+        
+        if ($limit !== null) {
+            $query->limit($limit);
+        }
+        
+        return $query->get();
     }
 
     /**

@@ -206,6 +206,85 @@
 	</div>
 	<!-- End Mission & Vision -->
 
+	{{-- Valores Corporativos --}}
+	<!-- Start Corporate Values
+	============================================= -->
+	<div class="about-2-area de-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 offset-xl-2">
+					<div class="site-title text-center wow fadeInUp" data-wow-delay=".1s">
+						<h4 class="hero-sub-title mb-0">VALORES CORPORATIVOS</h4>
+						<h2 class="hero-title mb-30">Nuestros Valores</h2>
+						<div class="title-line"></div>
+						<p class="mb-0 mt-40">
+							Los principios fundamentales que guían cada decisión y acción en IMPEERCOL, asegurando la excelencia en cada proyecto y la confianza de nuestros clientes.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="values-container mt-60">
+				<div class="row g-4">
+					<div class="col-xl-4 col-lg-4 col-md-6">
+						<div class="value-card-modern wow fadeInUp" data-wow-delay=".2s" data-value="1">
+							<div class="value-number">01</div>
+							<div class="value-icon-wrapper">
+								<div class="value-icon-glow"></div>
+								<div class="value-icon-modern">
+									<i class="icofont-light-bulb"></i>
+								</div>
+							</div>
+							<div class="value-content-modern">
+								<h4 class="value-title-modern">Innovación y Asesoría Técnica</h4>
+								<p class="value-description-modern">
+									Nos comprometemos a estar a la vanguardia de las mejores tecnologías en impermeabilización, ofreciendo soluciones innovadoras y asesoría técnica especializada para cada proyecto.
+								</p>
+							</div>
+							<div class="value-decoration"></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4 col-md-6">
+						<div class="value-card-modern wow fadeInUp" data-wow-delay=".3s" data-value="2">
+							<div class="value-number">02</div>
+							<div class="value-icon-wrapper">
+								<div class="value-icon-glow"></div>
+								<div class="value-icon-modern">
+									<i class="icofont-handshake-deal"></i>
+								</div>
+							</div>
+							<div class="value-content-modern">
+								<h4 class="value-title-modern">Transparencia y Confianza</h4>
+								<p class="value-description-modern">
+									Construimos relaciones duraderas basadas en la honestidad, la transparencia en nuestros procesos y la confianza mutua. Cada recomendación se brinda con total claridad.
+								</p>
+							</div>
+							<div class="value-decoration"></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4 col-md-6">
+						<div class="value-card-modern wow fadeInUp" data-wow-delay=".4s" data-value="3">
+							<div class="value-number">03</div>
+							<div class="value-icon-wrapper">
+								<div class="value-icon-glow"></div>
+								<div class="value-icon-modern">
+									<i class="icofont-clock-time"></i>
+								</div>
+							</div>
+							<div class="value-content-modern">
+								<h4 class="value-title-modern">Puntualidad y Responsabilidad</h4>
+								<p class="value-description-modern">
+									Cumplimos con nuestros compromisos de entrega de manera puntual y responsable. Tu tiempo es valioso, por eso entregamos tus pedidos en los tiempos acordados.
+								</p>
+							</div>
+							<div class="value-decoration"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Corporate Values -->
+
 	{{-- Nuestras Sedes --}}
 	<!-- Start Our Locations
 	============================================= -->

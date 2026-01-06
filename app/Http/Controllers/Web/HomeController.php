@@ -54,8 +54,8 @@ class HomeController extends Controller
             ->limit(3)
             ->get();
         
-        // Obtener productos destacados para el slider
-        $featuredProducts = $this->productRepository->getFeatured(8);
+        // Obtener todos los productos destacados para el slider (sin límite)
+        $featuredProducts = $this->productRepository->getFeatured(null);
         
         // Obtener marcas para los logos (mapear nombres a IDs)
         $brandsMap = $this->getBrandsMap();
