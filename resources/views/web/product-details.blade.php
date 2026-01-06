@@ -13,6 +13,11 @@
 
 @section('description', $metaDesc)
 
+{{-- Open Graph y Twitter Cards específicos para productos --}}
+@section('og_type', 'product')
+@section('og_image', $product->image_url)
+@section('twitter_image', $product->image_url)
+
 @section('styles')
 {{-- Archivo CSS externo para mejor rendimiento y organización --}}
 <link href="{{ asset('assets/css/product-details.css') }}" rel="stylesheet">
@@ -251,4 +256,14 @@
 	@endif
 	
 	@include('web.components.contact-info-strip')
+	
+	{{-- Structured Data (JSON-LD) para SEO --}}
+	@include('web.components.seo.product-schema', ['product' => $product])
+	@include('web.components.seo.breadcrumb-schema', [
+		'items' => [
+			['name' => 'Inicio', 'url' => route('web.home')],
+			['name' => 'Productos', 'url' => route('web.products')],
+			['name' => $product->name, 'url' => route('web.product.show', $product->slug)]
+		]
+	])
 @endsection

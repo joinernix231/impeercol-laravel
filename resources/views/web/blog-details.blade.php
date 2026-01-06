@@ -12,6 +12,11 @@
 
 @section('description', $metaDesc)
 
+{{-- Open Graph y Twitter Cards específicos para artículos --}}
+@section('og_type', 'article')
+@section('og_image', $blog->image_url ?? null)
+@section('twitter_image', $blog->image_url ?? null)
+
 @section('content')
 	<!-- Start Breadcrumb -->
 	<div class="site-breadcrumb breadcrumb-bg-blog">
@@ -198,6 +203,16 @@
 			</div>
 		</div>
 	</div>
+	
+	{{-- Structured Data (JSON-LD) para SEO --}}
+	@include('web.components.seo.article-schema', ['blog' => $blog])
+	@include('web.components.seo.breadcrumb-schema', [
+		'items' => [
+			['name' => 'Inicio', 'url' => route('web.home')],
+			['name' => 'Blog', 'url' => route('web.blog')],
+			['name' => $blog->title, 'url' => route('web.blog.show', $blog->slug)]
+		]
+	])
 @endsection
 
 @section('scripts')

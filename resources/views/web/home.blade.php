@@ -599,6 +599,9 @@
 
 	{{-- Información de Contacto --}}
 	@include('web.components.contact-info-strip')
+	
+	{{-- Structured Data (JSON-LD) para SEO --}}
+	@include('web.components.seo.organization-schema')
 @endsection
 
 @section('styles')

@@ -11,6 +11,11 @@
 
 @section('description', $metaDesc)
 
+{{-- Open Graph y Twitter Cards específicos para proyectos --}}
+@section('og_type', 'article')
+@section('og_image', $project->image_url ?? null)
+@section('twitter_image', $project->image_url ?? null)
+
 @section('content')
 	<!-- Start Breadcrumb -->
 	<div class="site-breadcrumb breadcrumb-bg-blog">
@@ -113,6 +118,15 @@
 	<!-- End Product -->
 	
 	@include('web.components.contact-info-strip')
+	
+	{{-- Structured Data (JSON-LD) para SEO --}}
+	@include('web.components.seo.breadcrumb-schema', [
+		'items' => [
+			['name' => 'Inicio', 'url' => route('web.home')],
+			['name' => 'Proyectos', 'url' => route('web.projects')],
+			['name' => $project->title, 'url' => route('web.project.show', $project->slug)]
+		]
+	])
 @endsection
 
 @section('scripts')
