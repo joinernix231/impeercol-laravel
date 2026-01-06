@@ -1,23 +1,23 @@
-{{-- 
+{{--
     ============================================
     COMPONENTE: HEAD
     ============================================
-    
+
     PROPÓSITO:
     Este componente contiene toda la sección <head> del HTML, incluyendo:
     - Meta tags (charset, viewport, description)
     - Título de la página
     - Enlaces a hojas de estilo CSS
     - Favicon
-    
+
     CÓMO FUNCIONA:
     Este archivo se incluye en el layout principal (main.blade.php) usando @include.
     Todas las rutas de assets se convierten usando {{ asset() }} para que Laravel
     pueda gestionarlas correctamente.
-    
+
     QUÉ REEMPLAZA:
     Reemplaza las líneas 4-29 del archivo index.html original de la plantilla.
-    
+
     INSTRUCCIONES PARA DESARROLLADORES:
     1. Para cambiar el título de la página, modifica la variable $title en cada vista
        usando @section('title', 'Nuevo Título')
@@ -32,10 +32,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Place favicon.ico in the root directory -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/logo.png') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
 <!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" href="{{ asset('assets/img/logo/logo.png') }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/logo/logo.png') }}">
+<link rel="apple-touch-icon" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
 
 <!-- ========== Start Stylesheet ========== -->
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
