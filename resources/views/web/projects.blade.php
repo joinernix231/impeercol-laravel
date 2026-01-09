@@ -87,7 +87,7 @@
 			</ul>
 		</div>
 	</div>
-	
+
 	<!-- Start Project Page -->
 	<div class="project-page de-padding">
 		<div class="container">
@@ -110,9 +110,6 @@
 										<span class="shape-1"></span>
 									</div>
 									<div class="port-links">
-										<a href="{{ $project->image_url }}" class="item popup-link port-link" onclick="event.stopPropagation();">
-											<i class="ti ti-fullscreen"></i>
-										</a>
 										<span class="single-link port-link">
 											<i class="ti ti-angle-double-right"></i>
 										</span>
