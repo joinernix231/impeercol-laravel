@@ -307,24 +307,26 @@
 			<div class="work-wpr gallery-sldr owl-carousel owl-theme">
 
 				@forelse($featuredProjects as $index => $project)
-					<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
-						<div class="work-pic">
-							<img src="{{ $project->image_url }}" alt="{{ $project->title }}">
-							<div class="work-ovarlay">
-								<div class="work-overlay-content">
-									<div class="work-overlay-header">
-										<h4 class="heading-5">{{ $project->title }}</h4>
-										<a href="{{ route('web.project.show', $project->slug) }}" class="work-link">
-											<i class="ti ti-plus"></i>
-										</a>
+					<a href="{{ route('web.project.show', $project->slug) }}" class="work-box-link" style="display: block;">
+						<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
+							<div class="work-pic">
+								<img src="{{ $project->image_url }}" alt="{{ $project->title }}">
+								<div class="work-ovarlay">
+									<div class="work-overlay-content">
+										<div class="work-overlay-header">
+											<h4 class="heading-5">{{ $project->title }}</h4>
+											<span class="work-link">
+												<i class="ti ti-plus"></i>
+											</span>
+										</div>
+										<p class="work-text mb-0">
+											{{ Str::limit($project->description, 100, '...') }}
+										</p>
 									</div>
-									<p class="work-text mb-0">
-										{{ Str::limit($project->description, 100, '...') }}
-									</p>
 								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 
 				@empty
 					<p>No hay proyectos destacados por el momento.</p>

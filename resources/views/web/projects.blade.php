@@ -20,6 +20,15 @@
 		transform: translateY(-5px);
 	}
 
+	.project-img-link {
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	.project-img-link:hover {
+		text-decoration: none;
+	}
+
 	.project-content {
 		padding: 20px;
 		background: #fff;
@@ -93,24 +102,30 @@
 			<div class="project-page-wpr magnific-mix-gallery grid-3">
 				@forelse($projects as $project)
 					<div class="project-card image-scale-hover">
-						<div class="project-img">
-							<img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="w-100">
-							<div class="port-overlay">
-								<div class="port-shape">
-									<span class="shape-1"></span>
-								</div>
-								<div class="port-links">
-									<a href="{{ $project->image_url }}" class="item popup-link port-link">
-										<i class="ti ti-fullscreen"></i>
-									</a>
-									<a href="{{ route('web.project.show', $project->slug) }}" class="single-link port-link">
-										<i class="ti ti-angle-double-right"></i>
-									</a>
+						<a href="{{ route('web.project.show', $project->slug) }}" class="project-img-link" style="display: block; position: relative;">
+							<div class="project-img">
+								<img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="w-100">
+								<div class="port-overlay">
+									<div class="port-shape">
+										<span class="shape-1"></span>
+									</div>
+									<div class="port-links">
+										<a href="{{ $project->image_url }}" class="item popup-link port-link" onclick="event.stopPropagation();">
+											<i class="ti ti-fullscreen"></i>
+										</a>
+										<span class="single-link port-link">
+											<i class="ti ti-angle-double-right"></i>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
+						</a>
 						<div class="project-content">
-							<h4 class="project-title">{{ $project->title }}</h4>
+							<h4 class="project-title">
+								<a href="{{ route('web.project.show', $project->slug) }}" style="color: inherit; text-decoration: none;">
+									{{ $project->title }}
+								</a>
+							</h4>
 							@if($project->description)
 								<p class="project-description">{{ Str::limit(strip_tags($project->description), 120, '...') }}</p>
 							@endif
