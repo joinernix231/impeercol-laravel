@@ -157,8 +157,9 @@ class ProductRepository extends BaseRepository
             $query = $criterion->apply($query, $this);
         }
 
-        // Ordenar
-        $query->ordered();
+        // Ordenar: primero los destacados, luego por orden
+        $query->orderBy('is_featured', 'desc')
+              ->orderBy('order', 'asc');
 
         return $query->paginate($perPage);
     }
