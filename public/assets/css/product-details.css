@@ -2,6 +2,254 @@
    ESTILOS ESPECÍFICOS DE PRODUCT DETAILS
    ============================================ */
 
+/* Product Info Block - Commercial B2B Design */
+.product-info-block {
+	padding: 2rem 0;
+}
+
+/* Main Product Title */
+.product-title-main {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #1a1a1a;
+	margin-bottom: 1.5rem;
+	line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+	.product-title-main {
+		font-size: 2rem;
+	}
+}
+
+/* Product Badges */
+.product-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-bottom: 2rem;
+}
+
+.product-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
+	background-color: #f5f5f5;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #4a4a4a;
+}
+
+.product-badge i {
+	font-size: 0.85rem;
+	color: #666;
+}
+
+.product-badge-brand {
+	background-color: #e8f4f8;
+	border-color: #b8d4e0;
+	color: #2c5f7c;
+}
+
+.product-badge-category {
+	background-color: #f0f0f0;
+	border-color: #d0d0d0;
+	color: #4a4a4a;
+}
+
+/* Product Benefits */
+.product-benefits {
+	margin-bottom: 2.5rem;
+	padding: 1.5rem 0;
+	border-top: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.benefit-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-bottom: 1.25rem;
+}
+
+.benefit-item:last-child {
+	margin-bottom: 0;
+}
+
+.benefit-icon {
+	flex-shrink: 0;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f8f9fa;
+	border-radius: 6px;
+	color: #25d366;
+	font-size: 1.1rem;
+}
+
+.benefit-text {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	font-size: 5.2rem !important;
+}
+
+.benefit-text strong {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #1a1a1a;
+	line-height: 1.4;
+}
+
+.benefit-text span {
+	font-size: 1.1rem;
+	color: #666;
+	line-height: 1.8;
+}
+
+/* Main CTA: WhatsApp Button */
+.product-cta-main {
+	margin-bottom: 1.5rem;
+}
+
+.btn-whatsapp-primary {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	width: 100%;
+	padding: 1.125rem 2rem;
+	background-color: #25d366;
+	color: #ffffff;
+	font-size: 1.825rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 8px;
+	border: none;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+	box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp-primary:hover {
+	background-color: #20ba5a;
+	color: #ffffff;
+	text-decoration: none;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp-primary:active {
+	transform: translateY(0);
+}
+
+.btn-whatsapp-primary i {
+	font-size: 1.5rem;
+}
+
+.btn-whatsapp-primary span {
+	font-weight: 600;
+}
+
+/* Technical Sheet Link */
+.product-tech-sheet-link {
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+.link-tech-sheet {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: #666;
+	width: 100%;
+	text-align: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+	transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.link-tech-sheet:hover {
+	color: #dc3545;
+	background-color: #ececec;
+	text-decoration: none;
+}
+
+.link-tech-sheet i {
+	font-size: 1rem;
+	color: #dc3545;
+}
+
+/* Trust Elements */
+.product-trust {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #e8e8e8;
+}
+
+.trust-item {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	font-size: 0.9rem;
+	color: #4a4a4a;
+}
+
+.trust-item i {
+	color: #25d366;
+	font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+	.product-info-block {
+		padding: 1.5rem 0;
+	}
+	
+	.product-title-main {
+		font-size: 1.75rem;
+		margin-bottom: 1.25rem;
+	}
+	
+	.product-badges {
+		margin-bottom: 1.5rem;
+	}
+	
+	.product-benefits {
+		margin-bottom: 2rem;
+		padding: 1.25rem 0;
+	}
+	
+	.benefit-item {
+		margin-bottom: 1rem;
+	}
+	
+	.benefit-icon {
+		width: 2.25rem;
+		height: 2.25rem;
+		font-size: 1rem;
+	}
+	
+	.btn-whatsapp-primary {
+		padding: 1rem 1.5rem;
+		font-size: 1rem;
+	}
+	
+	.product-trust {
+		padding-top: 1.25rem;
+	}
+}
+
 /* Animaciones simples al pasar el mouse */
 .shop-datails-pic img {
 	transition: transform 0.3s ease;

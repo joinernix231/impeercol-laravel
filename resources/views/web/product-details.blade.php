@@ -108,29 +108,74 @@
 					@endif
 				</div>
 				<div class="sh-de-right">
-					<div class="sh-de-header">
-						<h4>{{ $product->name }}</h4>
-						@if($product->brand_name)
-							<p class="mb-2"><strong>Marca:</strong> {{ $product->brand_name }}</p>
-						@endif
-						@if($product->category)
-							<p class="mb-2"><strong>Categoría:</strong> {{ $product->category->name }}</p>
-						@endif
-						<p>{{ $product->description }}</p>
-					</div>
-					<div class="sh-de-bottom">
-						<div class="sh-de-btn">
-							<a href="{{ $product->whatsapp_url }}" target="_blank" class="sh-de-btn-1">
-								Cotizar <i class="fas fa-whatsapp"></i>
-							</a>
-							@if($product->technical_sheet_file)
-								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" class="sh-de-btn-2 btn-technical-sheet">
-									<i class="fas fa-file-pdf"></i> Ficha Técnica
-								</a>
+					<div class="product-info-block">
+						<!-- Product Title -->
+						<h1 class="product-title-main">{{ $product->name }}</h1>
+						
+						<!-- Brand and Category Badges -->
+						<div class="product-badges">
+							@if($product->brand_name)
+								<span class="product-badge product-badge-brand">
+									<i class="fas fa-tag"></i> {{ $product->brand_name }}
+								</span>
+							@endif
+							@if($product->category)
+								<span class="product-badge product-badge-category">
+									<i class="fas fa-layer-group"></i> {{ $product->category->name }}
+								</span>
 							@endif
 						</div>
-						<div class="sh-de-category">
-							<p class="mb-0">Categoría: {{ $product->category->name ?? 'N/A' }}</p>
+						
+						<!-- Product Benefits -->
+						<div class="product-benefits">
+							<div class="benefit-item">
+								<div class="benefit-icon">
+									<i class="fas fa-shield-alt" aria-hidden="true"></i>
+								</div>
+								<div class="benefit-text">
+									<strong>Alta Durabilidad</strong>
+									<span>Protección de larga duración</span>
+								</div>
+							</div>
+							<div class="benefit-item">
+								<div class="benefit-icon">
+									<i class="fas fa-certificate" aria-hidden="true"></i>
+								</div>
+								<div class="benefit-text">
+									<strong>Calidad Certificada</strong>
+									<span>Marcas líderes del mercado</span>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Main CTA: WhatsApp -->
+						<div class="product-cta-main">
+							<a href="{{ $product->whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-primary" aria-label="Cotizar producto por WhatsApp">
+								<i class="fab fa-whatsapp" aria-hidden="true"></i>
+								<span>Cotizar por WhatsApp</span>
+							</a>
+						</div>
+						
+						<!-- Secondary Link: Technical Sheet -->
+						@if($product->technical_sheet_file)
+							<div class="product-tech-sheet-link">
+								<a href="{{ asset('storage/' . $product->technical_sheet_file) }}" target="_blank" rel="noopener noreferrer" class="link-tech-sheet" aria-label="Descargar ficha técnica">
+									<i class="fas fa-file-pdf" aria-hidden="true"></i>
+									<span>Ver Ficha Técnica</span>
+								</a>
+							</div>
+						@endif
+						
+						<!-- Trust Elements -->
+						<div class="product-trust">
+							<div class="trust-item">
+								<i class="fas fa-check-circle" aria-hidden="true"></i>
+								<span>Garantía de calidad</span>
+							</div>
+							<div class="trust-item">
+								<i class="fas fa-check-circle" aria-hidden="true"></i>
+								<span>Envíos a toda Colombia</span>
+							</div>
 						</div>
 					</div>
 				</div>
