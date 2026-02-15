@@ -26,12 +26,65 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="site-title text-center mb-60">
+                    <div class="site-title text-center mb-10">
                         <h2>Nuestros Productos</h2>
                         <p>Impermeabilizantes de alta calidad para proteger tus espacios</p>
                     </div>
                 </div>
             </div>
+
+            <div class="de-padding">
+                <div class="container">
+                    <div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-10">
+                        <a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
+                        </a>
+                        @php
+                            $sikaId = $brandsMap['sika'] ?? null;
+                        @endphp
+                        <a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
+                        </a>
+                        @php
+                            $texsaId = $brandsMap['texsa'] ?? null;
+                        @endphp
+                        <a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
+                        </a>
+                        @php
+                            $meticId = $brandsMap['metic'] ?? null;
+                        @endphp
+                        <a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
+                        </a>
+                        @php
+                            $fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
+                        @endphp
+                        <a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
+                        </a>
+                        @php
+                            $kaudalId = $brandsMap['kaudal'] ?? null;
+                        @endphp
+                        <a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
+                        </a>
+                        @php
+                            $tekbondId = $brandsMap['tekbond'] ?? null;
+                        @endphp
+                        <a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
+                        </a>
+                        @php
+                            $sikaIndustryId = $brandsMap['sika'] ?? null;
+                        @endphp
+                        <a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer">
+                            <img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- End IMPEERCOL Brands Section -->
 
             {{-- Barra de Filtros Moderna --}}
             @include('web.components.product-filters', [
