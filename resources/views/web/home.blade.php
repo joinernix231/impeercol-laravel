@@ -31,7 +31,7 @@
 
 @section('title', 'IMPEERCOL - Expertos en Impermeabilización en Bogotá')
 
-@section('description', 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas como Sika, Texsa, Metic y más. Asesoría técnica especializada, distribución nacional y soluciones duraderas para techos, muros y cubiertas. Protege tus espacios con los mejores impermeabilizantes del mercado.')
+@section('description', 'IMPEERCOL: Expertos en impermeabilización en Bogotá. 15+ años de experiencia con productos Sika, Texsa, Metic. Asesoría técnica, distribución nacional.')
 
 @php
     use Illuminate\Support\Str;
@@ -76,10 +76,10 @@
                             <div class="col-xl-8 offset-xl-2">
                                 <div class="hero-2-content text-center">
                                     <h1 class="hero-title">
-                                        Productos especializados con la mejor asesoría técnica
+                                        IMPEERCOL - Expertos en Impermeabilización en Bogotá
                                     </h1>
                                     <p>
-                                        Mejor asesoría técnica y productos de alta calidad
+                                        Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas
                                     </p>
                                     <div class="hero-btn d-flex justify-content-center">
                                         <div class="button-container-1">
@@ -141,7 +141,7 @@
 							<div class="about-heading mb-40">
 								<h2 class="hero-title mb-30 fade-in-right">¿Quiénes Somos?</h2>
 								<p class="mb-0 fade-in-right-delay">
-									En impeercol llevamos más de 15 años protegiendo los espacios de los colombianos con impermeabilizantes de alta calidad. Ofrecemos soluciones duraderas y confiables para techos, muros y cubiertas, garantizando resultados visibles y protección total contra la humedad. Somos tu aliado en impermeabilización, con productos fáciles de aplicar y pensados para durar.
+									IMPEERCOL es tu aliado en impermeabilización en Bogotá. Llevamos más de 15 años protegiendo los espacios de los colombianos con impermeabilizantes de alta calidad. Somos expertos en impermeabilización, ofreciendo soluciones duraderas y confiables para techos, muros y cubiertas, garantizando resultados visibles y protección total contra la humedad. Productos fáciles de aplicar y pensados para durar.
 								</p>
 							</div>
 							<div class="about-features">
@@ -550,48 +550,48 @@
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
 				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
-					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
+					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo IMPEERCOL">
 				</a>
 				@php
 					$sikaId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer">
+				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
 				</a>
 				@php
 					$texsaId = $brandsMap['texsa'] ?? null;
 				@endphp
-				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer">
+				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
 				</a>
 				@php
 					$meticId = $brandsMap['metic'] ?? null;
 				@endphp
-				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer">
+				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
 				</a>
 				@php
 					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
 				@endphp
-				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer">
+				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
 				</a>
 				@php
 					$kaudalId = $brandsMap['kaudal'] ?? null;
 				@endphp
-				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer">
+				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
 				</a>
 				@php
 					$tekbondId = $brandsMap['tekbond'] ?? null;
 				@endphp
-				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer">
+				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
 				</a>
 				@php
 					$sikaIndustryId = $brandsMap['sika'] ?? null;
 				@endphp
-				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer">
+				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer" rel="nofollow">
 					<img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
 				</a>
 			</div>
