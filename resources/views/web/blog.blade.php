@@ -52,7 +52,18 @@
 									@if($blog->image)
 										<div class="blog-pic">
 											<a href="{{ route('web.blog.show', $blog->slug) }}">
-												<img src="{{ $blog->image_url }}" alt="{{ $blog->title }} - Blog IMPEERCOL" loading="lazy">
+												@php
+													$optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($blog->image ?? '', 800, 500);
+													$srcset = $blog->image ? \App\Helpers\ImageHelper::srcset($blog->image, [400, 800, 1200]) : '';
+												@endphp
+												<img src="{{ $optimizedUrl }}" 
+													 @if($srcset)srcset="{{ $srcset }}" sizes="(max-width: 768px) 100vw, 800px"@endif
+													 alt="{{ $blog->title }} - Blog IMPEERCOL" 
+													 loading="lazy" 
+													 decoding="async"
+													 width="800" 
+													 height="500"
+													 style="width: 100%; height: auto;">
 											</a>
 										</div>
 									@endif

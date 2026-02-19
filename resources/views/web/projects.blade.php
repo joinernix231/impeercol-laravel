@@ -104,7 +104,19 @@
 					<div class="project-card image-scale-hover">
 						<a href="{{ route('web.project.show', $project->slug) }}" class="project-img-link" style="display: block; position: relative;">
 							<div class="project-img">
-								<img src="{{ $project->image_url }}" alt="{{ $project->title }} - Proyecto IMPEERCOL" class="w-100" loading="lazy">
+								@php
+									$optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($project->image ?? '', 400, 300);
+									$srcset = $project->image ? \App\Helpers\ImageHelper::srcset($project->image, [400, 800]) : '';
+								@endphp
+								<img src="{{ $optimizedUrl }}" 
+									 @if($srcset)srcset="{{ $srcset }}" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"@endif
+									 alt="{{ $project->title }} - Proyecto IMPEERCOL" 
+									 class="w-100" 
+									 loading="lazy" 
+									 decoding="async"
+									 width="400" 
+									 height="300"
+									 style="width: 100%; height: auto;">
 								<div class="port-overlay">
 									<div class="port-shape">
 										<span class="shape-1"></span>

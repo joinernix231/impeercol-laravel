@@ -49,43 +49,85 @@
                             $sikaId = $brandsMap['sika'] ?? null;
                         @endphp
                         <a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika - Impermeabilizantes de alta calidad" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" 
+                                 alt="Sika - Impermeabilizantes de alta calidad" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $texsaId = $brandsMap['texsa'] ?? null;
                         @endphp
                         <a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa - Sistemas de impermeabilización" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" 
+                                 alt="Texsa - Sistemas de impermeabilización" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $meticId = $brandsMap['metic'] ?? null;
                         @endphp
                         <a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic - Recubrimientos y sellantes" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" 
+                                 alt="Metic - Recubrimientos y sellantes" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
                         @endphp
                         <a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass - Materiales de refuerzo" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" 
+                                 alt="FiberGlass - Materiales de refuerzo" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $kaudalId = $brandsMap['kaudal'] ?? null;
                         @endphp
                         <a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal - Impermeabilizantes especializados" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" 
+                                 alt="Kaudal - Impermeabilizantes especializados" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $tekbondId = $brandsMap['tekbond'] ?? null;
                         @endphp
                         <a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond - Adhesivos y sellantes" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" 
+                                 alt="Tekbond - Adhesivos y sellantes" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $sikaIndustryId = $brandsMap['sika'] ?? null;
                         @endphp
                         <a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry - Soluciones industriales" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/sikaind.png') }}" 
+                                 alt="Sika Industry - Soluciones industriales" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                     </div>
                 </div>
@@ -105,13 +147,18 @@
                     <div class="products-box">
                         <div class="products-pic">
                             <a href="{{ route('web.product.show', $product->slug) }}">
-                                <img src="{{ $product->image_url }}" 
+                                @php
+                                    $optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($product->image ?? '', 300, 300);
+                                    $srcset = $product->image ? \App\Helpers\ImageHelper::srcset($product->image, [300, 600, 900]) : '';
+                                @endphp
+                                <img src="{{ $optimizedUrl }}" 
+                                     @if($srcset)srcset="{{ $srcset }}" sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 300px"@endif
                                      alt="{{ $product->name }} - {{ $product->brand_name ?? 'IMPEERCOL' }}" 
                                      loading="lazy" 
                                      decoding="async"
                                      width="300" 
                                      height="300"
-                                     style="aspect-ratio: 1/1; object-fit: cover;">
+                                     style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;">
                             </a>
                         </div>
                         <div class="products-desc">

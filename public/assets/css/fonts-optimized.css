@@ -1,0 +1,50 @@
+/* 
+ * Fuentes optimizadas con font-display: swap
+ * Esto previene el bloqueo del renderizado del texto
+ */
+
+/* Bootstrap Icons */
+@font-face {
+    font-family: 'bootstrap-icons';
+    src: url('../fonts/bootstrap-icons.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Font Awesome Solid */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    src: url('../fonts/fa-solid-900.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Font Awesome Brands */
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    src: url('../fonts/fa-brands-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Themify Icons */
+@font-face {
+    font-family: 'themify';
+    src: url('../fonts/themify.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Icofont */
+@font-face {
+    font-family: 'icofont';
+    src: url('../fonts/icofont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

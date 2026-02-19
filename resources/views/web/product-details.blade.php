@@ -274,7 +274,18 @@
 						<div class="products-box">
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $relatedProduct->slug) }}">
-									<img src="{{ $relatedProduct->image_url }}" alt="{{ $relatedProduct->name }} - {{ $relatedProduct->brand_name ?? 'IMPEERCOL' }}" loading="lazy">
+									@php
+										$optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($relatedProduct->image ?? '', 300, 300);
+										$srcset = $relatedProduct->image ? \App\Helpers\ImageHelper::srcset($relatedProduct->image, [300, 600]) : '';
+									@endphp
+									<img src="{{ $optimizedUrl }}" 
+										 @if($srcset)srcset="{{ $srcset }}" sizes="(max-width: 768px) 300px, 300px"@endif
+										 alt="{{ $relatedProduct->name }} - {{ $relatedProduct->brand_name ?? 'IMPEERCOL' }}" 
+										 loading="lazy" 
+										 decoding="async"
+										 width="300" 
+										 height="300"
+										 style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;">
 								</a>
 								<ul class="carts d-flex align-items-center">
 									<li>

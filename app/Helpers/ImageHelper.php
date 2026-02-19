@@ -2,11 +2,65 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Storage;
+
 /**
  * Helper para optimización de imágenes
  */
 class ImageHelper
 {
+    /**
+     * Genera URL de imagen optimizada (thumbnail si existe, sino original)
+     * 
+     * @param string $path Ruta de la imagen original
+     * @param int $width Ancho deseado
+     * @param int $height Alto deseado
+     * @return string URL de la imagen optimizada
+     */
+    public static function optimizedImageUrl(string $path, int $width = 300, int $height = 300): string
+    {
+        // Si ya es URL completa, retornar
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        // Si empieza con 'assets/', es un asset estático
+        if (str_starts_with($path, 'assets/')) {
+            return asset($path);
+        }
+
+        // Limpiar la ruta
+        $cleanPath = str_starts_with($path, 'storage/') ? substr($path, 8) : $path;
+        
+        // Generar ruta del thumbnail
+        $thumbnailPath = 'thumbnails/' . $width . 'x' . $height . '/' . $cleanPath;
+        
+        // Si el thumbnail existe, retornarlo
+        if (Storage::disk('public')->exists($thumbnailPath)) {
+            return asset('storage/' . $thumbnailPath);
+        }
+
+        // Retornar la original (el thumbnail se generará en background)
+        return asset('storage/' . $cleanPath);
+    }
+
+    /**
+     * Genera srcset para imágenes responsivas
+     * 
+     * @param string $path Ruta base de la imagen
+     * @param array $sizes Tamaños disponibles
+     * @return string String srcset
+     */
+    public static function srcset(string $path, array $sizes = [300, 600, 900]): string
+    {
+        $srcset = [];
+        foreach ($sizes as $size) {
+            $url = self::optimizedImageUrl($path, $size, $size);
+            $srcset[] = $url . ' ' . $size . 'w';
+        }
+        return implode(', ', $srcset);
+    }
+
     /**
      * Genera atributos optimizados para imágenes
      *
@@ -35,14 +89,16 @@ class ImageHelper
         if ($width && $height) {
             $attributes['width'] = $width;
             $attributes['height'] = $height;
-            $attributes['style'] = 'aspect-ratio: ' . $width . '/' . $height . '; object-fit: cover; max-width: 100%; height: auto;';
+            $attributes['style'] = 'width: 100%; height: auto; aspect-ratio: ' . $width . '/' . $height . '; object-fit: cover;';
         }
 
         if ($lazy) {
             $attributes['loading'] = 'lazy';
         } else {
             $attributes['loading'] = 'eager';
-            $attributes['fetchpriority'] = $fetchpriority ?? 'high';
+            if ($fetchpriority) {
+                $attributes['fetchpriority'] = $fetchpriority;
+            }
         }
 
         return $attributes;

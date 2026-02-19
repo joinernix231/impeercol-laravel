@@ -53,6 +53,15 @@
 <link rel="dns-prefetch" href="https://www.google.com">
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
+{{-- CSS Crítico Inline - Solo lo esencial para above-the-fold --}}
+<style>
+/* Estilos críticos mínimos para evitar FOUC */
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.navbar{position:relative;min-height:70px}
+.hero-section{position:relative;min-height:500px}
+img{max-width:100%;height:auto}
+</style>
+
 {{-- Meta Robots --}}
 @php
     $robotsContent = view()->hasSection('robots') ? view()->yieldContent('robots') : 'index, follow';
@@ -101,6 +110,9 @@
 
 
 <!-- ========== Start Stylesheet ========== -->
+{{-- Fuentes optimizadas con font-display: swap --}}
+<link href="{{ asset('assets/css/fonts-optimized.css') }}" rel="stylesheet">
+
 {{-- CSS Crítico - Cargar inmediatamente --}}
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
