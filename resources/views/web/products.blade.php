@@ -37,49 +37,49 @@
                 <div class="container">
                     <div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-10">
                         <a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo Mobile">
+                            <img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo IMPEERCOL - Impermeabilizantes y recubrimientos" loading="lazy">
                         </a>
                         @php
                             $sikaId = $brandsMap['sika'] ?? null;
                         @endphp
                         <a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
+                            <img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika - Impermeabilizantes de alta calidad" loading="lazy">
                         </a>
                         @php
                             $texsaId = $brandsMap['texsa'] ?? null;
                         @endphp
                         <a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
+                            <img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa - Sistemas de impermeabilización" loading="lazy">
                         </a>
                         @php
                             $meticId = $brandsMap['metic'] ?? null;
                         @endphp
                         <a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
+                            <img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic - Recubrimientos y sellantes" loading="lazy">
                         </a>
                         @php
                             $fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
                         @endphp
                         <a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
+                            <img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass - Materiales de refuerzo" loading="lazy">
                         </a>
                         @php
                             $kaudalId = $brandsMap['kaudal'] ?? null;
                         @endphp
                         <a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
+                            <img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal - Impermeabilizantes especializados" loading="lazy">
                         </a>
                         @php
                             $tekbondId = $brandsMap['tekbond'] ?? null;
                         @endphp
                         <a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
+                            <img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond - Adhesivos y sellantes" loading="lazy">
                         </a>
                         @php
                             $sikaIndustryId = $brandsMap['sika'] ?? null;
                         @endphp
                         <a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
+                            <img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry - Soluciones industriales" loading="lazy">
                         </a>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                     <div class="products-box">
                         <div class="products-pic">
                             <a href="{{ route('web.product.show', $product->slug) }}">
-                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
+                                <img src="{{ $product->image_url }}" alt="{{ $product->name }} - {{ $product->brand_name ?? 'IMPEERCOL' }}" loading="lazy">
                             </a>
                         </div>
                         <div class="products-desc">
@@ -182,6 +182,14 @@
     </div>
 
     @include('web.components.contact-info-strip')
+    
+    {{-- Structured Data (JSON-LD) para SEO --}}
+    @include('web.components.seo.breadcrumb-schema', [
+        'items' => [
+            ['name' => 'Inicio', 'url' => route('web.home')],
+            ['name' => 'Productos', 'url' => route('web.products')]
+        ]
+    ])
 @endsection
 
 @section('scripts')

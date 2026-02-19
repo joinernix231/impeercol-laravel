@@ -52,7 +52,7 @@
 									@if($blog->image)
 										<div class="blog-pic">
 											<a href="{{ route('web.blog.show', $blog->slug) }}">
-												<img src="{{ $blog->image_url }}" alt="{{ $blog->title }}">
+												<img src="{{ $blog->image_url }}" alt="{{ $blog->title }} - Blog IMPEERCOL" loading="lazy">
 											</a>
 										</div>
 									@endif
@@ -113,4 +113,12 @@
 			</div>
 		</div>
 	</div>
+	
+	{{-- Structured Data (JSON-LD) para SEO --}}
+	@include('web.components.seo.breadcrumb-schema', [
+		'items' => [
+			['name' => 'Inicio', 'url' => route('web.home')],
+			['name' => 'Blog', 'url' => route('web.blog')]
+		]
+	])
 @endsection

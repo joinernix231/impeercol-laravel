@@ -310,7 +310,7 @@
 					<a href="{{ route('web.project.show', $project->slug) }}" class="work-box-link" style="display: block;">
 						<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
 							<div class="work-pic">
-								<img src="{{ $project->image_url }}" alt="{{ $project->title }}">
+								<img src="{{ $project->image_url }}" alt="{{ $project->title }} - Proyecto IMPEERCOL" loading="lazy">
 								<div class="work-ovarlay">
 									<div class="work-overlay-content">
 										<div class="work-overlay-header">
@@ -476,7 +476,7 @@
 					<div class="blog-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="blog-pic">
 							<a href="{{ route('web.blog.show', $blog->slug) }}">
-								<img src="{{ $blog->image_url }}" alt="{{ $blog->title }}">
+								<img src="{{ $blog->image_url }}" alt="{{ $blog->title }} - Blog IMPEERCOL" loading="lazy">
 							</a>
 							@if($blog->published_at)
 								<div class="blog-date">
@@ -604,6 +604,8 @@
 	
 	{{-- Structured Data (JSON-LD) para SEO --}}
 	@include('web.components.seo.organization-schema')
+	@include('web.components.seo.localbusiness-schema')
+	@include('web.components.seo.website-schema')
 @endsection
 
 @section('styles')

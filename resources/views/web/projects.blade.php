@@ -104,7 +104,7 @@
 					<div class="project-card image-scale-hover">
 						<a href="{{ route('web.project.show', $project->slug) }}" class="project-img-link" style="display: block; position: relative;">
 							<div class="project-img">
-								<img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="w-100">
+								<img src="{{ $project->image_url }}" alt="{{ $project->title }} - Proyecto IMPEERCOL" class="w-100" loading="lazy">
 								<div class="port-overlay">
 									<div class="port-shape">
 										<span class="shape-1"></span>
@@ -136,5 +136,13 @@
 			</div>
 		</div>
 	</div>
+	
+	{{-- Structured Data (JSON-LD) para SEO --}}
+	@include('web.components.seo.breadcrumb-schema', [
+		'items' => [
+			['name' => 'Inicio', 'url' => route('web.home')],
+			['name' => 'Proyectos', 'url' => route('web.projects')]
+		]
+	])
 @endsection
 

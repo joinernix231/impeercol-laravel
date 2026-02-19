@@ -11,7 +11,7 @@
 --}}
 
 @php
-    $baseUrl = config('app.url', 'https://www.impeercol.com');
+    $baseUrl = config('app.url', 'https://www.impeercol.com.co');
     $productUrl = $baseUrl . route('web.product.show', $product->slug, false);
     $imageUrl = $product->image_url;
     

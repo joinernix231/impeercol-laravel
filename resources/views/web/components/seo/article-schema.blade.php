@@ -11,7 +11,7 @@
 --}}
 
 @php
-    $baseUrl = config('app.url', 'https://www.impeercol.com');
+    $baseUrl = config('app.url', 'https://www.impeercol.com.co');
     $articleUrl = $baseUrl . route('web.blog.show', $blog->slug, false);
     $imageUrl = $blog->image_url ?? null;
     

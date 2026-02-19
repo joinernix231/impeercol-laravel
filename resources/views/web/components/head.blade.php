@@ -31,6 +31,28 @@
 <meta name="description" content="@yield('description', 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad de las mejores marcas como Sika, Texsa, Metic y más. Asesoría técnica especializada, distribución nacional y soluciones duraderas para techos, muros y cubiertas.')">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+{{-- Meta Tags Adicionales para SEO --}}
+<meta name="author" content="IMPEERCOL">
+<meta name="language" content="es">
+<meta name="geo.region" content="CO-CUN">
+<meta name="geo.placename" content="Bogotá">
+<meta name="geo.position" content="4.6097;-74.0817">
+<meta name="ICBM" content="4.6097, -74.0817">
+<meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IMPEERCOL">
+<meta name="format-detection" content="telephone=yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-TileColor" content="#1a1a1a">
+<meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
+
+{{-- Preconnect para mejorar rendimiento --}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.google.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+
 {{-- Meta Robots --}}
 @php
     $robotsContent = view()->hasSection('robots') ? view()->yieldContent('robots') : 'index, follow';
@@ -70,6 +92,12 @@
 <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon.png') }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+<link rel="manifest" href="{{ asset('site.webmanifest') }}">
+
+{{-- Meta Tags de Verificación (agregar cuando tengas los códigos) --}}
+{{-- <meta name="google-site-verification" content="TU_CODIGO_DE_VERIFICACION"> --}}
+{{-- <meta name="msvalidate.01" content="TU_CODIGO_DE_VERIFICACION_BING"> --}}
+{{-- <meta name="yandex-verification" content="TU_CODIGO_DE_VERIFICACION_YANDEX"> --}}
 
 
 <!-- ========== Start Stylesheet ========== -->

@@ -11,7 +11,7 @@
 --}}
 
 @php
-    $baseUrl = config('app.url', 'https://www.impeercol.com');
+    $baseUrl = config('app.url', 'https://www.impeercol.com.co');
 @endphp
 
 <script type="application/ld+json">

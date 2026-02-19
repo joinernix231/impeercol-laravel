@@ -128,5 +128,94 @@ class SeoHelper
     {
         return $content;
     }
+
+    /**
+     * Genera meta tags hreflang para internacionalización
+     *
+     * @param array $languages Array con códigos de idioma y sus URLs ['es' => 'url', 'en' => 'url']
+     * @return array Array con los meta tags hreflang
+     */
+    public static function hreflangTags(array $languages = []): array
+    {
+        $tags = [];
+        
+        // Si no se proporcionan idiomas, usar español por defecto
+        if (empty($languages)) {
+            $languages = ['es' => self::canonicalUrl()];
+        }
+
+        foreach ($languages as $lang => $url) {
+            $tags[] = [
+                'rel' => 'alternate',
+                'hreflang' => $lang,
+                'href' => $url,
+            ];
+        }
+
+        // Agregar x-default
+        $tags[] = [
+            'rel' => 'alternate',
+            'hreflang' => 'x-default',
+            'href' => $languages['es'] ?? self::canonicalUrl(),
+        ];
+
+        return $tags;
+    }
+
+    /**
+     * Genera keywords meta tag desde un array
+     *
+     * @param array $keywords Array de palabras clave
+     * @return string String con keywords separadas por comas
+     */
+    public static function keywordsMeta(array $keywords = []): string
+    {
+        if (empty($keywords)) {
+            $keywords = [
+                'impermeabilización',
+                'impermeabilizantes',
+                'Bogotá',
+                'Colombia',
+                'Sika',
+                'Texsa',
+                'Metic',
+                'recubrimientos',
+                'techos',
+                'muros',
+                'protección',
+                'humedad',
+            ];
+        }
+
+        return implode(', ', array_unique($keywords));
+    }
+
+    /**
+     * Genera structured data JSON-LD para WebSite
+     *
+     * @param string|null $searchAction URL del formulario de búsqueda (opcional)
+     * @return array Array con el structured data
+     */
+    public static function websiteSchema(?string $searchAction = null): array
+    {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => 'IMPEERCOL',
+            'url' => self::baseUrl(),
+            'description' => 'IMPEERCOL es tu aliado en impermeabilización en Bogotá. Más de 15 años de experiencia ofreciendo productos de alta calidad.',
+            'inLanguage' => 'es-CO',
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => [
+                    '@type' => 'EntryPoint',
+                    'urlTemplate' => self::baseUrl() . '/productos?search={search_term_string}',
+                ],
+                'query-input' => 'required name=search_term_string',
+            ],
+        ];
+
+        return $schema;
+    }
 }
 

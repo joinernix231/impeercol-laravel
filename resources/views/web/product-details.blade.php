@@ -81,7 +81,7 @@
 							@foreach($allImages as $index => $url)
 								<div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="nav-{{ $index }}" role="tabpanel" aria-labelledby="nav-{{ $index }}-tab">
 									<div class="shop-datails-pic">
-										<img src="{{ $url }}" alt="{{ $product->name }}">
+										<img src="{{ $url }}" alt="{{ $product->name }} - {{ $product->brand_name ?? 'IMPEERCOL' }}" {{ $index === 0 ? '' : 'loading="lazy"' }}>
 									</div>
 								</div>
 							@endforeach
@@ -91,7 +91,7 @@
 								@foreach($allImages as $index => $url)
 									<button class="nav-link nav-tab-item {{ $index === 0 ? 'active' : '' }}" id="nav-{{ $index }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ $index }}" type="button" role="tab" aria-controls="nav-{{ $index }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
 										<span class="sh-pic">
-											<img src="{{ $url }}" alt="thumb" class="nav-tab-thumb">
+											<img src="{{ $url }}" alt="Miniatura {{ $product->name }}" class="nav-tab-thumb" loading="lazy">
 										</span>
 									</button>
 								@endforeach
@@ -101,7 +101,7 @@
 						<div class="tab-content" id="nav-tabContent">
 							<div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
 								<div class="shop-datails-pic">
-									<img src="{{ asset('assets/img/shop/1.jpg') }}" alt="{{ $product->name }}">
+									<img src="{{ asset('assets/img/shop/1.jpg') }}" alt="{{ $product->name }} - {{ $product->brand_name ?? 'IMPEERCOL' }}">
 								</div>
 							</div>
 						</div>
@@ -274,7 +274,7 @@
 						<div class="products-box">
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $relatedProduct->slug) }}">
-									<img src="{{ $relatedProduct->image_url }}" alt="{{ $relatedProduct->name }}">
+									<img src="{{ $relatedProduct->image_url }}" alt="{{ $relatedProduct->name }} - {{ $relatedProduct->brand_name ?? 'IMPEERCOL' }}" loading="lazy">
 								</a>
 								<ul class="carts d-flex align-items-center">
 									<li>

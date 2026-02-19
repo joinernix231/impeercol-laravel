@@ -72,5 +72,5 @@ Disallow: /
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://www.impeercol.com/sitemap.xml
+Sitemap: https://www.impeercol.com.co/sitemap.xml
 # Para desarrollo local, usar: Sitemap: http://localhost:8000/sitemap.xml

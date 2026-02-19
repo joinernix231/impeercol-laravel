@@ -17,7 +17,7 @@
 --}}
 
 @php
-    $baseUrl = config('app.url', 'https://www.impeercol.com');
+    $baseUrl = config('app.url', 'https://www.impeercol.com.co');
     $position = 1;
 @endphp
 
