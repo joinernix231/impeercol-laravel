@@ -101,20 +101,44 @@
 
 
 <!-- ========== Start Stylesheet ========== -->
+{{-- CSS Crítico - Cargar inmediatamente --}}
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/bootstrap-icons.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/site-flaticon.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/common.css') }}" rel="stylesheet">
+
+{{-- CSS No Crítico - Cargar de forma asíncrona --}}
+<link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/bootstrap-icons.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/bootstrap-icons.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/site-flaticon.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/site-flaticon.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet"></noscript>
+
+<link href="{{ asset('assets/css/common.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ asset('assets/css/common.css') }}" rel="stylesheet"></noscript>
 <!-- ========== End Stylesheet ========== -->
 
 {{-- Sección para agregar estilos adicionales desde las vistas --}}

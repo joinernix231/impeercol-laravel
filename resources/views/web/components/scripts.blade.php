@@ -23,28 +23,31 @@
 
 <!-- jQuery Frameworks
 ============================================= -->
+{{-- Scripts críticos - Cargar inmediatamente --}}
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-menu.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.appear.js') }}"></script>
-<script src="{{ asset('assets/js/modernizr.custom.13711.js') }}"></script>
-<script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
-<script src="{{ asset('assets/js/wow.min.js') }}"></script>
-<script src="{{ asset('assets/js/wodry.min.js') }}"></script>
-<script src="{{ asset('assets/js/count-to.js') }}"></script>
-<script src="{{ asset('assets/js/progress-bar.min.js') }}"></script>
-<script src="{{ asset('assets/js/color-option.js') }}"></script>
-<script src="{{ asset('assets/js/typed.js') }}"></script>
-<script src="{{ asset('assets/js/YTPlayer.min.js') }}"></script>
-<script src="{{ asset('assets/js/active-class.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.mixitup.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+
+{{-- Scripts no críticos - Cargar con defer para no bloquear renderizado --}}
+<script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
+<script src="{{ asset('assets/js/modernizr.custom.13711.js') }}" defer></script>
+<script src="{{ asset('assets/js/owl.carousel.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/isotope.pkgd.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/wow.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/wodry.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/count-to.js') }}" defer></script>
+<script src="{{ asset('assets/js/progress-bar.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/color-option.js') }}" defer></script>
+<script src="{{ asset('assets/js/typed.js') }}" defer></script>
+<script src="{{ asset('assets/js/YTPlayer.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/active-class.js') }}" defer></script>
+<script src="{{ asset('assets/js/jquery.mixitup.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/jquery.countdown.min.js') }}" defer></script>
 
 {{-- Sección para agregar scripts adicionales desde las vistas --}}
 @yield('scripts')

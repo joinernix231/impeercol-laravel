@@ -37,7 +37,13 @@
                 <div class="container">
                     <div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-10">
                         <a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
-                            <img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo IMPEERCOL - Impermeabilizantes y recubrimientos" loading="lazy">
+                            <img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" 
+                                 alt="Logo IMPEERCOL - Impermeabilizantes y recubrimientos" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 width="150" 
+                                 height="80"
+                                 style="max-width: 100%; height: auto;">
                         </a>
                         @php
                             $sikaId = $brandsMap['sika'] ?? null;
@@ -99,7 +105,13 @@
                     <div class="products-box">
                         <div class="products-pic">
                             <a href="{{ route('web.product.show', $product->slug) }}">
-                                <img src="{{ $product->image_url }}" alt="{{ $product->name }} - {{ $product->brand_name ?? 'IMPEERCOL' }}" loading="lazy">
+                                <img src="{{ $product->image_url }}" 
+                                     alt="{{ $product->name }} - {{ $product->brand_name ?? 'IMPEERCOL' }}" 
+                                     loading="lazy" 
+                                     decoding="async"
+                                     width="300" 
+                                     height="300"
+                                     style="aspect-ratio: 1/1; object-fit: cover;">
                             </a>
                         </div>
                         <div class="products-desc">

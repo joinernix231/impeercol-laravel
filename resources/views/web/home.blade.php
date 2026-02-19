@@ -35,7 +35,16 @@
 
 @php
     use Illuminate\Support\Str;
+    // Preload para la primera imagen del slider (above the fold)
+    $firstBannerImage = $banners->first()->image_url ?? asset('assets/img/gallery/BO-convertido-de-jpg.webp');
 @endphp
+
+{{-- Preload de imagen crítica (primera del slider) --}}
+@if(isset($banners) && $banners->count() > 0)
+    <link rel="preload" as="image" href="{{ $firstBannerImage }}" fetchpriority="high">
+@else
+    <link rel="preload" as="image" href="{{ asset('assets/img/gallery/BO-convertido-de-jpg.webp') }}" fetchpriority="high">
+@endif
 
 @section('content')
 	{{-- Slider Principal --}}
@@ -131,7 +140,14 @@
 							<div class="about-left-content">
 								<div class="about-photo pos-rel fade-in-left">
 									<span class="about-dotted"></span>
-									<img src="{{ asset('assets/img/gallery/inicio-convertido-de-jpg.webp') }}" class="about-main-pic" alt="IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá" loading="lazy">
+									<img src="{{ asset('assets/img/gallery/inicio-convertido-de-jpg.webp') }}" 
+										 class="about-main-pic" 
+										 alt="IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá" 
+										 loading="lazy" 
+										 decoding="async"
+										 width="500" 
+										 height="600"
+										 style="max-width: 100%; height: auto;">
 								</div>
 							</div>
 						</div>
@@ -195,7 +211,13 @@
 						<div class="products-box">
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $product->slug) }}">
-									<img src="{{ $product->image_url }}" alt="{{ $product->name }}" loading="lazy">
+									<img src="{{ $product->image_url }}" 
+										 alt="{{ $product->name }}" 
+										 loading="lazy" 
+										 decoding="async"
+										 width="300" 
+										 height="300"
+										 style="aspect-ratio: 1/1; object-fit: cover;">
 								</a>
 							</div>
 							<div class="products-desc">
@@ -310,7 +332,13 @@
 					<a href="{{ route('web.project.show', $project->slug) }}" class="work-box-link" style="display: block;">
 						<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
 							<div class="work-pic">
-								<img src="{{ $project->image_url }}" alt="{{ $project->title }} - Proyecto IMPEERCOL" loading="lazy">
+								<img src="{{ $project->image_url }}" 
+									 alt="{{ $project->title }} - Proyecto IMPEERCOL" 
+									 loading="lazy" 
+									 decoding="async"
+									 width="400" 
+									 height="300"
+									 style="width: 100%; height: auto;">
 								<div class="work-ovarlay">
 									<div class="work-overlay-content">
 										<div class="work-overlay-header">
@@ -476,7 +504,13 @@
 					<div class="blog-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="blog-pic">
 							<a href="{{ route('web.blog.show', $blog->slug) }}">
-								<img src="{{ $blog->image_url }}" alt="{{ $blog->title }} - Blog IMPEERCOL" loading="lazy">
+								<img src="{{ $blog->image_url }}" 
+									 alt="{{ $blog->title }} - Blog IMPEERCOL" 
+									 loading="lazy" 
+									 decoding="async"
+									 width="400" 
+									 height="250"
+									 style="width: 100%; height: auto;">
 							</a>
 							@if($blog->published_at)
 								<div class="blog-date">
