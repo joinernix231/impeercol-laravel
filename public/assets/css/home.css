@@ -164,8 +164,15 @@
 
 /* Mejorar los dots del carousel de productos destacados */
 .featured-products-slider.owl-theme .owl-dots {
-	margin-top: 4rem;
+	margin-top: 3rem;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+	max-width: 100%;
+	overflow: hidden;
 }
 
 .featured-products-slider.owl-theme .owl-dots .owl-dot {
@@ -173,10 +180,10 @@
 }
 
 .featured-products-slider.owl-theme .owl-dots .owl-dot span {
-	width: 12px;
-	height: 12px;
-	margin: 5px 8px;
-	background: #d6d6d6;
+	width: 8px;
+	height: 8px;
+	margin: 0 3px;
+	background: #dee2e6;
 	display: block;
 	border-radius: 50%;
 	transition: all 0.3s ease;
@@ -186,23 +193,49 @@
 .featured-products-slider.owl-theme .owl-dots .owl-dot.active span,
 .featured-products-slider.owl-theme .owl-dots .owl-dot:hover span {
 	background: var(--clr-def, #007bff);
-	width: 32px;
+	width: 24px;
 	border-radius: 6px;
 	opacity: 1;
-	box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+	box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3);
 }
 
-/* Limitar número de dots visibles */
-.featured-products-slider.owl-theme .owl-dots {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 4px;
-	flex-wrap: wrap;
-	max-width: 100%;
+/* Limitar dots en mobile - ocultar si hay más de 5 productos */
+@media (max-width: 767px) {
+	.featured-products-slider.owl-theme .owl-dots {
+		gap: 4px;
+		margin-top: 2rem;
+	}
+	
+	.featured-products-slider.owl-theme .owl-dots .owl-dot span {
+		width: 6px;
+		height: 6px;
+		margin: 0 2px;
+	}
+	
+	.featured-products-slider.owl-theme .owl-dots .owl-dot.active span {
+		width: 20px;
+	}
+	
+	/* Ocultar dots después del 5to en mobile */
+	.featured-products-slider.owl-theme .owl-dots .owl-dot:nth-child(n+6) {
+		display: none;
+	}
+	
+	/* Si hay muchos productos, ocultar todos los dots en mobile y usar solo navegación */
+	.featured-products-slider.owl-theme .owl-dots {
+		max-height: 30px;
+		overflow: hidden;
+	}
 }
 
-/* Ocultar dots si hay muchos productos */
+/* Limitar dots en tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+	.featured-products-slider.owl-theme .owl-dots .owl-dot:nth-child(n+7) {
+		display: none;
+	}
+}
+
+/* Limitar dots en desktop */
 @media (min-width: 992px) {
 	.featured-products-slider.owl-theme .owl-dots .owl-dot:nth-child(n+8) {
 		display: none;

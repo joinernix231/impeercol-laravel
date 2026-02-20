@@ -41,7 +41,10 @@
 
 		// Inicializar slider de productos destacados
 		if ($('.featured-products-slider').length > 0) {
-			$('.featured-products-slider').owlCarousel({
+			var $slider = $('.featured-products-slider');
+			var totalItems = $slider.find('.featured-product-item').length;
+			
+			$slider.owlCarousel({
 				loop: true,
 				margin: 30,
 				nav: true,
@@ -74,6 +77,20 @@
 						items: 3,
 						margin: 30
 					}
+				}
+			});
+			
+			// Ocultar dots en mobile si hay muchos productos
+			if (totalItems > 5 && $(window).width() <= 767) {
+				$slider.find('.owl-dots').hide();
+			}
+			
+			// Mostrar/ocultar dots al cambiar tamaño de ventana
+			$(window).on('resize', function() {
+				if (totalItems > 5 && $(window).width() <= 767) {
+					$slider.find('.owl-dots').hide();
+				} else {
+					$slider.find('.owl-dots').show();
 				}
 			});
 		}
