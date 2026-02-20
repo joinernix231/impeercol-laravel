@@ -236,9 +236,9 @@
 									<p class="text-muted mb-2"><small>Categoría: {{ $product->category->name }}</small></p>
 								@endif
 								@if($product->description)
-									<p class="product-excerpt">{{ Str::limit(strip_tags($product->description), 80) }}</p>
+									<p class="product-excerpt">{{ Str::limit(strip_tags($product->description), 100) }}</p>
 								@endif
-								<div class="add-to-cart pt-3">
+								<div class="add-to-cart">
 									<a href="{{ route('web.product.show', $product->slug) }}" class="cart-btn">Ver Detalles</a>
 								</div>
 							</div>

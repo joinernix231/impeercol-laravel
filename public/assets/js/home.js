@@ -43,7 +43,7 @@
 		if ($('.featured-products-slider').length > 0) {
 			$('.featured-products-slider').owlCarousel({
 				loop: true,
-				margin: 30,
+				margin: 40,
 				nav: true,
 				dots: true,
 				autoplay: true,
@@ -56,19 +56,23 @@
 				responsive: {
 					0: {
 						items: 1,
-						margin: 15
+						margin: 20
 					},
 					576: {
 						items: 2,
-						margin: 20
-					},
-					768: {
-						items: 3,
 						margin: 25
 					},
-					992: {
-						items: 4,
+					768: {
+						items: 2,
 						margin: 30
+					},
+					992: {
+						items: 3,
+						margin: 40
+					},
+					1200: {
+						items: 3,
+						margin: 40
 					}
 				}
 			});
