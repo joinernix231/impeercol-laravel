@@ -140,12 +140,12 @@
 							<div class="about-left-content">
 								<div class="about-photo pos-rel fade-in-left">
 									<span class="about-dotted"></span>
-									<img src="{{ asset('assets/img/gallery/inicio-convertido-de-jpg.webp') }}" 
-										 class="about-main-pic" 
-										 alt="IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá" 
-										 loading="lazy" 
+									<img src="{{ asset('assets/img/gallery/inicio-convertido-de-jpg.webp') }}"
+										 class="about-main-pic"
+										 alt="IMPEERCOL - Expertos en impermeabilización y recubrimientos en Bogotá"
+										 loading="lazy"
 										 decoding="async"
-										 width="500" 
+										 width="500"
 										 height="600"
 										 style="max-width: 100%; height: auto;">
 								</div>
@@ -212,17 +212,16 @@
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $product->slug) }}">
 									@php
-										$optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($product->image ?? '', 300, 300);
-										$srcset = $product->image ? \App\Helpers\ImageHelper::srcset($product->image, [300, 600, 900]) : '';
+										$optimizedUrl = 'https://impeercol.com.co/storage/projects/images/2025/11/plastocrete-dm-20-kg-y-200-kg_1764433073_xOeMmLs4.png';
+										$srcset = 'https://impeercol.com.co/storage/projects/images/2025/11/plastocrete-dm-20-kg-y-200-kg_1764433073_xOeMmLs4.png';
 									@endphp
-									<img src="{{ $optimizedUrl }}" 
+									<img src="{{ $optimizedUrl }}"
 										 @if($srcset)srcset="{{ $srcset }}" sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 300px"@endif
-										 alt="{{ $product->name }}" 
-										 loading="lazy" 
+										 alt="{{ $product->name }}"
+										 loading="lazy"
 										 decoding="async"
-										 width="300" 
-										 height="300"
-										 style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;">
+										 width="300"
+										 height="300">
 								</a>
 							</div>
 							<div class="products-desc">
@@ -337,11 +336,11 @@
 					<a href="{{ route('web.project.show', $project->slug) }}" class="work-box-link" style="display: block;">
 						<div class="work-box wow fadeInUp" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
 							<div class="work-pic">
-								<img src="{{ $project->image_url }}" 
-									 alt="{{ $project->title }} - Proyecto IMPEERCOL" 
-									 loading="lazy" 
+								<img src="{{ $project->image_url }}"
+									 alt="{{ $project->title }} - Proyecto IMPEERCOL"
+									 loading="lazy"
 									 decoding="async"
-									 width="400" 
+									 width="400"
 									 height="300"
 									 style="width: 100%; height: auto;">
 								<div class="work-ovarlay">
@@ -509,11 +508,11 @@
 					<div class="blog-box fade-in-scale-stagger" data-delay="{{ $index * 0.1 }}s">
 						<div class="blog-pic">
 							<a href="{{ route('web.blog.show', $blog->slug) }}">
-								<img src="{{ $blog->image_url }}" 
-									 alt="{{ $blog->title }} - Blog IMPEERCOL" 
-									 loading="lazy" 
+								<img src="{{ $blog->image_url }}"
+									 alt="{{ $blog->title }} - Blog IMPEERCOL"
+									 loading="lazy"
 									 decoding="async"
-									 width="400" 
+									 width="400"
 									 height="250"
 									 style="width: 100%; height: auto;">
 							</a>
@@ -640,7 +639,7 @@
 
 	{{-- Información de Contacto --}}
 	@include('web.components.contact-info-strip')
-	
+
 	{{-- Structured Data (JSON-LD) para SEO --}}
 	@include('web.components.seo.organization-schema')
 	@include('web.components.seo.localbusiness-schema')
