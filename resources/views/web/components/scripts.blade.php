@@ -23,12 +23,32 @@
 
 <!-- jQuery Frameworks
 ============================================= -->
-{{-- Scripts críticos - Cargar inmediatamente --}}
+{{-- jQuery debe cargarse sin defer para que otros scripts funcionen --}}
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap-menu.js') }}"></script>
-<script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/bootstrap-menu.js') }}" defer></script>
+
+{{-- main.js carga después de jQuery pero sin bloquear --}}
+<script>
+(function() {
+    function loadMainJS() {
+        if (typeof jQuery !== 'undefined') {
+            var script = document.createElement('script');
+            script.src = '{{ asset('assets/js/main.js') }}';
+            script.async = true;
+            document.body.appendChild(script);
+        } else {
+            setTimeout(loadMainJS, 50);
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadMainJS);
+    } else {
+        loadMainJS();
+    }
+})();
+</script>
 
 {{-- Scripts no críticos - Cargar con defer para no bloquear renderizado --}}
 <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>

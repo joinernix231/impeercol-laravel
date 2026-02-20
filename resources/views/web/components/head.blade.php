@@ -47,11 +47,20 @@
 <meta name="msapplication-TileColor" content="#1a1a1a">
 <meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
 
-{{-- Preconnect para mejorar rendimiento --}}
+{{-- Resource Hints optimizados para mejorar rendimiento --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.google.com">
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link rel="preconnect" href="{{ url('/') }}" crossorigin>
+
+{{-- Preload de fuentes críticas para evitar bloqueo de renderizado --}}
+@php
+    $fontsPath = asset('assets/fonts');
+@endphp
+<link rel="preload" href="{{ $fontsPath }}/jost-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ $fontsPath }}/jost-v20-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ $fontsPath }}/jost-v20-latin-700.woff2" as="font" type="font/woff2" crossorigin>
 
 {{-- CSS Crítico Inline - Solo lo esencial para above-the-fold --}}
 <style>
@@ -113,9 +122,13 @@ img{max-width:100%;height:auto}
 {{-- Fuentes optimizadas con font-display: swap --}}
 <link href="{{ asset('assets/css/fonts-optimized.css') }}" rel="stylesheet">
 
-{{-- CSS Crítico - Cargar inmediatamente --}}
-<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/style.css') }}" rel="stylesheet">
+{{-- CSS Crítico - Cargar inmediatamente con preload --}}
+<link rel="preload" href="{{ asset('assets/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"></noscript>
+
+<link rel="preload" href="{{ asset('assets/style.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="{{ asset('assets/style.css') }}" rel="stylesheet"></noscript>
+
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 
 {{-- CSS No Crítico - Cargar de forma asíncrona --}}
