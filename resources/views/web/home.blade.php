@@ -212,8 +212,8 @@
 							<div class="products-pic">
 								<a href="{{ route('web.product.show', $product->slug) }}">
 									@php
-										$optimizedUrl = 'https://impeercol.com.co/storage/projects/images/2025/11/plastocrete-dm-20-kg-y-200-kg_1764433073_xOeMmLs4.png';
-										$srcset = 'https://impeercol.com.co/storage/projects/images/2025/11/plastocrete-dm-20-kg-y-200-kg_1764433073_xOeMmLs4.png';
+                                        $optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($product->image ?? '', 300, 300);
+                                        $srcset = $product->image ? \App\Helpers\ImageHelper::srcset($product->image, [300, 600, 900]) : '';
 									@endphp
 									<img src="{{ $optimizedUrl }}"
 										 @if($srcset)srcset="{{ $srcset }}" sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 300px"@endif
