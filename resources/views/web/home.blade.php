@@ -374,7 +374,7 @@
 	============================================= -->
 	<div id="contact" class="contact-area pos-rel de-padding">
 		<div class="contact-sketch">
-			<img src="{{ asset('assets/img/bg/sketch.png') }}" alt="Diseño decorativo IMPEERCOL">
+			<img src="{{ asset('assets/img/bg/sketch.png') }}" alt="Diseño decorativo IMPEERCOL" width="200" height="200" loading="lazy" decoding="async">
 		</div>
 		<div class="container">
 			<div class="contact-wpr grid-2">
@@ -588,49 +588,49 @@
 			</div>
 			<div class="partner-pic partner-sldr-2 owl-carousel owl-theme carousel mt-60">
 				<a href="{{ route('web.products') }}" aria-label="Ver todos los productos" class="cursor-pointer">
-					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo IMPEERCOL">
+					<img src="{{ asset('assets/img/gallery/logo-mobile-convertido-de-png.webp') }}" alt="Logo IMPEERCOL" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$sikaId = $brandsMap['sika'] ?? null;
 				@endphp
 				<a href="{{ $sikaId ? route('web.products', ['brand' => $sikaId]) : route('web.products') }}" aria-label="Sika" class="cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika">
+					<img src="{{ asset('assets/img/gallery/Sika_NoClaim_pos_rgb_mobile-convertido-de-webp.webp') }}" alt="Sika" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$texsaId = $brandsMap['texsa'] ?? null;
 				@endphp
 				<a href="{{ $texsaId ? route('web.products', ['brand' => $texsaId]) : route('web.products') }}" aria-label="Texsa" class="cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa">
+					<img src="{{ asset('assets/img/gallery/Logo-Texsa-Original.png-convertido-de-webp.webp') }}" alt="Texsa" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$meticId = $brandsMap['metic'] ?? null;
 				@endphp
 				<a href="{{ $meticId ? route('web.products', ['brand' => $meticId]) : route('web.products') }}" aria-label="Metic" class="cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic">
+					<img src="{{ asset('assets/img/gallery/Metic (1).webp') }}" alt="Metic" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$fiberglassId = $brandsMap['fiberglass'] ?? $brandsMap['fiverglass'] ?? null;
 				@endphp
 				<a href="{{ $fiberglassId ? route('web.products', ['brand' => $fiberglassId]) : route('web.products') }}" aria-label="FiberGlass" class="cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass">
+					<img src="{{ asset('assets/img/gallery/FiverGlass-convertido-de-webp.webp') }}" alt="FiberGlass" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$kaudalId = $brandsMap['kaudal'] ?? null;
 				@endphp
 				<a href="{{ $kaudalId ? route('web.products', ['brand' => $kaudalId]) : route('web.products') }}" aria-label="Kaudal" class="cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal">
+					<img src="{{ asset('assets/img/gallery/Kaudal-convertido-de-webp.webp') }}" alt="Kaudal" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$tekbondId = $brandsMap['tekbond'] ?? null;
 				@endphp
 				<a href="{{ $tekbondId ? route('web.products', ['brand' => $tekbondId]) : route('web.products') }}" aria-label="Tekbond" class="cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond">
+					<img src="{{ asset('assets/img/gallery/tekbond-logo-convertido-de-webp.webp') }}" alt="Tekbond" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 				@php
 					$sikaIndustryId = $brandsMap['sika'] ?? null;
 				@endphp
 				<a href="{{ $sikaIndustryId ? route('web.products', ['brand' => $sikaIndustryId]) : route('web.products') }}" aria-label="Sika Industry" class="sika-industry-logo cursor-pointer" rel="nofollow">
-					<img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry">
+					<img src="{{ asset('assets/img/gallery/sikaind.png') }}" alt="Sika Industry" width="120" height="60" loading="lazy" decoding="async">
 				</a>
 			</div>
 		</div>

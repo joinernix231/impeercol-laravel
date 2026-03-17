@@ -42,13 +42,13 @@
 		// Inicializar slider de productos destacados
 		if ($('.featured-products-slider').length > 0) {
 			var $slider = $('.featured-products-slider');
-			var totalItems = $slider.find('.featured-product-item').length;
+			var isMobile = $(window).width() <= 767;
 			
 			$slider.owlCarousel({
 				loop: true,
 				margin: 30,
 				nav: true,
-				dots: true,
+				dots: !isMobile, // Desactivar dots en mobile
 				autoplay: true,
 				autoplayTimeout: 4000,
 				autoplayHoverPause: true,
@@ -59,38 +59,29 @@
 				responsive: {
 					0: {
 						items: 1,
-						margin: 15
+						margin: 15,
+						dots: false // Sin dots en mobile
 					},
 					576: {
 						items: 2,
-						margin: 20
+						margin: 20,
+						dots: false // Sin dots en mobile
 					},
 					768: {
 						items: 2,
-						margin: 25
+						margin: 25,
+						dots: true
 					},
 					992: {
 						items: 3,
-						margin: 30
+						margin: 30,
+						dots: true
 					},
 					1200: {
 						items: 3,
-						margin: 30
+						margin: 30,
+						dots: true
 					}
-				}
-			});
-			
-			// Ocultar dots en mobile si hay muchos productos
-			if (totalItems > 5 && $(window).width() <= 767) {
-				$slider.find('.owl-dots').hide();
-			}
-			
-			// Mostrar/ocultar dots al cambiar tamaño de ventana
-			$(window).on('resize', function() {
-				if (totalItems > 5 && $(window).width() <= 767) {
-					$slider.find('.owl-dots').hide();
-				} else {
-					$slider.find('.owl-dots').show();
 				}
 			});
 		}

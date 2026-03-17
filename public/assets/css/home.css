@@ -199,32 +199,10 @@
 	box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3);
 }
 
-/* Limitar dots en mobile - ocultar si hay más de 5 productos */
+/* Ocultar dots completamente en mobile */
 @media (max-width: 767px) {
 	.featured-products-slider.owl-theme .owl-dots {
-		gap: 4px;
-		margin-top: 2rem;
-	}
-	
-	.featured-products-slider.owl-theme .owl-dots .owl-dot span {
-		width: 6px;
-		height: 6px;
-		margin: 0 2px;
-	}
-	
-	.featured-products-slider.owl-theme .owl-dots .owl-dot.active span {
-		width: 20px;
-	}
-	
-	/* Ocultar dots después del 5to en mobile */
-	.featured-products-slider.owl-theme .owl-dots .owl-dot:nth-child(n+6) {
-		display: none;
-	}
-	
-	/* Si hay muchos productos, ocultar todos los dots en mobile y usar solo navegación */
-	.featured-products-slider.owl-theme .owl-dots {
-		max-height: 30px;
-		overflow: hidden;
+		display: none !important;
 	}
 }
 
