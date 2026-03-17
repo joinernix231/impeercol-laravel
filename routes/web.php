@@ -43,6 +43,15 @@ Route::get('/', [HomeController::class, 'index'])->name('web.home');
 // Páginas estáticas
 Route::get('/nosotros', [PageController::class, 'about'])->name('web.about');
 Route::get('/servicios', [PageController::class, 'services'])->name('web.services');
+
+// Páginas de servicio SEO específicas
+Route::get('/impermeabilizacion-techos-bogota', [PageController::class, 'serviceRoofsBogota'])
+    ->name('web.services.roofs.bogota');
+Route::get('/impermeabilizacion-terrazas-bogota', [PageController::class, 'serviceTerracesBogota'])
+    ->name('web.services.terraces.bogota');
+Route::get('/impermeabilizacion-industrial-bogota', [PageController::class, 'serviceIndustrialBogota'])
+    ->name('web.services.industrial.bogota');
+
 Route::get('/contacto', [PageController::class, 'contact'])->name('web.contact');
 
 // Productos

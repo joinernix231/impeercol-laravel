@@ -136,6 +136,36 @@ class PageController extends Controller
     }
 
     /**
+     * Página SEO: Impermeabilización de techos en Bogotá
+     *
+     * @return \Illuminate\View\View
+     */
+    public function serviceRoofsBogota()
+    {
+        return view('web.services-impermeabilizacion-techos-bogota');
+    }
+
+    /**
+     * Página SEO: Impermeabilización de terrazas en Bogotá
+     *
+     * @return \Illuminate\View\View
+     */
+    public function serviceTerracesBogota()
+    {
+        return view('web.services-impermeabilizacion-terrazas-bogota');
+    }
+
+    /**
+     * Página SEO: Impermeabilización industrial en Bogotá
+     *
+     * @return \Illuminate\View\View
+     */
+    public function serviceIndustrialBogota()
+    {
+        return view('web.services-impermeabilizacion-industrial-bogota');
+    }
+
+    /**
      * Muestra la página de contacto
      *
      * @return \Illuminate\View\View

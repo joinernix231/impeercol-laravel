@@ -79,23 +79,23 @@
 									
 									<div class="blog-text">
 										@php
-											// Convertir saltos de línea dobles en párrafos
-											$paragraphs = preg_split('/\n\s*\n/', $blog->content);
-											$content = '';
-											foreach($paragraphs as $paragraph) {
-												$paragraph = trim($paragraph);
-												if (!empty($paragraph)) {
-													// Convertir saltos de línea simples dentro del párrafo en <br>
-													$paragraph = nl2br(e($paragraph));
-													$content .= '<p class="mb-30">' . $paragraph . '</p>';
-												}
-											}
-											// Si no hay párrafos separados, usar el contenido completo
-											if (empty($content)) {
-												$content = '<p class="mb-30">' . nl2br(e($blog->content)) . '</p>';
-											}
+											$rawContent = $blog->content ?? '';
 										@endphp
-										{!! $content !!}
+
+										@if(!empty($rawContent))
+											@php
+												// Si el contenido ya trae etiquetas HTML, lo renderizamos tal cual.
+												$looksLikeHtml = Str::contains($rawContent, [
+													'<p', '<h1', '<h2', '<h3', '<h4', '<ul', '<ol', '<li', '<strong', '<em', '<br', '<div', '<span'
+												]);
+											@endphp
+
+											@if($looksLikeHtml)
+												{!! $rawContent !!}
+											@else
+												<p class="mb-30">{!! nl2br(e($rawContent)) !!}</p>
+											@endif
+										@endif
 									</div>
 
 									@if($blog->gallery && count($blog->gallery) > 0)

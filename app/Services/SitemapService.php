@@ -74,7 +74,7 @@ class SitemapService
      */
     protected function getStaticPages(): array
     {
-        return [
+        $urls = [
             [
                 'loc' => route('web.home'),
                 'priority' => '1.0',
@@ -118,6 +118,26 @@ class SitemapService
                 'lastmod' => now()->toAtomString(),
             ],
         ];
+
+        // Páginas de servicios SEO específicas
+        $serviceSeoRoutes = [
+            'web.services.roofs.bogota',
+            'web.services.terraces.bogota',
+            'web.services.industrial.bogota',
+        ];
+
+        foreach ($serviceSeoRoutes as $routeName) {
+            if (Route::has($routeName)) {
+                $urls[] = [
+                    'loc' => route($routeName),
+                    'priority' => '0.9',
+                    'changefreq' => 'monthly',
+                    'lastmod' => now()->toAtomString(),
+                ];
+            }
+        }
+
+        return $urls;
     }
 
     /**

@@ -1730,9 +1730,29 @@ button.navbar-toggler:focus {
   border-radius: var(--rad-1);
   position: relative;
   z-index: 1;
-  overflow: hidden; }
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transform: translateY(0) scale(1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border 0.35s ease, background 0.35s ease; }
+  .service-2-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(230, 57, 70, 0.32), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(230, 57, 70, 0.24), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1; }
+  .service-2-box:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(to right, #1f1f22 0%, #2b2b30 100%);
+    border: 1px solid var(--clr-def, #e63946); }
+  .service-2-box:hover::before {
+    opacity: 1; }
   .service-2-box .service-2-icon {
-    margin-bottom: 4rem; }
+    margin-bottom: 4rem;
+    position: relative; }
     .service-2-box .service-2-icon i {
       font-size: 5.6rem;
       display: inline-block;
@@ -1741,7 +1761,16 @@ button.navbar-toggler:focus {
       width: 10rem;
       line-height: 10rem;
       text-align: center;
-      border: 1px solid var(--clr-white); }
+      border: 1px solid var(--clr-white);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.18), rgba(0,0,0,0.4));
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.4s ease; }
+  .service-2-box:hover .service-2-icon i {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      border-color: var(--clr-def, #e63946);
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.22), rgba(230,57,70,0.85)); }
   .service-2-box .service-2-desc h4 {
     color: var(--clr-white);
     font-size: 2.2rem;

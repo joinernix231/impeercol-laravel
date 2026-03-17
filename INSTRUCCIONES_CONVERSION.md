@@ -48,3 +48,4 @@ pandoc INFORME_ENTREGA_PROYECTO.md -o INFORME_ENTREGA_PROYECTO.pdf
 
 **Para Word:** Use el archivo Markdown (`INFORME_ENTREGA_PROYECTO.md`) y ábralo directamente en Microsoft Word.
 
+

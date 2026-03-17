@@ -45,6 +45,85 @@
 	background-position: center;
 }
 
+/* Mejora de legibilidad en el flujo de asesoría de techos */
+.step-area--techo-proceso {
+	position: relative;
+}
+
+.step-area--techo-proceso::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.92));
+	z-index: 0;
+}
+
+.step-area--techo-proceso .step-wpr,
+.step-area--techo-proceso .step-left,
+.step-area--techo-proceso .step-right {
+	position: relative;
+	z-index: 1;
+}
+
+.step-area--techo-proceso .step-left-content {
+	background: rgba(0, 0, 0, 0.55);
+	border-radius: 24px;
+	padding: 3rem 3.5rem;
+	backdrop-filter: blur(4px);
+	box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+}
+
+.step-area--techo-proceso .step-left-content .hero-title,
+.step-area--techo-proceso .step-left-content p {
+	color: #ffffff;
+}
+
+.step-area--techo-proceso .step-box {
+	background: rgba(0, 0, 0, 0.78);
+	border-radius: 24px;
+	padding: 2.6rem 2.8rem 2.8rem 2.8rem;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+	border: 2px solid rgba(230, 57, 70, 0.85);
+	color: #ffffff;
+	max-width: 32rem;
+	margin: 0 auto;
+	word-wrap: break-word;
+}
+
+.step-area--techo-proceso .step-box .heading-6 {
+	color: #ffffff;
+	font-weight: 700;
+}
+
+.step-area--techo-proceso .step-box p {
+	color: #f8f9fa;
+	line-height: 1.6;
+}
+
+.step-area--techo-proceso .step-number {
+	background: #e63946;
+	color: #ffffff;
+	border-radius: 50%;
+	width: 4rem;
+	height: 4rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+	box-shadow: 0 8px 20px rgba(230, 57, 70, 0.6);
+}
+
+.step-area--techo-proceso .button-container-2 .site-btn-2 {
+	background-color: #e63946;
+	border-color: #e63946;
+}
+
+.step-area--techo-proceso .button-container-2 .site-btn-2:hover {
+	background-color: #b72130;
+	border-color: #b72130;
+}
+
 /* About page backgrounds */
 .about-review-bg {
 	background-image: url('../img/gallery/centro-general.png');

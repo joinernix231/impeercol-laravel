@@ -58,6 +58,10 @@
                     <div class="mb-3">
                         <label for="content" class="form-label">Contenido *</label>
                         <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="15" required>{{ old('content', $blog->content) }}</textarea>
+                        <small class="form-text text-muted">
+                            Puedes usar HTML básico para dar formato (por ejemplo:
+                            &lt;h2&gt;, &lt;h3&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;a&gt;, &lt;br&gt;).
+                        </small>
                         @error('content')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
