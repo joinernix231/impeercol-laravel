@@ -976,8 +976,8 @@
             </div>
             <div class="sol-step">
                 <div class="sol-step__num">04</div>
-                <h3 class="sol-step__title">Soporte durante la obra</h3>
-                <p class="sol-step__text">Resolvemos dudas de aplicación, compatibilidad y orden de capas durante el proceso.</p>
+                <h3 class="sol-step__title">Asesoría técnica incluida</h3>
+                <p class="sol-step__text">Al comprar tu producto o sistema, te explicamos cómo usarlo correctamente: cantidades, orden de capas y compatibilidad. Con otros productos</p>
             </div>
         </div>
     </div>
