@@ -528,6 +528,65 @@
 /* ── FAQ ── */
 .sol-faq { padding: 5rem 0; background: var(--sol-light); }
 
+/* ── Barra de urgencia ── */
+.sol-urgency-bar {
+    background: #1a1a1a;
+    padding: 0.75rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.sol-urgency-bar__inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.sol-urgency-bar__icon {
+    font-size: 1.1rem;
+}
+.sol-urgency-bar__highlight {
+    color: #fbbf24;
+    font-weight: 800;
+}
+.sol-urgency-bar__cta {
+    color: var(--sol-red);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+}
+.sol-urgency-bar__cta:hover { opacity: 0.8; color: var(--sol-red); }
+
+/* ── Botón problema → WhatsApp (dentro de card) ── */
+.sol-problem-card__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--sol-red);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1.25rem;
+    transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+.sol-problem-card__btn:hover {
+    background: var(--sol-red-dark);
+    box-shadow: 0 6px 18px rgba(227,6,19,0.35);
+    transform: translateY(-2px);
+    color: #fff;
+    text-decoration: none;
+}
+
 /* ── Botón flotante WhatsApp ── */
 .sol-float-wa {
     position: fixed;
@@ -546,18 +605,47 @@
     text-decoration: none;
     box-shadow: 0 6px 24px rgba(37,211,102,0.45);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    animation: sol-float-in 0.5s var(--sol-ease) 1.5s both;
+    animation: sol-float-in 0.6s var(--sol-ease) 1s both;
 }
 .sol-float-wa:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 32px rgba(37,211,102,0.55);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 36px rgba(37,211,102,0.55);
     color: #fff;
     text-decoration: none;
+}
+/* Anillo de pulso permanente */
+.sol-float-wa::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50px;
+    border: 2px solid rgba(37,211,102,0.55);
+    animation: sol-pulse 2.2s ease-out infinite;
+}
+@keyframes sol-pulse {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    70%  { transform: scale(1.12); opacity: 0; }
+    100% { transform: scale(1.12); opacity: 0; }
 }
 @keyframes sol-float-in {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Scroll reveal ── */
+.sol-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s var(--sol-ease);
+}
+.sol-reveal.sol-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+.sol-reveal--delay-1 { transition-delay: 0.1s; }
+.sol-reveal--delay-2 { transition-delay: 0.2s; }
+.sol-reveal--delay-3 { transition-delay: 0.3s; }
+.sol-reveal--delay-4 { transition-delay: 0.4s; }
 
 /* ── Responsivo ── */
 @media (max-width: 1199.98px) {
@@ -574,6 +662,11 @@
     .sol-stats-grid { grid-template-columns: 1fr 1fr; }
     .sol-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .sol-products-grid { grid-template-columns: repeat(2, 1fr); }
+    .sol-testimonials-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 767.98px) {
+    .sol-testimonials-grid { grid-template-columns: 1fr !important; }
+    .sol-urgency-bar__inner { font-size: 0.88rem; }
 }
 @media (max-width: 575.98px) {
     .sol-problem-grid { grid-template-columns: 1fr; }
@@ -583,11 +676,36 @@
     .sol-products-grid { grid-template-columns: 1fr 1fr; }
     .sol-float-wa span { display: none; }
     .sol-float-wa { padding: 0; width: 58px; height: 58px; border-radius: 50%; justify-content: center; }
+    .sol-float-wa::before { border-radius: 50%; }
+}
+
+/* Reducir movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    .sol-reveal { opacity: 1; transform: none; transition: none; }
+    .sol-float-wa::before { animation: none; }
 }
 </style>
 @endsection
 
 @section('content')
+
+{{-- ═══════════════════════════════════════════════
+     BARRA DE URGENCIA
+═══════════════════════════════════════════════ --}}
+@php
+    $waUrgencyUrl = \App\Helpers\WhatsAppHelper::messageUrl('Hola, necesito asesoría urgente para impermeabilizar mi techo. ¿Qué producto me recomiendan?');
+    $waProductUrl = \App\Helpers\WhatsAppHelper::messageUrl('Hola, estoy interesado en un producto para impermeabilizar techos, ¿me pueden asesorar?');
+    $waFinalUrl   = \App\Helpers\WhatsAppHelper::messageUrl('Hola, no sé qué producto elegir para mi techo. ¿Me pueden ayudar a cotizar?');
+@endphp
+<div class="sol-urgency-bar">
+    <div class="container">
+        <div class="sol-urgency-bar__inner">
+            <span class="sol-urgency-bar__icon">⚠️</span>
+            <span>Las filtraciones empeoran con cada lluvia y generan <span class="sol-urgency-bar__highlight">daños costosos</span> en la estructura.</span>
+            <a href="{{ $waUrgencyUrl }}" class="sol-urgency-bar__cta" target="_blank" rel="noopener noreferrer">Cotiza hoy mismo →</a>
+        </div>
+    </div>
+</div>
 
 {{-- ═══════════════════════════════════════════════
      1. HERO
@@ -603,15 +721,15 @@
                 </span>
                 <h1 class="sol-hero__h1">{{ $page['h1'] }}<span>.</span></h1>
                 <p class="sol-hero__lead">
-                    Evita filtraciones, goteras y daños estructurales con los productos correctos. Te asesoramos para elegir el ideal según tu caso — <strong style="color:rgba(255,255,255,0.9)">sin costo adicional.</strong>
+                    Evita filtraciones, goteras y daños estructurales con los productos correctos. Te asesoramos para elegir el ideal según tu techo — <strong style="color:rgba(255,255,255,0.95)">gratis, hoy mismo.</strong>
                 </p>
                 <div class="sol-hero__actions">
                     <a href="{{ $whatsappAdvisoryUrl }}" class="sol-btn-wa" target="_blank" rel="noopener noreferrer">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Solicitar asesoría por WhatsApp
+                        Cotizar ahora por WhatsApp →
                     </a>
                     <a href="{{ route('web.products') }}" class="sol-btn-wa sol-btn-wa--outline">
-                        Ver catálogo de productos
+                        Ver catálogo completo
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
                     </a>
                 </div>
@@ -672,33 +790,58 @@
 </div>
 
 {{-- ═══════════════════════════════════════════════
-     3. PROBLEMA → PRODUCTO
+     3. PROBLEMA → SOLUCIÓN → PRODUCTO
 ═══════════════════════════════════════════════ --}}
 @if(!empty($page['problem_matrix']))
+@php
+    $problemData = [
+        0 => [
+            'emoji'    => '💧',
+            'solution' => 'Solución: Impermeabilizante acrílico o membrana líquida',
+            'product'  => 'Ej: Sika Impermur, Broncoelástico o Texsa Acryl',
+            'wa_msg'   => 'Hola, tengo filtraciones o goteras en mi techo y necesito un impermeabilizante. ¿Qué producto me recomiendan?',
+        ],
+        1 => [
+            'emoji'    => '☀️',
+            'solution' => 'Solución: Recubrimiento reflectivo o pintura impermeabilizante',
+            'product'  => 'Ej: Sika Roof, Impervia Blanco o Mapei Aquamaster',
+            'wa_msg'   => 'Hola, quiero prevenir filtraciones y sellar mi techo antes de que llegue el invierno. ¿Qué producto me recomiendan?',
+        ],
+        2 => [
+            'emoji'    => '🧱',
+            'solution' => 'Solución: Sellador elástico o masilla de poliuretano',
+            'product'  => 'Ej: Sika Flex 11FC, Mastic o sellador Soudal Fix All',
+            'wa_msg'   => 'Hola, tengo grietas o fisuras en mi techo y necesito un sellador elástico. ¿Cuál me recomiendan?',
+        ],
+    ];
+@endphp
 <section class="sol-section">
     <div class="container">
-        <span class="sol-section-tag">Diagnóstico rápido</span>
-        <h2 class="sol-section-title">¿Qué producto necesitas según tu problema?</h2>
-        <p class="sol-section-lead">Cada situación pide un sistema diferente. Identifica tu caso y te orientamos en WhatsApp con referencias exactas y cantidades.</p>
+        <span class="sol-section-tag sol-reveal">Diagnóstico rápido</span>
+        <h2 class="sol-section-title sol-reveal">¿Cuál es tu problema con el techo?</h2>
+        <p class="sol-section-lead sol-reveal">Cada caso tiene el producto correcto. Identifica tu situación y te orientamos al instante con referencias exactas y cantidades.</p>
 
         <div class="sol-problem-grid">
+            @foreach($page['problem_matrix'] as $idx => $row)
             @php
-                $emojis = ['💧','☀️','🧱'];
-                $emojiIndex = 0;
+                $pData = $problemData[$idx] ?? $problemData[0];
+                $waMsg = \App\Helpers\WhatsAppHelper::messageUrl($pData['wa_msg']);
             @endphp
-            @foreach($page['problem_matrix'] as $row)
-            <div class="sol-problem-card">
-                <span class="sol-problem-card__emoji">{{ $emojis[$emojiIndex % count($emojis)] }}</span>
-                @php $emojiIndex++ @endphp
+            <div class="sol-problem-card sol-reveal sol-reveal--delay-{{ $idx + 1 }}">
+                <span class="sol-problem-card__emoji">{{ $pData['emoji'] }}</span>
                 <h3 class="sol-problem-card__title">{{ $row['title'] }}</h3>
                 <p class="sol-problem-card__body">{{ $row['body'] }}</p>
+                {{-- Solución recomendada --}}
+                <div style="background:rgba(227,6,19,0.07);border-left:3px solid var(--sol-red);border-radius:0 8px 8px 0;padding:0.65rem 0.9rem;margin:0.85rem 0 0.5rem;font-size:0.95rem;line-height:1.45;">
+                    <strong style="color:var(--sol-red);display:block;margin-bottom:0.2rem;">{{ $pData['solution'] }}</strong>
+                    <span style="color:#4b5563;">{{ $pData['product'] }}</span>
+                </div>
                 @if(!empty($row['hint']))
                     <span class="sol-problem-card__hint">{{ $row['hint'] }}</span>
                 @endif
-                <br>
-                <a href="{{ $whatsappAdvisoryUrl }}" class="sol-problem-card__cta" target="_blank" rel="noopener noreferrer">
-                    Cotizar productos
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                <a href="{{ $waMsg }}" class="sol-problem-card__btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Cotizar este producto →
                 </a>
             </div>
             @endforeach
@@ -713,18 +856,21 @@
 @if(isset($relatedProducts) && $relatedProducts->isNotEmpty())
 <section class="sol-section sol-section--gray">
     <div class="container">
-        <span class="sol-section-tag">Catálogo</span>
-        <h2 class="sol-section-title">Productos recomendados para {{ $page['breadcrumb_label'] ?? 'esta solución' }}</h2>
-        <p class="sol-section-lead">Referencias reales de nuestro portafolio. Haz clic en "Cotizar" y te respondemos por WhatsApp con precio y disponibilidad.</p>
+        <span class="sol-section-tag sol-reveal">Catálogo</span>
+        <h2 class="sol-section-title sol-reveal">Productos recomendados para {{ $page['breadcrumb_label'] ?? 'esta solución' }}</h2>
+        <p class="sol-section-lead sol-reveal">Referencias reales de nuestro portafolio. Haz clic en "Cotizar" y te respondemos por WhatsApp con precio y disponibilidad en minutos.</p>
 
         <div class="sol-products-grid">
             @foreach($relatedProducts as $product)
-            <div class="sol-product-card">
+            @php
+                $waProductSpecific = \App\Helpers\WhatsAppHelper::messageUrl(
+                    'Hola, estoy interesado en el producto "' . $product->name . '" para impermeabilizar techos. ¿Me pueden dar precio y disponibilidad?'
+                );
+                $optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($product->image ?? '', 300, 300);
+                $srcset = $product->image ? \App\Helpers\ImageHelper::srcset($product->image, [300, 600]) : '';
+            @endphp
+            <div class="sol-product-card sol-reveal">
                 <a href="{{ route('web.product.show', $product->slug) }}" tabindex="-1">
-                    @php
-                        $optimizedUrl = \App\Helpers\ImageHelper::optimizedImageUrl($product->image ?? '', 300, 300);
-                        $srcset = $product->image ? \App\Helpers\ImageHelper::srcset($product->image, [300, 600]) : '';
-                    @endphp
                     <img class="sol-product-card__img"
                          src="{{ $optimizedUrl }}"
                          @if($srcset) srcset="{{ $srcset }}" sizes="(max-width: 768px) 50vw, 25vw" @endif
@@ -740,9 +886,9 @@
                         <a href="{{ route('web.product.show', $product->slug) }}">{{ $product->name }}</a>
                     </p>
                     <div class="sol-product-card__actions">
-                        <a href="{{ $product->whatsapp_url }}" class="sol-btn-product sol-btn-product--wa" target="_blank" rel="noopener noreferrer">
+                        <a href="{{ $waProductSpecific }}" class="sol-btn-product sol-btn-product--wa" target="_blank" rel="noopener noreferrer">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            Cotizar por WhatsApp
+                            Cotizar este producto
                         </a>
                         <a href="{{ route('web.product.show', $product->slug) }}" class="sol-btn-product sol-btn-product--outline">
                             Ver detalles
@@ -753,7 +899,7 @@
             @endforeach
         </div>
 
-        <div class="text-center" style="margin-top:2.5rem;">
+        <div class="text-center sol-reveal" style="margin-top:2.5rem;">
             <a href="{{ route('web.products') }}" class="sol-btn-wa" style="display:inline-flex;">
                 Ver todos los productos del catálogo
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -833,27 +979,69 @@
 </section>
 
 {{-- ═══════════════════════════════════════════════
-     7. STATS / PRUEBA SOCIAL
+     7. PRUEBA SOCIAL — CONFIANZA + STATS
 ═══════════════════════════════════════════════ --}}
 <section class="sol-section--dark" style="padding: 0;">
     <div class="container" style="padding: 0; max-width: 100%;">
         <div class="sol-stats-grid">
-            <div class="sol-stat">
+            <div class="sol-stat sol-reveal">
                 <div class="sol-stat__num">+15<span>años</span></div>
-                <div class="sol-stat__label">de experiencia en impermeabilización</div>
+                <div class="sol-stat__label">de experiencia en impermeabilización en Bogotá</div>
             </div>
-            <div class="sol-stat">
+            <div class="sol-stat sol-reveal sol-reveal--delay-1">
                 <div class="sol-stat__num">+500<span></span></div>
-                <div class="sol-stat__label">clientes atendidos en Bogotá y Colombia</div>
+                <div class="sol-stat__label">clientes atendidos en Colombia</div>
             </div>
-            <div class="sol-stat">
+            <div class="sol-stat sol-reveal sol-reveal--delay-2">
                 <div class="sol-stat__num">+6<span></span></div>
-                <div class="sol-stat__label">marcas líderes en nuestro catálogo</div>
+                <div class="sol-stat__label">marcas líderes en el catálogo</div>
             </div>
-            <div class="sol-stat">
+            <div class="sol-stat sol-reveal sol-reveal--delay-3">
                 <div class="sol-stat__num">24<span>h</span></div>
                 <div class="sol-stat__label">tiempo de respuesta por WhatsApp</div>
             </div>
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════════
+     7B. TESTIMONIOS / PRUEBA SOCIAL VISUAL
+═══════════════════════════════════════════════ --}}
+<section class="sol-section">
+    <div class="container">
+        <div class="text-center">
+            <span class="sol-section-tag sol-reveal">Confianza y experiencia</span>
+            <h2 class="sol-section-title sol-reveal">Lo que dicen nuestros clientes</h2>
+            <p class="sol-section-lead sol-reveal" style="margin: 0 auto 2.5rem;">Más de 15 años asesorando propietarios, constructores y maestros de obra en Bogotá y toda Colombia.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="sol-testimonials-grid">
+            <div class="sol-reveal sol-reveal--delay-1" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:1.75rem;position:relative;">
+                <div style="display:flex;gap:0.25rem;margin-bottom:0.75rem;">
+                    @for($s=0;$s<5;$s++)<svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>@endfor
+                </div>
+                <p style="font-size:1.05rem;color:#374151;line-height:1.65;margin-bottom:1rem;">"Excelente asesoría, me explicaron exactamente qué producto usar según mi tipo de techo plano. El resultado fue inmediato, sin más filtraciones."</p>
+                <div style="font-size:0.9rem;font-weight:700;color:#111827;">Carlos M. — <span style="color:#6b7280;font-weight:400;">Bogotá, Chapinero</span></div>
+            </div>
+            <div class="sol-reveal sol-reveal--delay-2" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:1.75rem;position:relative;">
+                <div style="display:flex;gap:0.25rem;margin-bottom:0.75rem;">
+                    @for($s=0;$s<5;$s++)<svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>@endfor
+                </div>
+                <p style="font-size:1.05rem;color:#374151;line-height:1.65;margin-bottom:1rem;">"Conseguí el Sika que necesitaba a buen precio y con entrega rápida. Me ayudaron a calcular la cantidad exacta para no desperdiciar material."</p>
+                <div style="font-size:0.9rem;font-weight:700;color:#111827;">Ana R. — <span style="color:#6b7280;font-weight:400;">Constructora, Soacha</span></div>
+            </div>
+            <div class="sol-reveal sol-reveal--delay-3" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:1.75rem;position:relative;">
+                <div style="display:flex;gap:0.25rem;margin-bottom:0.75rem;">
+                    @for($s=0;$s<5;$s++)<svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>@endfor
+                </div>
+                <p style="font-size:1.05rem;color:#374151;line-height:1.65;margin-bottom:1rem;">"Respondieron por WhatsApp en minutos y me recomendaron el sellador ideal para las grietas. Muy profesionales y honestos con el presupuesto."</p>
+                <div style="font-size:0.9rem;font-weight:700;color:#111827;">Jorge P. — <span style="color:#6b7280;font-weight:400;">Maestro de obra, Bogotá</span></div>
+            </div>
+        </div>
+        <div class="text-center sol-reveal" style="margin-top:2.5rem;">
+            <a href="{{ $whatsappAdvisoryUrl }}" class="sol-btn-wa" style="display:inline-flex;" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Recibir asesoría inmediata por WhatsApp
+            </a>
         </div>
     </div>
 </section>
@@ -887,12 +1075,14 @@
 ═══════════════════════════════════════════════ --}}
 <div class="sol-cta-final">
     <div class="container position-relative" style="z-index:1;">
+        <p style="font-size:1rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:0.75rem;position:relative;">Asesoría gratuita</p>
         <h2 class="sol-cta-final__title">¿No sabes qué producto elegir?</h2>
-        <p class="sol-cta-final__text">Te ayudamos a encontrar la mejor solución según tu techo, tu problema y tu presupuesto. Sin compromiso.</p>
-        <a href="{{ $whatsappAdvisoryUrl }}" class="sol-btn-cta-final" target="_blank" rel="noopener noreferrer">
+        <p class="sol-cta-final__text">Te asesoramos gratis según tu tipo de techo, el problema específico y tu presupuesto. Sin compromiso, sin demoras.</p>
+        <a href="{{ $waFinalUrl }}" class="sol-btn-cta-final" target="_blank" rel="noopener noreferrer">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Hablar por WhatsApp ahora
+            Hablar por WhatsApp ahora →
         </a>
+        <p style="margin-top:1.25rem;font-size:1rem;color:rgba(255,255,255,0.5);position:relative;">Respuesta en menos de 24 horas · Sin costo adicional</p>
     </div>
 </div>
 
@@ -947,9 +1137,33 @@
    class="sol-float-wa"
    target="_blank"
    rel="noopener noreferrer"
-   aria-label="Asesoría por WhatsApp">
+   aria-label="Cotizar por WhatsApp">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    <span>Asesoría por WhatsApp</span>
+    <span>Cotizar ahora</span>
 </a>
+
+<script>
+(function () {
+    'use strict';
+    if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.sol-reveal').forEach(function (el) {
+            el.classList.add('sol-revealed');
+        });
+        return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('sol-revealed');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.sol-reveal').forEach(function (el) {
+        io.observe(el);
+    });
+})();
+</script>
 
 @endsection
