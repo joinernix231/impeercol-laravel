@@ -1187,3 +1187,20 @@
 	}
 }
 
+/* ── FAQ Accordion — vinotinto tenue ── */
+.accordion-button {
+    background-color: #6B1A2A !important;
+    color: #fff !important;
+}
+.accordion-button:not(.collapsed) {
+    background-color: #4E1020 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+.accordion-button:hover {
+    background-color: #5A1624 !important;
+}
+.accordion-item {
+    border-color: rgba(107, 26, 42, 0.2) !important;
+}
+

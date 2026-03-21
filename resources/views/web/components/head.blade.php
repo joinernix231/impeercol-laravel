@@ -25,6 +25,15 @@
     3. Los assets están en public/assets/
 --}}
 
+{{-- Google Ads — Etiqueta de conversiones --}}
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17978852799"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17978852799');
+</script>
+
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>@yield('title', 'IMPEERCOL')</title>
