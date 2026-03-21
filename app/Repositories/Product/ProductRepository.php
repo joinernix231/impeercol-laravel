@@ -3,6 +3,7 @@
 namespace App\Repositories\Product;
 
 use App\Models\Product;
+use App\Models\Solution;
 use App\Repositories\BaseRepository;
 
 /**
@@ -32,6 +33,8 @@ use App\Repositories\BaseRepository;
  * - createWithVariants($productData, $variantsData) - Crear producto con variantes
  * - updateWithVariants($productData, $id, $variantsData) - Actualizar producto con variantes
  * - findWithRelations($id, $relations) - Buscar con relaciones cargadas
+ * - getActiveMatchingTerms($terms, $limit) - Coincidencia por términos
+ * - getForSolutionPage($slug, $fallbackTerms, $limit) - Solución admin o fallback
  */
 class ProductRepository extends BaseRepository
 {
@@ -182,6 +185,63 @@ class ProductRepository extends BaseRepository
             ->ordered()
             ->limit($limit)
             ->get();
+    }
+
+    /**
+     * Productos activos cuyo nombre o descripción coincide con alguno de los términos (OR).
+     * Si no hay coincidencias, devuelve destacados.
+     *
+     * @param  array<int, string>  $terms
+     * @return \Illuminate\Support\Collection<int, \App\Models\Product>
+     */
+    public function getActiveMatchingTerms(array $terms, int $limit = 8)
+    {
+        $terms = array_values(array_filter(array_map('trim', $terms)));
+        if ($terms === []) {
+            return $this->getFeatured($limit);
+        }
+
+        $query = $this->model
+            ->with(['category', 'brand', 'activeVariants'])
+            ->active()
+            ->orderBy('is_featured', 'desc')
+            ->orderBy('order', 'asc');
+
+        $query->where(function ($q) use ($terms) {
+            foreach ($terms as $term) {
+                $like = '%'.$term.'%';
+                $q->orWhere('name', 'LIKE', $like)
+                    ->orWhere('description', 'LIKE', $like);
+            }
+        });
+
+        $products = $query->limit($limit)->get();
+
+        if ($products->isNotEmpty()) {
+            return $products;
+        }
+
+        return $this->getFeatured($limit);
+    }
+
+    /**
+     * Productos para bloque "relacionados" en páginas de solución: primero los asociados en admin,
+     * si no hay ninguno activo, búsqueda por términos y luego destacados.
+     *
+     * @param  array<int, string>  $fallbackTerms
+     * @return \Illuminate\Support\Collection<int, \App\Models\Product>
+     */
+    public function getForSolutionPage(string $solutionSlug, array $fallbackTerms, int $limit = 8)
+    {
+        $solution = Solution::where('slug', $solutionSlug)->first();
+        if ($solution) {
+            $attached = $solution->activeProductsQuery()->limit($limit)->get();
+            if ($attached->isNotEmpty()) {
+                return $attached;
+            }
+        }
+
+        return $this->getActiveMatchingTerms($fallbackTerms, $limit);
     }
 
     /**

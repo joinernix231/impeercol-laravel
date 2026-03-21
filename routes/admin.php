@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\FileUploadController;
+use App\Http\Controllers\Admin\SolutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     // Banners - CRUD completo
     Route::resource('banners', BannerController::class);
+
+    // Soluciones (tipo de uso) — productos relacionados en /soluciones/*
+    Route::get('solutions', [SolutionController::class, 'index'])->name('solutions.index');
+    Route::get('solutions/{solution}/edit', [SolutionController::class, 'edit'])->name('solutions.edit');
+    Route::put('solutions/{solution}', [SolutionController::class, 'update'])->name('solutions.update');
 
     // Subida de archivos
     Route::prefix('upload')->name('upload.')->group(function () {

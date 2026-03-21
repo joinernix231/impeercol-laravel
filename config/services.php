@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'impeercol' => [
+        'whatsapp_phone' => env('IMPEERCOL_WHATSAPP', '573025069825'),
+    ],
+
 ];

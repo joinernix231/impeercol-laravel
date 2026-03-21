@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\WhatsAppHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use Illuminate\Http\Request;
+use App\Repositories\Product\ProductRepository;
 
 /**
  * ============================================
@@ -136,13 +137,50 @@ class PageController extends Controller
     }
 
     /**
-     * Página SEO: Impermeabilización de techos en Bogotá
-     *
-     * @return \Illuminate\View\View
+     * Páginas por tipo de uso: /soluciones/{techos|terrazas|muros}
      */
-    public function serviceRoofsBogota()
+    public function solution(string $tipo, ProductRepository $productRepository)
     {
-        return view('web.services-impermeabilizacion-techos-bogota');
+        $pages = config('solutions.types');
+        if (! isset($pages[$tipo])) {
+            abort(404);
+        }
+
+        $page = $pages[$tipo];
+        $page['key'] = $tipo;
+        $relatedProducts = $productRepository->getForSolutionPage(
+            $tipo,
+            $page['product_terms'] ?? [],
+            8
+        );
+        $whatsappAdvisoryUrl = WhatsAppHelper::messageUrl($page['whatsapp_message']);
+
+        return view('web.solutions.show', compact('page', 'relatedProducts', 'whatsappAdvisoryUrl'));
+    }
+
+    /**
+     * Página SEO legacy: productos para techos en Bogotá
+     */
+    public function serviceRoofsBogota(ProductRepository $productRepository)
+    {
+        $base = config('solutions.types.techos');
+        $page = array_merge($base, [
+            'meta_title' => 'Productos para impermeabilización de techos en Bogotá | IMPEERCOL',
+            'meta_description' => 'Productos para impermeabilizar techos en Bogotá: sistemas acrílicos, mantos y membranas de marcas como Sika y Texsa. Te orientamos según tu problema y cubierta. Asesoría por WhatsApp.',
+            'h1' => 'Productos para impermeabilización de techos en Bogotá',
+            'breadcrumb_label' => 'Productos para techos en Bogotá',
+            'hero_subtitle' => 'Elige productos según tu problema: filtraciones, losa plana, teja o cubierta metálica',
+            'whatsapp_message' => 'Hola, quiero asesoría por WhatsApp para productos de impermeabilización de techos en Bogotá.',
+        ]);
+        $page['key'] = 'techos_bogota';
+        $relatedProducts = $productRepository->getForSolutionPage(
+            'techos',
+            $page['product_terms'] ?? [],
+            8
+        );
+        $whatsappAdvisoryUrl = WhatsAppHelper::messageUrl($page['whatsapp_message']);
+
+        return view('web.services-impermeabilizacion-techos-bogota', compact('page', 'relatedProducts', 'whatsappAdvisoryUrl'));
     }
 
     /**

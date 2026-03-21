@@ -137,6 +137,17 @@ class SitemapService
             }
         }
 
+        if (Route::has('web.solutions.show')) {
+            foreach (['techos', 'terrazas', 'muros'] as $tipo) {
+                $urls[] = [
+                    'loc' => route('web.solutions.show', $tipo),
+                    'priority' => '0.9',
+                    'changefreq' => 'monthly',
+                    'lastmod' => now()->toAtomString(),
+                ];
+            }
+        }
+
         return $urls;
     }
 

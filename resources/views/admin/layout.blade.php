@@ -157,6 +157,9 @@
             <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                 <i class="bi bi-box-seam"></i> Productos
             </a>
+            <a href="{{ route('admin.solutions.index') }}" class="{{ request()->routeIs('admin.solutions.*') ? 'active' : '' }}">
+                <i class="bi bi-grid-1x2"></i> Soluciones
+            </a>
             <a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                 <i class="bi bi-tags"></i> Categorías
             </a>

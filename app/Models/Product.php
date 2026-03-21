@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -43,6 +44,17 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * Soluciones de uso (techos, terrazas, muros) en las que se muestra como relacionado.
+     */
+    public function solutions(): BelongsToMany
+    {
+        return $this->belongsToMany(Solution::class)
+            ->withPivot('sort_order')
+            ->withTimestamps()
+            ->orderByPivot('sort_order');
     }
 
     /**
@@ -224,8 +236,9 @@ class Product extends Model
      */
     public function getWhatsAppUrlAttribute(): string
     {
-        $phone = '573025069825'; // Número de WhatsApp (formato internacional sin +)
+        $phone = config('services.impeercol.whatsapp_phone', '573025069825');
         $message = urlencode("Hola, estoy interesado en cotizar: {$this->name}");
+
         return "https://wa.me/{$phone}?text={$message}";
     }
 }

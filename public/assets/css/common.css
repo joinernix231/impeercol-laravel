@@ -21,6 +21,20 @@
 	background-position: center;
 }
 
+/* Hero breadcrumb — foto tienda IMPEERCOL (soluciones / techos Bogotá) */
+.breadcrumb-bg-impeercol {
+	background-image: url("../img/Background Impeercol.jpeg");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/* Franja del título un poco más aireada en estas páginas */
+.breadcrumb-bg-impeercol .breadcrumb-title {
+	padding: 1.65rem 4rem;
+	line-height: 1.2;
+}
+
 /* Footer background */
 .footer-bg {
 	background-image: url('../img/gallery/Impeercol.jpg');
@@ -185,5 +199,991 @@
 .tags-link {
 	display: inline-block;
 	margin-top: 10px;
+}
+
+/* ============================================
+   CTA WhatsApp — páginas de soluciones
+   (.contact-right es flex row y solapaba título, texto y botón)
+   ============================================ */
+.solution-whatsapp-cta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(2.25rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 2.75rem) !important;
+	text-align: center;
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.solution-whatsapp-cta__inner {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: clamp(1.25rem, 3vw, 1.85rem);
+	width: 100%;
+	max-width: 40rem;
+	margin: 0 auto;
+}
+
+.solution-whatsapp-cta__title {
+	margin: 0 !important;
+	line-height: 1.28;
+	font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+}
+
+.solution-whatsapp-cta__lead {
+	margin: 0 !important;
+	line-height: 1.65;
+	color: var(--clr-body, #454545);
+	max-width: 34rem;
+	font-size: clamp(1rem, 2vw, 1.125rem);
+}
+
+.solution-whatsapp-cta__btn.btn-whatsapp-primary {
+	align-self: center;
+	width: min(100%, 22rem);
+	max-width: 22rem;
+	margin-top: 0.25rem;
+	flex-shrink: 0;
+	/* product-details.css carga después en páginas solución */
+	font-size: clamp(1rem, 2.2vw, 1.2rem) !important;
+	padding: 1rem 1.5rem !important;
+}
+
+@media (min-width: 992px) {
+	.solution-whatsapp-cta__btn.btn-whatsapp-primary {
+		max-width: 26rem;
+		width: min(100%, 26rem);
+	}
+}
+
+/* ============================================
+   Dropdown «Soluciones» — panel empresarial premium
+   ============================================ */
+
+/* --- Flecha elegante en el toggle "Soluciones" --- */
+#navbarSoluciones.dropdown-toggle::after {
+	content: '';
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	border-right: 1.8px solid currentColor;
+	border-bottom: 1.8px solid currentColor;
+	border-top: none;
+	border-left: none;
+	margin-left: 8px;
+	vertical-align: middle;
+	transform: rotate(45deg) translate(0, -2px);
+	transition:
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 0.25s ease;
+	opacity: 0.65;
+	font-family: inherit;
+	font-size: 0;
+}
+
+/* Hover: baja levemente y se opaca al 100% */
+#navbarSoluciones.dropdown-toggle:hover::after {
+	opacity: 1;
+	transform: rotate(45deg) translate(0, 0px);
+}
+
+/* Abierto: rota 180° señalando hacia arriba */
+#navbarSoluciones.dropdown-toggle[aria-expanded="true"]::after {
+	transform: rotate(225deg) translate(0, 2px);
+	opacity: 1;
+}
+
+/* Panel base */
+.dropdown-menu--soluciones {
+	padding: 0.5rem 0.5rem;
+	background: #ffffff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 14px;
+	border-top: 3px solid var(--clr-menu, #cd0b0b);
+	box-shadow:
+		0 4px 6px -1px rgba(0, 0, 0, 0.07),
+		0 20px 40px -8px rgba(0, 0, 0, 0.16);
+}
+
+/* Cada ítem del dropdown */
+.sol-drop__item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 1rem;
+	border-radius: 12px;
+	text-decoration: none;
+	transition:
+		background-color 0.18s ease,
+		transform 0.2s ease;
+	cursor: pointer;
+}
+
+.sol-drop__item + .sol-drop__item {
+	margin-top: 0.25rem;
+}
+
+.sol-drop__item:hover,
+.sol-drop__item:focus-visible {
+	background-color: #fff5f5;
+	text-decoration: none;
+}
+
+/* Ícono */
+.sol-drop__icon {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 46px;
+	height: 46px;
+	border-radius: 12px;
+	background-color: rgba(205, 11, 11, 0.09);
+	color: var(--clr-menu, #cd0b0b);
+	transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.sol-drop__item:hover .sol-drop__icon,
+.sol-drop__item:focus-visible .sol-drop__icon {
+	background-color: var(--clr-menu, #cd0b0b);
+	color: #ffffff;
+}
+
+/* Texto */
+.sol-drop__body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+	min-width: 0;
+}
+
+.sol-drop__title {
+	display: block;
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.3;
+	color: #1a1a1a;
+	letter-spacing: -0.01em;
+	text-transform: none;
+}
+
+.sol-drop__desc {
+	display: block;
+	font-size: 0.855rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #8a8a8a;
+	text-transform: none;
+}
+
+/* Chevron */
+.sol-drop__chevron {
+	flex-shrink: 0;
+	color: #cccccc;
+	transition: transform 0.2s ease, color 0.18s ease;
+}
+
+.sol-drop__item:hover .sol-drop__chevron,
+.sol-drop__item:focus-visible .sol-drop__chevron {
+	color: var(--clr-menu, #cd0b0b);
+	transform: translateX(3px);
+}
+
+/* ---- Desktop ≥992px: posición y animación ---- */
+@media (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu.dropdown-menu--soluciones {
+		display: block;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 50% !important;
+		right: auto;
+		margin: 0;
+		min-width: 320px;
+		width: 348px;
+		transform: translateX(-50%) translateY(-8px);
+		transform-origin: top center;
+		transition:
+			opacity 0.22s ease,
+			visibility 0.22s ease,
+			transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.navbar .nav-item:hover .dropdown-menu.dropdown-menu--soluciones,
+	.navbar .nav-item .dropdown-menu.dropdown-menu--soluciones.show {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateX(-50%) translateY(0);
+	}
+
+	/* Override de fade-up/fade-down del tema que desplazaban el top */
+	.navbar .nav-item .dropdown-menu.dropdown-menu--soluciones.fade-up,
+	.navbar .nav-item .dropdown-menu.dropdown-menu--soluciones.fade-down {
+		top: calc(100% + 4px);
+	}
+}
+
+/* ---- Móvil <992px: dentro del menú colapsado ---- */
+@media (max-width: 991.98px) {
+	.navbar .dropdown-menu.dropdown-menu--soluciones {
+		position: static !important;
+		float: none;
+		width: calc(100% - 1rem);
+		margin: 0.5rem auto 0.75rem;
+		padding: 0.4rem 0.4rem;
+		border-radius: 12px;
+		border: 1px solid rgba(0, 0, 0, 0.07);
+		border-top: 3px solid var(--clr-menu, #cd0b0b);
+		box-shadow:
+			0 2px 8px rgba(0, 0, 0, 0.06),
+			0 8px 20px rgba(0, 0, 0, 0.08);
+		transform: none !important;
+		background: #fff;
+	}
+
+	.sol-drop__item {
+		padding: 0.9rem 0.85rem;
+		min-height: 56px; /* target táctil cómodo */
+	}
+
+	.sol-drop__title {
+		color: #1a1a1a;
+		font-size: 1rem;
+	}
+
+	.sol-drop__desc {
+		font-size: 0.8rem;
+	}
+
+	/* Flecha del toggle en móvil — se ve sobre fondo claro */
+	#navbarSoluciones.dropdown-toggle::after {
+		border-color: #1a1a1a;
+		opacity: 0.55;
+	}
+
+	#navbarSoluciones.dropdown-toggle:hover::after,
+	#navbarSoluciones.dropdown-toggle[aria-expanded="true"]::after {
+		border-color: var(--clr-menu, #cd0b0b);
+		opacity: 1;
+	}
+}
+
+/* ============================================
+   IMP-NAVBAR — Rediseño Industrial Premium
+   Sector impermeabilización / construcción
+   ============================================ */
+
+/* Con el navbar siempre fixed, el main no necesita margen negativo */
+.main {
+	margin-top: 0 !important;
+}
+
+/* ── Variables ── */
+:root {
+	--imp-red:             #E30613;
+	--imp-red-dark:        #b8020e;
+	--imp-nav-h:           110px;
+	--imp-nav-h-sm:        80px;
+	--imp-ease:            cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Header wrapper: siempre fixed ── */
+.imp-header {
+	position: fixed !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1050;
+	/* Anula position:absolute del tema */
+	background-color: transparent !important;
+}
+
+/* ── Barra de navegación principal ── */
+.imp-nav {
+	height: var(--imp-nav-h);
+	background-color: transparent;
+	transition:
+		height         0.35s var(--imp-ease),
+		background-color 0.35s ease,
+		box-shadow     0.35s ease;
+	will-change: height, background-color;
+}
+
+/* Estado: usuario hizo scroll */
+.imp-nav--scrolled {
+	height: var(--imp-nav-h-sm);
+	background-color: #ffffff;
+	box-shadow:
+		0 1px 0 rgba(0, 0, 0, 0.06),
+		0 4px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Contenedor interno ── */
+.imp-nav__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 2.5rem;
+	gap: 1.5rem;
+}
+
+/* ── Logo ── */
+.imp-nav__logo {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	line-height: 1;
+}
+
+.imp-logo {
+	height: 72px;
+	width: auto;
+	display: none;
+	transition: height 0.3s ease;
+}
+
+/* Transparente: logo blanco */
+.imp-logo--light { display: block; }
+.imp-logo--dark  { display: none; }
+
+/* Scrolled: logo oscuro */
+.imp-nav--scrolled .imp-logo--light { display: none; }
+.imp-nav--scrolled .imp-logo--dark  { display: block; }
+.imp-nav--scrolled .imp-logo        { height: 56px; }
+
+/* ── Menú desktop ── */
+.imp-nav__menu {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 0;
+}
+
+.imp-nav__item {
+	position: relative;
+}
+
+/* ── Nav link base ── */
+.imp-nav__link {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	padding: 0 1.1rem;
+	height: var(--imp-nav-h);
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.92);
+	text-decoration: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+	white-space: nowrap;
+	font-family: inherit;
+	transition: color 0.25s ease;
+}
+
+/* Línea animada: crece del centro hacia afuera */
+.imp-nav__link::after {
+	content: '';
+	position: absolute;
+	bottom: 22px;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	background-color: var(--imp-red);
+	border-radius: 2px;
+	transition:
+		width 0.38s var(--imp-ease),
+		left  0.38s var(--imp-ease);
+}
+
+.imp-nav__link:hover::after,
+.imp-nav__item--has-drop:hover > .imp-nav__link::after,
+.imp-nav__link[aria-expanded="true"]::after {
+	width: calc(100% - 2.2rem);
+	left: 1.1rem;
+}
+
+.imp-nav__link:hover,
+.imp-nav__item--has-drop:hover > .imp-nav__link {
+	color: #ffffff;
+}
+
+/* Scrolled: texto oscuro */
+.imp-nav--scrolled .imp-nav__link {
+	color: #374151;
+	height: var(--imp-nav-h-sm);
+}
+.imp-nav--scrolled .imp-nav__link::after {
+	bottom: 16px;
+}
+.imp-nav--scrolled .imp-nav__link:hover,
+.imp-nav--scrolled .imp-nav__item--has-drop:hover > .imp-nav__link {
+	color: #111827;
+}
+
+/* ── Flecha del dropdown ── */
+.imp-drop-arrow {
+	flex-shrink: 0;
+	transition: transform 0.3s ease;
+	margin-left: 1px;
+}
+.imp-nav__item--has-drop:hover .imp-drop-arrow,
+.imp-nav__link[aria-expanded="true"] .imp-drop-arrow {
+	transform: rotate(180deg);
+}
+
+/* ── Dropdown panel ── */
+.imp-dropdown {
+	position: absolute;
+	top: calc(100% + 2px);
+	left: 50%;
+	width: 348px;
+	background: #ffffff;
+	border-radius: 16px;
+	border-top: 3px solid var(--imp-red);
+	box-shadow:
+		0 4px 6px -2px rgba(0, 0, 0, 0.06),
+		0 20px 40px -8px rgba(0, 0, 0, 0.18);
+	padding: 0.45rem;
+	z-index: 200;
+	/* Animación fade + slide */
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: translateX(-50%) translateY(-10px);
+	transition:
+		opacity    0.24s ease,
+		visibility 0.24s ease,
+		transform  0.3s var(--imp-ease);
+}
+
+/* Abierto: por hover en desktop */
+@media (min-width: 992px) {
+	.imp-nav__item--has-drop:hover .imp-dropdown {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: translateX(-50%) translateY(0);
+	}
+}
+
+/* Abierto: por JS (teclado / touch) */
+.imp-dropdown--open {
+	opacity: 1 !important;
+	visibility: visible !important;
+	pointer-events: auto !important;
+	transform: translateX(-50%) translateY(0) !important;
+}
+
+/* ── Items del dropdown ── */
+.imp-dropdown__item {
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+	padding: 0.82rem 0.82rem;
+	border-radius: 12px;
+	text-decoration: none;
+	transition:
+		background-color 0.18s ease,
+		transform        0.2s ease;
+	cursor: pointer;
+}
+.imp-dropdown__item + .imp-dropdown__item {
+	margin-top: 0.18rem;
+}
+.imp-dropdown__item:hover {
+	background-color: #fff5f5;
+	text-decoration: none;
+}
+
+/* Ícono */
+.imp-dropdown__icon {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 10px;
+	background-color: rgba(227, 6, 19, 0.08);
+	color: var(--imp-red);
+	transition: background-color 0.18s ease, color 0.18s ease;
+}
+.imp-dropdown__item:hover .imp-dropdown__icon {
+	background-color: var(--imp-red);
+	color: #ffffff;
+}
+
+/* Texto */
+.imp-dropdown__body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	min-width: 0;
+}
+.imp-dropdown__title {
+	display: block;
+	font-size: 0.93rem;
+	font-weight: 700;
+	color: #111827;
+	line-height: 1.3;
+}
+.imp-dropdown__desc {
+	display: block;
+	font-size: 0.78rem;
+	color: #9ca3af;
+	line-height: 1.45;
+}
+
+/* Chevron */
+.imp-dropdown__chevron {
+	flex-shrink: 0;
+	color: #d1d5db;
+	transition: transform 0.2s ease, color 0.18s ease;
+}
+.imp-dropdown__item:hover .imp-dropdown__chevron {
+	color: var(--imp-red);
+	transform: translateX(3px);
+}
+
+/* ── Acciones del lado derecho ── */
+.imp-nav__actions {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	flex-shrink: 0;
+}
+
+/* ── Botón de búsqueda (círculo) ── */
+.imp-search-trigger {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.14);
+	color: rgba(255, 255, 255, 0.92);
+	border: none;
+	cursor: pointer;
+	flex-shrink: 0;
+	transition:
+		background-color 0.25s ease,
+		color            0.25s ease,
+		transform        0.25s ease,
+		box-shadow       0.25s ease;
+}
+.imp-search-trigger:hover {
+	background-color: var(--imp-red);
+	color: #ffffff;
+	transform: scale(1.1);
+	box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35);
+}
+.imp-nav--scrolled .imp-search-trigger {
+	background-color: #f3f4f6;
+	color: #374151;
+}
+.imp-nav--scrolled .imp-search-trigger:hover {
+	background-color: var(--imp-red);
+	color: #ffffff;
+}
+
+/* ── CTA WhatsApp ── */
+.imp-whatsapp-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	padding: 0.8rem 1.6rem;
+	background-color: var(--imp-red);
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 0.95rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	border-radius: 50px;
+	white-space: nowrap;
+	flex-shrink: 0;
+	transition:
+		background-color 0.25s ease,
+		box-shadow       0.25s ease,
+		transform        0.25s ease;
+}
+.imp-whatsapp-btn:hover {
+	background-color: var(--imp-red-dark);
+	box-shadow: 0 6px 20px rgba(227, 6, 19, 0.38);
+	transform: translateY(-1px);
+	color: #ffffff;
+	text-decoration: none;
+}
+/* Variante de ancho completo (menú móvil) — siempre se muestra completo */
+.imp-whatsapp-btn--block {
+	justify-content: center;
+	width: 100% !important;
+	height: auto !important;
+	padding: 1rem 1.5rem !important;
+	font-size: 1rem !important;
+	border-radius: 14px !important;
+	border: none;
+	letter-spacing: 0.02em;
+	gap: 0.6rem !important;
+}
+.imp-whatsapp-btn--block .imp-whatsapp-btn__text,
+.imp-whatsapp-btn--block span {
+	display: inline !important;
+}
+
+/* ── Hamburger (solo móvil) ── */
+.imp-hamburger {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 6px;
+	width: 50px;
+	height: 50px;
+	border-radius: 8px;
+	background-color: rgba(255, 255, 255, 0.14);
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	flex-shrink: 0;
+	transition: background-color 0.25s ease;
+}
+.imp-hamburger:hover {
+	background-color: rgba(255, 255, 255, 0.26);
+}
+.imp-nav--scrolled .imp-hamburger {
+	background-color: #f3f4f6;
+}
+.imp-nav--scrolled .imp-hamburger:hover {
+	background-color: #e5e7eb;
+}
+
+.imp-hamburger__bar {
+	display: block;
+	width: 26px;
+	height: 2px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 2px;
+	transition: background-color 0.25s ease;
+}
+.imp-nav--scrolled .imp-hamburger__bar {
+	background-color: #374151;
+}
+
+/* ─────────────────────────────────────────────
+   MENÚ MÓVIL (off-canvas, slide desde la derecha)
+───────────────────────────────────────────── */
+.imp-mobile {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: min(380px, 90vw);
+	height: 100vh;
+	height: 100dvh;
+	z-index: 1100;
+	transform: translateX(100%);
+	transition: transform 0.38s var(--imp-ease);
+	will-change: transform;
+}
+.imp-mobile--open {
+	transform: translateX(0);
+}
+
+.imp-mobile__panel {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: #ffffff;
+	box-shadow: -6px 0 30px rgba(0, 0, 0, 0.14);
+	overflow-y: auto;
+}
+
+/* Cabecera del menú móvil */
+.imp-mobile__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.25rem 1.5rem;
+	border-bottom: 1px solid #f0f0f0;
+	flex-shrink: 0;
+}
+
+.imp-mobile__close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	background-color: #f3f4f6;
+	border: none;
+	cursor: pointer;
+	color: #374151;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+.imp-mobile__close:hover {
+	background-color: var(--imp-red);
+	color: #ffffff;
+}
+
+/* Lista de navegación */
+.imp-mobile__nav {
+	flex: 1;
+	padding: 0.75rem 0;
+	overflow-y: auto;
+}
+.imp-mobile__list {
+	list-style: none;
+	margin: 0;
+	padding: 0 0.75rem;
+}
+
+.imp-mobile__link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0.85rem 0.75rem;
+	font-size: 0.97rem;
+	font-weight: 600;
+	color: #1a1a1a;
+	text-decoration: none;
+	background: none;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-family: inherit;
+	transition: background-color 0.2s ease, color 0.2s ease;
+	text-align: left;
+}
+.imp-mobile__link:hover {
+	background-color: #fff5f5;
+	color: var(--imp-red);
+}
+
+/* Flecha del submenú */
+.imp-mobile__drop-arrow {
+	color: #9ca3af;
+	flex-shrink: 0;
+	transition: transform 0.3s ease;
+}
+.imp-mobile__drop-toggle[aria-expanded="true"] .imp-mobile__drop-arrow {
+	transform: rotate(180deg);
+}
+
+/* Submenú con animación de altura */
+.imp-mobile__submenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.36s var(--imp-ease);
+}
+.imp-mobile__submenu--open {
+	max-height: 500px;
+}
+
+.imp-mobile__sublink {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	padding: 0.7rem 0.75rem 0.7rem 1.5rem;
+	font-size: 0.88rem;
+	font-weight: 500;
+	color: #4b5563;
+	text-decoration: none;
+	border-radius: 8px;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+.imp-mobile__sublink:hover {
+	background-color: #fff5f5;
+	color: var(--imp-red);
+}
+
+.imp-mobile__sublink-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 7px;
+	background-color: rgba(227, 6, 19, 0.08);
+	color: var(--imp-red);
+	flex-shrink: 0;
+}
+
+/* Pie del menú móvil */
+.imp-mobile__footer {
+	padding: 1.25rem 1.5rem;
+	border-top: 1px solid #f0f0f0;
+	flex-shrink: 0;
+}
+
+/* Overlay / fondo oscuro */
+.imp-mobile__overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 1090;
+	background-color: transparent;
+	pointer-events: none;
+	transition: background-color 0.38s ease;
+}
+.imp-mobile__overlay--active {
+	background-color: rgba(0, 0, 0, 0.48);
+	pointer-events: auto;
+}
+
+/* ─────────────────────────────────────────────
+   OVERLAY DE BÚSQUEDA
+───────────────────────────────────────────── */
+.imp-search-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 1200;
+	background-color: rgba(10, 10, 20, 0.90);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+.imp-search-overlay--open {
+	opacity: 1;
+	visibility: visible;
+}
+
+.imp-search-overlay__inner {
+	position: relative;
+	width: min(680px, 90vw);
+}
+
+.imp-search-form {
+	display: flex;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 60px;
+	padding: 0.65rem 0.65rem 0.65rem 1.35rem;
+	backdrop-filter: blur(4px);
+	gap: 0.5rem;
+}
+.imp-search-form__icon {
+	color: rgba(255, 255, 255, 0.45);
+	flex-shrink: 0;
+}
+.imp-search-form__input {
+	flex: 1;
+	background: none;
+	border: none;
+	outline: none;
+	padding: 0.2rem 0.5rem;
+	font-size: 1.05rem;
+	color: #ffffff;
+	font-family: inherit;
+	min-width: 0;
+}
+.imp-search-form__input::placeholder {
+	color: rgba(255, 255, 255, 0.38);
+}
+.imp-search-form__btn {
+	padding: 0.6rem 1.4rem;
+	background-color: var(--imp-red);
+	color: #ffffff;
+	border: none;
+	border-radius: 50px;
+	font-size: 0.88rem;
+	font-weight: 700;
+	font-family: inherit;
+	cursor: pointer;
+	flex-shrink: 0;
+	transition: background-color 0.2s ease;
+}
+.imp-search-form__btn:hover {
+	background-color: var(--imp-red-dark);
+}
+
+.imp-search-overlay__close {
+	position: absolute;
+	top: -3.5rem;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: none;
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.75);
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+.imp-search-overlay__close:hover {
+	background-color: var(--imp-red);
+	color: #ffffff;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+
+/* En pantallas intermedias (≤1279px): el botón del NAV se convierte en círculo
+   — El botón del menú móvil (--block) NO se ve afectado */
+@media (max-width: 1279.98px) {
+	.imp-whatsapp-btn:not(.imp-whatsapp-btn--block) .imp-whatsapp-btn__text {
+		display: none;
+	}
+	.imp-whatsapp-btn:not(.imp-whatsapp-btn--block) {
+		width: 50px;
+		height: 50px;
+		padding: 0;
+		border-radius: 50%;
+		justify-content: center;
+	}
+}
+
+/* Tablet / Móvil: ocultar menú desktop, mostrar hamburger */
+@media (max-width: 991.98px) {
+	.imp-nav__menu {
+		display: none;
+	}
+	.imp-hamburger {
+		display: flex;
+	}
+	.imp-nav__inner {
+		padding: 0 1.5rem;
+	}
+}
+
+@media (max-width: 479.98px) {
+	.imp-nav__inner {
+		padding: 0 1rem;
+	}
+	.imp-nav__actions {
+		gap: 0.4rem;
+	}
 }
 

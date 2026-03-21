@@ -24,6 +24,7 @@ use App\Http\Controllers\SitemapController;
 | - /servicios : Página de servicios
 | - /productos : Lista de productos
 | - /producto/{slug} : Detalle de un producto específico
+| - /soluciones/{techos|terrazas|muros} : Páginas por tipo de uso (producto + problema)
 | - /blog : Página del blog
 | - /proyectos : Página de proyectos
 | - /contacto : Página de contacto
@@ -43,6 +44,11 @@ Route::get('/', [HomeController::class, 'index'])->name('web.home');
 // Páginas estáticas
 Route::get('/nosotros', [PageController::class, 'about'])->name('web.about');
 Route::get('/servicios', [PageController::class, 'services'])->name('web.services');
+
+// Soluciones por tipo de uso (venta orientada al problema)
+Route::get('/soluciones/{tipo}', [PageController::class, 'solution'])
+    ->whereIn('tipo', ['techos', 'terrazas', 'muros'])
+    ->name('web.solutions.show');
 
 // Páginas de servicio SEO específicas
 Route::get('/impermeabilizacion-techos-bogota', [PageController::class, 'serviceRoofsBogota'])

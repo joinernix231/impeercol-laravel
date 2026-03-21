@@ -157,6 +157,200 @@
   100% { left: var(--run-off); top: var(--run-off); width: var(--run-thick); height: var(--run-len); }
 }
 
+/* ============================================================
+   IMP-GALLERY-REVEAL — Bloque de doble foto vertical con hover
+   Completamente independiente: no usa .about-photo ni sus
+   pseudo-elementos, así no colapsa ni aparece el punto rojo.
+   ============================================================ */
+.imp-gallery-reveal {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Track: caja con altura FIJA para que las imágenes absolutas funcionen */
+.imp-gallery-reveal__track {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 4px solid var(--theme-color, #e63946);
+  box-shadow:
+    0 24px 60px rgba(230, 57, 70, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.10);
+  background: #1a1a1a;
+}
+
+/* Imágenes */
+.imp-gallery-reveal__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    opacity  0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: opacity, transform;
+}
+.imp-gallery-reveal__img--b {
+  z-index: 0;
+  transform: scale(1.06);
+  opacity: 1;
+}
+.imp-gallery-reveal__img--f {
+  z-index: 1;
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Hint pill "hover para ver más" */
+.imp-gallery-reveal__hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.imp-gallery-reveal__hint svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* Esquinas decorativas animadas */
+.imp-gallery-reveal__corner {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  z-index: 4;
+  transition: width 0.45s ease, height 0.45s ease, opacity 0.3s ease;
+}
+.imp-gallery-reveal__corner--tl {
+  top: -4px; left: -4px;
+  border-top: 3px solid var(--theme-color, #e63946);
+  border-left: 3px solid var(--theme-color, #e63946);
+  border-radius: 14px 0 0 0;
+}
+.imp-gallery-reveal__corner--tr {
+  top: -4px; right: -4px;
+  border-top: 3px solid var(--theme-color, #e63946);
+  border-right: 3px solid var(--theme-color, #e63946);
+  border-radius: 0 14px 0 0;
+}
+.imp-gallery-reveal__corner--bl {
+  bottom: -4px; left: -4px;
+  border-bottom: 3px solid var(--theme-color, #e63946);
+  border-left: 3px solid var(--theme-color, #e63946);
+  border-radius: 0 0 0 14px;
+}
+.imp-gallery-reveal__corner--br {
+  bottom: -4px; right: -4px;
+  border-bottom: 3px solid var(--theme-color, #e63946);
+  border-right: 3px solid var(--theme-color, #e63946);
+  border-radius: 0 0 14px 0;
+}
+
+/* ====== ESTADOS HOVER (escritorio) ====== */
+@media (hover: hover) and (pointer: fine) {
+  .imp-gallery-reveal { cursor: none; }
+
+  .imp-gallery-reveal:hover .imp-gallery-reveal__img--f {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  .imp-gallery-reveal:hover .imp-gallery-reveal__img--b {
+    transform: scale(1);
+  }
+
+  /* Hint desaparece al hacer hover */
+  .imp-gallery-reveal:hover .imp-gallery-reveal__hint {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+
+  /* Esquinas se expanden para enmarcar toda la foto */
+  .imp-gallery-reveal:hover .imp-gallery-reveal__corner {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* ====== TÁCTIL: toque revela la segunda foto ====== */
+@media (hover: none), (pointer: coarse) {
+  .imp-gallery-reveal:active .imp-gallery-reveal__img--f {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  .imp-gallery-reveal:active .imp-gallery-reveal__img--b {
+    transform: scale(1);
+  }
+  .imp-gallery-reveal:active .imp-gallery-reveal__hint {
+    opacity: 0;
+  }
+}
+
+/* ====== ACCESIBILIDAD: foco con teclado ====== */
+.imp-gallery-reveal:focus-visible .imp-gallery-reveal__track {
+  outline: 3px solid var(--theme-color, #e63946);
+  outline-offset: 4px;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 991px) {
+  .imp-gallery-reveal {
+    max-width: 360px;
+  }
+  .imp-gallery-reveal__track {
+    height: 440px;
+  }
+}
+@media (max-width: 575px) {
+  .imp-gallery-reveal {
+    max-width: 100%;
+  }
+  .imp-gallery-reveal__track {
+    height: 380px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imp-gallery-reveal__img,
+  .imp-gallery-reveal__corner,
+  .imp-gallery-reveal__hint {
+    transition: none;
+  }
+}
+
 @keyframes dottedFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -5392,6 +5586,12 @@ button.theme-btn {
       padding-bottom: 3rem;
       border-bottom: 1px dashed #ccc;
       line-height: 3.4rem; }
+    /* 
+      Los posts suelen incluir tablas dentro de contenedores inline con `overflow-x:auto`.
+      Ajustar márgenes evita que el contenido “se pegue” visualmente con el bloque siguiente.
+    */
+    .blog-page-single .blog-content .blog-text div[style*="overflow-x:auto"] {
+      margin: 1.5rem 0; }
     .blog-page-single .blog-content .blog-page-title {
       line-height: 1.4;
       text-transform: capitalize; }

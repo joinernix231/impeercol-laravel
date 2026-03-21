@@ -54,13 +54,11 @@
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
 <link rel="preconnect" href="{{ url('/') }}" crossorigin>
 
-{{-- Preload de fuentes críticas para evitar bloqueo de renderizado --}}
-@php
-    $fontsPath = asset('assets/fonts');
-@endphp
-<link rel="preload" href="{{ $fontsPath }}/jost-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ $fontsPath }}/jost-v20-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ $fontsPath }}/jost-v20-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+{{--
+  Tipografía Jost (400, 600, 700): coincide con --font-2 en style.css.
+  Los archivos locales jost-v20-latin-*.woff2 no existen en el repo → evitamos preload 404.
+--}}
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet">
 
 {{-- CSS Crítico Inline - Solo lo esencial para above-the-fold --}}
 <style>
@@ -122,12 +120,9 @@ img{max-width:100%;height:auto}
 {{-- Fuentes optimizadas con font-display: swap --}}
 <link href="{{ asset('assets/css/fonts-optimized.css') }}" rel="stylesheet">
 
-{{-- CSS Crítico - Cargar inmediatamente con preload --}}
-<link rel="preload" href="{{ asset('assets/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"></noscript>
-
-<link rel="preload" href="{{ asset('assets/style.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="{{ asset('assets/style.css') }}" rel="stylesheet"></noscript>
+{{-- CSS crítico: enlace directo (evita avisos de preload sin uso y FOUC innecesario) --}}
+<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/style.css') }}" rel="stylesheet">
 
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 
