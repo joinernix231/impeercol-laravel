@@ -7,13 +7,13 @@
 return [
     'types' => [
         'techos' => [
-            'meta_title' => 'Productos para impermeabilización de techos | IMPEERCOL',
-            'meta_description' => 'Encuentra productos y sistemas para impermeabilizar techos: acrílicos, mantos y membranas de marcas como Sika y Texsa. Asesoría para elegir según tu tipo de cubierta y filtración.',
-            'h1' => 'Productos para impermeabilización de techos',
+            'meta_title' => 'Productos para impermeabilizar techos en Bogotá | IMPEERCOL',
+            'meta_description' => 'Compra productos para impermeabilizar techos en Bogotá: acrílicos, mantos y membranas Sika, Texsa y Metic. Asesoría técnica gratuita por WhatsApp. Envíos a todo Colombia.',
+            'h1' => 'Productos para impermeabilizar techos en Bogotá',
             'breadcrumb_label' => 'Impermeabilización de techos',
             'hero_subtitle' => 'Elige el sistema adecuado según tu cubierta y el problema que quieres resolver',
             'image' => 'impermeabilizacion-techos-bogota.webp',
-            'image_alt' => 'Productos y sistemas para impermeabilización de techos',
+            'image_alt' => 'Productos y sistemas para impermeabilización de techos Bogotá',
             'whatsapp_message' => 'Hola, quiero asesoría para elegir productos de impermeabilización para techos.',
             'product_terms' => ['techo', 'cubierta', 'manto', 'acrílic', 'acrílico', 'acril', 'membrana', 'asfált', 'asfalt', 'impermeab'],
             'benefits' => [
