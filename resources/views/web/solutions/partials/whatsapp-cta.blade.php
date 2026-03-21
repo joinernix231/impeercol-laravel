@@ -8,7 +8,7 @@
                 <div class="solution-whatsapp-cta__inner">
                     <h2 class="hero-title solution-whatsapp-cta__title">{{ $whatsappCtaTitle ?? '¿Listo para elegir el producto correcto?' }}</h2>
                     <p class="solution-whatsapp-cta__lead">{{ $whatsappCtaText ?? 'Cuéntanos tu problema, tipo de cubierta y zona. Te respondemos por WhatsApp con orientación de sistema y referencias.' }}</p>
-                    <a href="{{ $whatsappAdvisoryUrl }}" class="btn-whatsapp-primary solution-whatsapp-cta__btn" target="_blank" rel="noopener noreferrer" id="cta-whatsapp-soluciones">
+                    <a href="{{ $whatsappAdvisoryUrl }}" class="btn-whatsapp-primary solution-whatsapp-cta__btn" target="_blank" rel="noopener noreferrer" id="cta-whatsapp-soluciones" data-conv>
                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         <span>{{ $whatsappCtaLabel ?? 'Solicitar asesoría por WhatsApp' }}</span>
                     </a>

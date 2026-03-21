@@ -150,7 +150,7 @@
 						
 						<!-- Main CTA: WhatsApp -->
 						<div class="product-cta-main">
-							<a href="{{ $product->whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-primary" aria-label="Cotizar producto por WhatsApp">
+							<a href="{{ $product->whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-primary" aria-label="Cotizar producto por WhatsApp" data-conv>
 								<i class="fab fa-whatsapp" aria-hidden="true"></i>
 								<span>Cotizar por WhatsApp</span>
 							</a>

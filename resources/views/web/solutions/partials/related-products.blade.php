@@ -37,7 +37,7 @@
                         @endif
                         <div class="add-to-cart pt-2 d-flex flex-column gap-2">
                             <a href="{{ route('web.product.show', $product->slug) }}" class="cart-btn">Ver producto</a>
-                            <a href="{{ $product->whatsapp_url }}" class="btn-whatsapp-primary text-center" target="_blank" rel="noopener noreferrer">
+                            <a href="{{ $product->whatsapp_url }}" class="btn-whatsapp-primary text-center" target="_blank" rel="noopener noreferrer" data-conv>
                                 <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                 <span>Cotizar</span>
                             </a>

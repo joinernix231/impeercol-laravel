@@ -69,6 +69,41 @@
 <script src="{{ asset('assets/js/jquery.mixitup.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/jquery.countdown.min.js') }}" defer></script>
 
+{{-- Google Ads — Seguimiento de conversiones
+     Se dispara en cualquier enlace con atributo data-conv (WhatsApp, contacto, etc.)
+     Sin necesidad de onclick en cada botón. --}}
+<script>
+(function () {
+    function gtag_report_conversion(url) {
+        var callback = function () {
+            if (typeof url !== 'undefined') {
+                window.location = url;
+            }
+        };
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-17978852799/bxEgCIjImY0cEL-L_vxC',
+                'value': 1.0,
+                'currency': 'COP',
+                'event_callback': callback
+            });
+        } else {
+            callback();
+        }
+        return false;
+    }
+
+    // Event delegation: captura clics en *cualquier* botón con [data-conv]
+    // sin necesidad de añadir onclick manualmente a cada elemento.
+    document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-conv]');
+        if (!el || !el.href) return;
+        e.preventDefault();
+        gtag_report_conversion(el.href);
+    });
+})();
+</script>
+
 {{-- Sección para agregar scripts adicionales desde las vistas --}}
 @yield('scripts')
 
