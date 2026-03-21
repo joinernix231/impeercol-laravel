@@ -353,7 +353,7 @@
         mobile.classList.add('imp-mobile--open');
         mobileOverlay.classList.add('imp-mobile__overlay--active');
         hamburger.setAttribute('aria-expanded', 'true');
-        mobile.setAttribute('aria-hidden', 'false');
+        mobile.removeAttribute('aria-hidden');
         document.body.style.overflow = 'hidden';
     }
     function closeMobile() {
@@ -362,6 +362,8 @@
         hamburger.setAttribute('aria-expanded', 'false');
         mobile.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        /* Devolver foco al hamburger al cerrar */
+        if (hamburger) hamburger.focus();
     }
     if (hamburger)     hamburger.addEventListener('click', openMobile);
     if (mobileClose)   mobileClose.addEventListener('click', closeMobile);

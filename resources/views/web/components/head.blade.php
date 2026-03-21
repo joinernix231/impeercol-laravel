@@ -120,11 +120,12 @@ img{max-width:100%;height:auto}
 {{-- Fuentes optimizadas con font-display: swap --}}
 <link href="{{ asset('assets/css/fonts-optimized.css') }}" rel="stylesheet">
 
-{{-- CSS crítico: enlace directo (evita avisos de preload sin uso y FOUC innecesario) --}}
+{{-- CSS crítico: carga síncrona — necesario para navbar y layout base --}}
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
-
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
+{{-- common.css contiene el navbar rediseñado: debe cargarse síncronamente --}}
+<link href="{{ asset('assets/css/common.css') }}" rel="stylesheet">
 
 {{-- CSS No Crítico - Cargar de forma asíncrona --}}
 <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
@@ -156,9 +157,6 @@ img{max-width:100%;height:auto}
 
 <link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/common.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/common.css') }}" rel="stylesheet"></noscript>
 <!-- ========== End Stylesheet ========== -->
 
 {{-- Sección para agregar estilos adicionales desde las vistas --}}
