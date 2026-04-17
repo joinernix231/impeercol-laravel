@@ -41,6 +41,9 @@
                 <li class="imp-nav__item">
                     <a href="{{ route('web.products') }}" class="imp-nav__link">Productos</a>
                 </li>
+                <li class="imp-nav__item">
+                    <a href="{{ route('web.landing.broncoelastico.bogota') }}" class="imp-nav__link">Productos destacados</a>
+                </li>
 
                 {{-- Dropdown: Soluciones --}}
                 <li class="imp-nav__item imp-nav__item--has-drop" id="solucionesItem">
@@ -200,6 +203,7 @@
                     <li><a href="{{ route('web.about') }}" class="imp-mobile__link">Sobre nosotros</a></li>
                     <li><a href="{{ route('web.projects') }}" class="imp-mobile__link">Proyectos</a></li>
                     <li><a href="{{ route('web.products') }}" class="imp-mobile__link">Productos</a></li>
+                    <li><a href="{{ route('web.landing.broncoelastico.bogota') }}" class="imp-mobile__link">Productos destacados</a></li>
 
                     <li class="imp-mobile__item--drop">
                         <button class="imp-mobile__link imp-mobile__drop-toggle"
@@ -403,7 +407,6 @@
             }
         });
     }
-
     /* ── Overlay de búsqueda ── */
     function openSearch() {
         searchOverlay.classList.add('imp-search-overlay--open');

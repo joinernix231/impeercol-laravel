@@ -14,15 +14,10 @@
 			Preloader Init
 		===============================================*/
 		
+		$(".preloader").fadeOut(120);
 		$(window).on('load', function() {
-		// Animate loader off screen
-			$(".preloader").fadeOut("slow");
+			$(".preloader").fadeOut(120);
 		});
-		
-		// Fallback para ocultar el preloader después de 3 segundos
-		setTimeout(function(){
-			$(".preloader").fadeOut("slow");
-		}, 3000);
 		
 		/* ==================================================
 			# Data Background
@@ -147,19 +142,21 @@
 			# MixitUp 
 		 =============================================== */
 		
-		$('#portfolio').mixItUp({  
-			selectors: {
-			target: '.tile',
-			filter: '.filter',
-			sort: '.sort-btn'
-			},
+		if ($.fn.mixItUp && $('#portfolio').length) {
+			$('#portfolio').mixItUp({
+				selectors: {
+				target: '.tile',
+				filter: '.filter',
+				sort: '.sort-btn'
+				},
 
-			animation: {
-			animateResizeContainer: false,
-			effects: 'fade scale'
-			}
+				animation: {
+				animateResizeContainer: false,
+				effects: 'fade scale'
+				}
 
-		});
+			});
+		}
 		
 		
 		/* ==================================================
@@ -235,39 +232,41 @@
             # Typed Js
          ===============================================*/
 		
-		$(".typed").typed({
-			strings: ["IT Company ", "Software Company ", "Digital Marketplace "],
-			// Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
-			stringsElement: null,
-			// typing speed
-			typeSpeed: 100,
-			// time before typing starts
-			startDelay: 1200,
-			// backspacing speed
-			backSpeed: 10,
-			// time before backspacing
-			backDelay: 600,
-			// loop
-			loop: true,
-			// false = infinite
-			loopCount: Infinity,
-			// show cursor
-			showCursor: false,
-			// character for cursor
-			cursorChar: "|",
-			// attribute to type (null == text)
-			attr: null,
-			// either html or text
-			contentType: 'html',
-			// call when done callback function
-			callback: function() {},
-			// starting callback function before each string
-			preStringTyped: function() {},
-			//callback for every typed string
-			onStringTyped: function() {},
-			// callback for reset
-			resetCallback: function() {}
-		});
+		if ($.fn.typed && $('.typed').length) {
+			$(".typed").typed({
+				strings: ["IT Company ", "Software Company ", "Digital Marketplace "],
+				// Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
+				stringsElement: null,
+				// typing speed
+				typeSpeed: 100,
+				// time before typing starts
+				startDelay: 1200,
+				// backspacing speed
+				backSpeed: 10,
+				// time before backspacing
+				backDelay: 600,
+				// loop
+				loop: true,
+				// false = infinite
+				loopCount: Infinity,
+				// show cursor
+				showCursor: false,
+				// character for cursor
+				cursorChar: "|",
+				// attribute to type (null == text)
+				attr: null,
+				// either html or text
+				contentType: 'html',
+				// call when done callback function
+				callback: function() {},
+				// starting callback function before each string
+				preStringTyped: function() {},
+				//callback for every typed string
+				onStringTyped: function() {},
+				// callback for reset
+				resetCallback: function() {}
+			});
+		}
 		
 		/* ==================================================
             # Gallery  Slider
@@ -466,13 +465,15 @@
 
 		var nextyear = month + '/' + day + '/' + year + ' 12:43:07';
 
-		$('#example').countdown({
-			date: nextyear, // TODO Date format: 07/27/2017 17:00:00
-			offset: +6, // TODO Your Timezone Offset
-			day: 'Day',
-			days: 'Days',
-			hideOnComplete: true
-		});
+		if ($.fn.countdown && $('#example').length) {
+			$('#example').countdown({
+				date: nextyear, // TODO Date format: 07/27/2017 17:00:00
+				offset: +6, // TODO Your Timezone Offset
+				day: 'Day',
+				days: 'Days',
+				hideOnComplete: true
+			});
+		}
 
 
         /* ==================================================
@@ -628,11 +629,13 @@
 			# wodryRX
 		 =============================================== */
 		
-		$('.wodryRX').wodry({
-			animation: 'rotateX',
-			delay: 2000,
-			animationDuration: 1600
-		});
+		if ($.fn.wodry && $('.wodryRX').length) {
+			$('.wodryRX').wodry({
+				animation: 'rotateX',
+				delay: 2000,
+				animationDuration: 1600
+			});
+		}
         
         // (revert) remove promo parallax handler
         

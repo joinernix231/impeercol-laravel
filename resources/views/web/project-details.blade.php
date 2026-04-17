@@ -131,6 +131,6 @@
 
 @section('scripts')
 {{-- Archivo JavaScript externo para mejor rendimiento y organización --}}
-<script src="{{ asset('assets/js/project-details.js') }}"></script>
+<script src="{{ asset('assets/js/project-details.js') }}" defer></script>
 @endsection
 

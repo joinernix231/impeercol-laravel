@@ -8,6 +8,8 @@
         ($blog->excerpt ? Str::limit(strip_tags($blog->excerpt), 120) . ' ' : '') . 
         ($blog->content ? Str::limit(strip_tags($blog->content), 120) . ' ' : '') . 
         'Artículo sobre impermeabilización en el blog de IMPEERCOL. Consejos, guías y soluciones para proteger tus espacios. Lee más sobre ' . $blog->title . ' y encuentra información útil sobre productos y técnicas de impermeabilización.';
+    $lcpImage = \App\Helpers\ImageHelper::optimizedImageUrl($blog->image ?? '', 1200, 675);
+    $lcpSrcset = $blog->image ? \App\Helpers\ImageHelper::srcset($blog->image, [768, 1200, 1600]) : '';
 @endphp
 
 @section('description', $metaDesc)
@@ -16,6 +18,9 @@
 @section('og_type', 'article')
 @section('og_image', $blog->image_url ?? null)
 @section('twitter_image', $blog->image_url ?? null)
+@section('preload')
+<link rel="preload" as="image" href="{{ $lcpImage }}" @if($lcpSrcset)imagesrcset="{{ $lcpSrcset }}" imagesizes="(max-width: 768px) 100vw, 1200px"@endif fetchpriority="high">
+@endsection
 
 @section('content')
 	<!-- Start Breadcrumb -->
@@ -39,7 +44,14 @@
 						<div class="theme-single blog-single">
 							@if($blog->image)
 								<div class="theme-pic pos-rel">
-									<img src="{{ $blog->image_url }}" class="big-pic" alt="{{ $blog->title }}">
+									<img src="{{ $lcpImage }}"
+                                         @if($lcpSrcset)srcset="{{ $lcpSrcset }}" sizes="(max-width: 768px) 100vw, 1200px"@endif
+                                         class="big-pic"
+                                         alt="{{ $blog->title }}"
+                                         fetchpriority="high"
+                                         decoding="async"
+                                         width="1200"
+                                         height="675">
 									@if($blog->published_at)
 										@php
 											$meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -105,7 +117,7 @@
 												@foreach($blog->gallery_urls as $url)
 													@if($url)
 														<div class="col-md-6">
-															<img src="{{ $url }}" alt="Galería" class="img-fluid rounded">
+															<img src="{{ $url }}" alt="Galería" class="img-fluid rounded" loading="lazy" decoding="async" width="600" height="400">
 														</div>
 													@endif
 												@endforeach
@@ -150,7 +162,7 @@
 											@if($relatedBlog->image)
 												<div class="recent-post-pic">
 													<a href="{{ route('web.blog.show', $relatedBlog->slug) }}">
-														<img src="{{ $relatedBlog->image_url }}" alt="{{ $relatedBlog->title }}">
+														<img src="{{ $relatedBlog->thumbnail_url }}" alt="{{ $relatedBlog->title }}" loading="lazy" decoding="async" width="120" height="80">
 													</a>
 												</div>
 											@endif
@@ -217,5 +229,5 @@
 
 @section('scripts')
 {{-- Archivo JavaScript externo para mejor rendimiento y organización --}}
-<script src="{{ asset('assets/js/blog-details.js') }}"></script>
+<script src="{{ asset('assets/js/blog-details.js') }}" defer></script>
 @endsection

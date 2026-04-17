@@ -35,16 +35,12 @@
 
 @php
     use Illuminate\Support\Str;
-    // Preload para la primera imagen del slider (above the fold)
     $firstBannerImage = $banners->first()->image_url ?? asset('assets/img/gallery/BO-convertido-de-jpg.webp');
 @endphp
 
-{{-- Preload de imagen crítica (primera del slider) --}}
-@if(isset($banners) && $banners->count() > 0)
-    <link rel="preload" as="image" href="{{ $firstBannerImage }}" fetchpriority="high">
-@else
-    <link rel="preload" as="image" href="{{ asset('assets/img/gallery/BO-convertido-de-jpg.webp') }}" fetchpriority="high">
-@endif
+@section('preload')
+<link rel="preload" as="image" href="{{ $firstBannerImage }}" fetchpriority="high">
+@endsection
 
 @section('content')
 	{{-- Slider Principal --}}
@@ -654,7 +650,7 @@
 
 @section('scripts')
 {{-- Archivos JavaScript externos para mejor rendimiento y organización --}}
-<script src="{{ asset('assets/js/animations.js') }}"></script>
-<script src="{{ asset('assets/js/home.js') }}"></script>
+<script src="{{ asset('assets/js/animations.js') }}" defer></script>
+<script src="{{ asset('assets/js/home.js') }}" defer></script>
 @endsection
 

@@ -3,6 +3,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
+        "build:production": "vite build --mode production",
         "dev": "vite"
     },
     "devDependencies": {
@@ -13,5 +14,8 @@
         "postcss": "^8.4.47",
         "tailwindcss": "^3.4.13",
         "vite": "^6.0.11"
+    },
+    "dependencies": {
+        "@fontsource/jost": "^5.2.8"
     }
 }

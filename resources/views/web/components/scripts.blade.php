@@ -23,32 +23,11 @@
 
 <!-- jQuery Frameworks
 ============================================= -->
-{{-- jQuery debe cargarse sin defer para que otros scripts funcionen --}}
-<script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+{{-- Todos los scripts de librería usan defer para evitar bloqueo de renderizado --}}
+<script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/popper.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/bootstrap-menu.js') }}" defer></script>
-
-{{-- main.js carga después de jQuery pero sin bloquear --}}
-<script>
-(function() {
-    function loadMainJS() {
-        if (typeof jQuery !== 'undefined') {
-            var script = document.createElement('script');
-            script.src = '{{ asset('assets/js/main.js') }}';
-            script.async = true;
-            document.body.appendChild(script);
-        } else {
-            setTimeout(loadMainJS, 50);
-        }
-    }
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadMainJS);
-    } else {
-        loadMainJS();
-    }
-})();
-</script>
 
 {{-- Scripts no críticos - Cargar con defer para no bloquear renderizado --}}
 <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
@@ -59,15 +38,11 @@
 <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/wow.min.js') }}" defer></script>
-<script src="{{ asset('assets/js/wodry.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/count-to.js') }}" defer></script>
 <script src="{{ asset('assets/js/progress-bar.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/color-option.js') }}" defer></script>
-<script src="{{ asset('assets/js/typed.js') }}" defer></script>
-<script src="{{ asset('assets/js/YTPlayer.min.js') }}" defer></script>
 <script src="{{ asset('assets/js/active-class.js') }}" defer></script>
-<script src="{{ asset('assets/js/jquery.mixitup.min.js') }}" defer></script>
-<script src="{{ asset('assets/js/jquery.countdown.min.js') }}" defer></script>
+<script src="{{ asset('assets/js/main.js') }}" defer></script>
 
 {{-- Google Ads — Seguimiento de conversiones
      Se dispara en cualquier enlace con atributo data-conv (WhatsApp, contacto, etc.)

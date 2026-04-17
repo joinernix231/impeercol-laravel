@@ -253,5 +253,5 @@
 
 @section('scripts')
     {{-- Script para la lógica de filtros de productos --}}
-    <script src="{{ asset('assets/js/products.js') }}"></script>
+    <script src="{{ asset('assets/js/products.js') }}" defer></script>
 @endsection

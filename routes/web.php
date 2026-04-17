@@ -57,6 +57,9 @@ Route::get('/impermeabilizacion-terrazas-bogota', [PageController::class, 'servi
     ->name('web.services.terraces.bogota');
 Route::get('/impermeabilizacion-industrial-bogota', [PageController::class, 'serviceIndustrialBogota'])
     ->name('web.services.industrial.bogota');
+Route::get('/broncoelastico-10-anos-bogota', function () {
+    return view('web.landing-broncoelastico-bogota');
+})->name('web.landing.broncoelastico.bogota');
 
 Route::get('/contacto', [PageController::class, 'contact'])->name('web.contact');
 

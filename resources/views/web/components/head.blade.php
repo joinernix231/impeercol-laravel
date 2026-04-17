@@ -57,22 +57,14 @@
 <meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
 
 {{-- Resource Hints optimizados para mejorar rendimiento --}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.google.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
-<link rel="preconnect" href="{{ url('/') }}" crossorigin>
-
-{{--
-  Tipografía Jost (400, 600, 700): coincide con --font-2 en style.css.
-  Los archivos locales jost-v20-latin-*.woff2 no existen en el repo → evitamos preload 404.
---}}
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet">
 
 {{-- CSS Crítico Inline - Solo lo esencial para above-the-fold --}}
 <style>
 /* Estilos críticos mínimos para evitar FOUC */
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{margin:0;font-family:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 .navbar{position:relative;min-height:70px}
 .hero-section{position:relative;min-height:500px}
 img{max-width:100%;height:auto}
@@ -113,6 +105,9 @@ img{max-width:100%;height:auto}
     <meta name="{{ $name }}" content="{{ $content }}">
 @endforeach
 
+{{-- Page-level image preloads for LCP --}}
+@yield('preload')
+
 <!-- Favicons -->
 <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon.png') }}">
@@ -126,46 +121,7 @@ img{max-width:100%;height:auto}
 
 
 <!-- ========== Start Stylesheet ========== -->
-{{-- Fuentes optimizadas con font-display: swap --}}
-<link href="{{ asset('assets/css/fonts-optimized.css') }}" rel="stylesheet">
-
-{{-- CSS crítico: carga síncrona — necesario para navbar y layout base --}}
-<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/style.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
-{{-- common.css contiene el navbar rediseñado: debe cargarse síncronamente --}}
-<link href="{{ asset('assets/css/common.css') }}" rel="stylesheet">
-
-{{-- CSS No Crítico - Cargar de forma asíncrona --}}
-<link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/bootstrap-icons.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/bootstrap-icons.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/site-flaticon.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/site-flaticon.css') }}" rel="stylesheet"></noscript>
-
-<link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="{{ asset('assets/css/carousel-arrows-fix.css') }}" rel="stylesheet"></noscript>
+@vite('resources/css/site.css')
 <!-- ========== End Stylesheet ========== -->
 
 {{-- Sección para agregar estilos adicionales desde las vistas --}}

@@ -47,12 +47,14 @@
 	{{-- Preloader: Animación de carga al inicio --}}
 	<!-- Start PreLoader
 	============================================= -->
-	<div class="preloader">
-		<div class="preloader-container">
-			<div class="preloader-animation">
+	@if(request()->routeIs('web.home'))
+		<div class="preloader">
+			<div class="preloader-container">
+				<div class="preloader-animation">
+				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 	<!-- End PreLoader-->
 
 	{{-- Incluye la barra de navegación --}}
