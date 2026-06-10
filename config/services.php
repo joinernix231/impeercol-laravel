@@ -39,4 +39,8 @@ return [
         'whatsapp_phone' => env('IMPEERCOL_WHATSAPP', '573025069825'),
     ],
 
+    'agent' => [
+        'api_token' => env('AGENT_API_TOKEN'),
+    ],
+
 ];

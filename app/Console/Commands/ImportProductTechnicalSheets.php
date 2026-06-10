@@ -3,8 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Product;
-use DOMDocument;
-use DOMXPath;
+use App\Services\TechnicalSheetImportService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -39,6 +38,12 @@ class ImportProductTechnicalSheets extends Command
     ];
 
     private array $mapeiLinePdfCache = [];
+
+    public function __construct(
+        private readonly TechnicalSheetImportService $importService
+    ) {
+        parent::__construct();
+    }
 
     public function handle(): int
     {
@@ -254,6 +259,11 @@ class ImportProductTechnicalSheets extends Command
             $this->exportFailures($failures);
         }
 
+        if ($failedCount > 0) {
+            $this->newLine();
+            $this->line('Si Mapei bloquea el servidor, usa la API de agente: /api/agent/technical-sheets');
+        }
+
         return Command::SUCCESS;
     }
 
@@ -313,8 +323,6 @@ class ImportProductTechnicalSheets extends Command
             if ($cachedUrl) {
                 return $cachedUrl;
             }
-
-            $candidates = array_merge($candidates, $this->searchMapeiCandidates($product));
 
             $mapeiCandidates = $this->searchMapeiCandidates($product);
             $mapeiMatch = $this->pickBestScoredCandidate($mapeiCandidates);
@@ -526,23 +534,22 @@ class ImportProductTechnicalSheets extends Command
         $candidates = [];
 
         foreach ($this->deriveProductNameVariants($product->name) as $variantName) {
-            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
-                $this->extractPdfUrlsFromPages($this->buildMapeiProductPageUrls($variantName)),
-                $product,
-                70
-            ));
+            foreach ($this->buildMapeiProductPageUrls($variantName) as $pageUrl) {
+                $statusCode = null;
+                $tdsUrl = $this->fetchMapeiProductTdsUrl($pageUrl, $statusCode);
 
-            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
-                $this->searchPdfViaWeb($product, ['cdnmedia.mapei.com'], 'Mapei', [$variantName]),
-                $product,
-                68
-            ));
+                if ($this->option('verbose') && ! $tdsUrl) {
+                    $this->newLine();
+                    $this->line("  Mapei page HTTP {$statusCode}: {$pageUrl}");
+                }
 
-            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
-                $this->searchPdfViaWeb($product, ['mapei.com'], 'Mapei', [$variantName]),
-                $product,
-                65
-            ));
+                if ($tdsUrl) {
+                    $candidates[] = [
+                        'url' => $tdsUrl,
+                        'score' => min($this->scorePdfUrl($tdsUrl, $product) + 20, 100),
+                    ];
+                }
+            }
 
             if ($this->pickBestScoredCandidate($candidates)) {
                 break;
@@ -558,10 +565,19 @@ class ImportProductTechnicalSheets extends Command
         $baseUrl = $this->baseUrls['mapei'];
 
         return array_unique([
-            "{$baseUrl}/co/es-co/productos/{$slug}",
-            "{$baseUrl}/co/es-co/productos/{$slug}.html",
-            "{$baseUrl}/co/es-co/productos/".str_replace('-', '', $slug),
+            "{$baseUrl}/co/es-co/productos/lista-de-productos/detalles-del-producto/{$slug}",
         ]);
+    }
+
+    private function fetchMapeiProductTdsUrl(string $pageUrl, ?int &$statusCode = null): ?string
+    {
+        $html = $this->fetchHtml($pageUrl, $statusCode);
+
+        if (! $html) {
+            return null;
+        }
+
+        return $this->importService->extractMapeiTdsUrlFromHtml($html);
     }
 
     private function deriveProductNameVariants(string $name): array
@@ -588,7 +604,13 @@ class ImportProductTechnicalSheets extends Command
             }
         }
 
-        foreach (['/\\s+\\d{2,4}\\s+[\\p{L}\\s]+$/u', '/\\s+\\d{2,4}$/u'] as $pattern) {
+        foreach ([
+            '/\\s+bolsa\\s+\\d+\\s*kg$/iu',
+            '/\\s+saco\\s+\\d+\\s*kg$/iu',
+            '/\\s+\\d+\\s*kg$/iu',
+            '/\\s+\\d{2,4}\\s+[\\p{L}\\s]+$/u',
+            '/\\s+\\d{2,4}$/u',
+        ] as $pattern) {
             $stripped = preg_replace($pattern, '', $current) ?? $current;
             $stripped = trim($stripped);
 
@@ -946,12 +968,20 @@ class ImportProductTechnicalSheets extends Command
         ]);
     }
 
-    private function fetchHtml(string $url): ?string
+    private function fetchHtml(string $url, ?int &$statusCode = null): ?string
     {
         try {
+            $headers = $this->httpHeaders();
+
+            if (str_contains($url, 'mapei.com')) {
+                $headers['Referer'] = 'https://www.mapei.com/';
+            }
+
             $response = Http::timeout(30)
-                ->withHeaders($this->httpHeaders())
+                ->withHeaders($headers)
                 ->get($url);
+
+            $statusCode = $response->status();
 
             if (! $response->successful()) {
                 return null;
@@ -978,6 +1008,18 @@ class ImportProductTechnicalSheets extends Command
         ];
     }
 
+    private function httpHeadersForPdfDownload(?string $brandType = null): array
+    {
+        $headers = $this->httpHeaders();
+        $headers['Accept'] = 'application/pdf,application/octet-stream,*/*';
+
+        if ($brandType === 'mapei' || str_contains(strtolower($brandType ?? ''), 'mapei')) {
+            $headers['Referer'] = 'https://www.mapei.com/';
+        }
+
+        return $headers;
+    }
+
     private function makeAbsoluteUrl(string $url, string $baseUrl): string
     {
         if (str_starts_with($url, 'http://') || str_starts_with($url, 'https://')) {
@@ -1000,8 +1042,9 @@ class ImportProductTechnicalSheets extends Command
     private function downloadAndSavePdf(string $pdfUrl, Product $product, string $sourceTag): ?string
     {
         try {
+            $brandType = $this->resolveBrandType($product);
             $response = Http::timeout(45)
-                ->withHeaders($this->httpHeaders())
+                ->withHeaders($this->httpHeadersForPdfDownload($brandType))
                 ->get($pdfUrl);
 
             if (! $response->successful()) {
