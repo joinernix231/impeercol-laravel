@@ -38,6 +38,8 @@ class ImportProductTechnicalSheets extends Command
         'corona' => ['corona.co', 'corona.com'],
     ];
 
+    private array $mapeiLinePdfCache = [];
+
     public function handle(): int
     {
         $products = $this->getProductsToProcess();
@@ -196,7 +198,10 @@ class ImportProductTechnicalSheets extends Command
 
                 if ($this->option('verbose')) {
                     $this->newLine();
-                    $this->line("  PDF no encontrado: {$product->name} ({$product->brand->name})");
+                    $baseName = $this->resolveBrandType($product) === 'mapei'
+                        ? $this->getPrimaryBaseName($product)
+                        : $product->name;
+                    $this->line("  PDF no encontrado: {$product->name} ({$product->brand->name}) [base: {$baseName}]");
                 }
 
                 usleep(300000);
@@ -303,16 +308,24 @@ class ImportProductTechnicalSheets extends Command
         }
 
         if ($brandType === 'mapei') {
-            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
-                $this->extractPdfUrlsFromPages($this->buildMapeiProductPageUrls($product)),
-                $product,
-                70
-            ));
-            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
-                $this->searchPdfViaWeb($product, ['cdnmedia.mapei.com'], 'Mapei'),
-                $product,
-                65
-            ));
+            $cachedUrl = $this->getCachedMapeiLinePdf($product);
+
+            if ($cachedUrl) {
+                return $cachedUrl;
+            }
+
+            $candidates = array_merge($candidates, $this->searchMapeiCandidates($product));
+
+            $mapeiCandidates = $this->searchMapeiCandidates($product);
+            $mapeiMatch = $this->pickBestScoredCandidate($mapeiCandidates);
+
+            if ($mapeiMatch) {
+                $this->cacheMapeiLinePdf($product, $mapeiMatch);
+
+                return $mapeiMatch;
+            }
+
+            $candidates = array_merge($candidates, $mapeiCandidates);
         }
 
         $domains = $this->resolveSearchDomains($product, $brandType);
@@ -508,16 +521,115 @@ class ImportProductTechnicalSheets extends Command
         ]);
     }
 
-    private function buildMapeiProductPageUrls(Product $product): array
+    private function searchMapeiCandidates(Product $product): array
     {
-        $slug = $this->buildProductSlug($product->name);
+        $candidates = [];
+
+        foreach ($this->deriveProductNameVariants($product->name) as $variantName) {
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->extractPdfUrlsFromPages($this->buildMapeiProductPageUrls($variantName)),
+                $product,
+                70
+            ));
+
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->searchPdfViaWeb($product, ['cdnmedia.mapei.com'], 'Mapei', [$variantName]),
+                $product,
+                68
+            ));
+
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->searchPdfViaWeb($product, ['mapei.com'], 'Mapei', [$variantName]),
+                $product,
+                65
+            ));
+
+            if ($this->pickBestScoredCandidate($candidates)) {
+                break;
+            }
+        }
+
+        return $candidates;
+    }
+
+    private function buildMapeiProductPageUrls(string $productName): array
+    {
+        $slug = $this->buildProductSlug($productName);
         $baseUrl = $this->baseUrls['mapei'];
 
         return array_unique([
             "{$baseUrl}/co/es-co/productos/{$slug}",
             "{$baseUrl}/co/es-co/productos/{$slug}.html",
-            "{$baseUrl}/co/es-co/search?q=".urlencode($product->name),
+            "{$baseUrl}/co/es-co/productos/".str_replace('-', '', $slug),
         ]);
+    }
+
+    private function deriveProductNameVariants(string $name): array
+    {
+        $clean = $this->cleanProductName($name);
+        $variants = [$clean];
+        $current = $clean;
+
+        $colors = [
+            'gris cemento', 'gris perla', 'gris', 'blanco', 'negro', 'beige', 'rojo', 'azul',
+            'marfil', 'antracita', 'terracota', 'cemento', 'marron', 'verde', 'amarillo',
+            'perla', 'natural', 'transparente', 'incoloro',
+        ];
+
+        usort($colors, fn ($a, $b) => strlen($b) <=> strlen($a));
+
+        foreach ($colors as $color) {
+            $stripped = preg_replace('/\s+'.preg_quote($color, '/').'$/iu', '', $current) ?? $current;
+            $stripped = trim($stripped);
+
+            if ($stripped !== '' && $stripped !== $current) {
+                $variants[] = $stripped;
+                $current = $stripped;
+            }
+        }
+
+        foreach (['/\\s+\\d{2,4}\\s+[\\p{L}\\s]+$/u', '/\\s+\\d{2,4}$/u'] as $pattern) {
+            $stripped = preg_replace($pattern, '', $current) ?? $current;
+            $stripped = trim($stripped);
+
+            if ($stripped !== '' && $stripped !== $current) {
+                $variants[] = $stripped;
+                $current = $stripped;
+            }
+        }
+
+        $words = preg_split('/\s+/', $current) ?: [];
+
+        while (count($words) > 2) {
+            array_pop($words);
+            $shortName = trim(implode(' ', $words));
+
+            if ($shortName !== '') {
+                $variants[] = $shortName;
+            }
+        }
+
+        return array_values(array_unique(array_filter($variants)));
+    }
+
+    private function getPrimaryBaseName(Product $product): string
+    {
+        $variants = $this->deriveProductNameVariants($product->name);
+
+        return end($variants) ?: $this->cleanProductName($product->name);
+    }
+
+    private function getCachedMapeiLinePdf(Product $product): ?string
+    {
+        $key = $this->normalizeString($this->getPrimaryBaseName($product));
+
+        return $this->mapeiLinePdfCache[$key] ?? null;
+    }
+
+    private function cacheMapeiLinePdf(Product $product, string $url): void
+    {
+        $key = $this->normalizeString($this->getPrimaryBaseName($product));
+        $this->mapeiLinePdfCache[$key] = $url;
     }
 
     private function probeSikaDirectPdfUrls(Product $product): array
@@ -574,10 +686,11 @@ class ImportProductTechnicalSheets extends Command
         $urls = [];
 
         preg_match_all('/https?:\/\/[^\s"\'<>]+\.pdf[^\s"\'<>]*/i', $text, $absoluteMatches);
+        preg_match_all('#https://cdnmedia\.mapei\.com[^"\s<>]+\.pdf[^"\s<>]*#i', $text, $mapeiMatches);
         preg_match_all('/(?:href|src)=["\']([^"\']+\.pdf[^"\']*)["\']/i', $text, $attributeMatches);
         preg_match_all('/uddg=([^&"\']+)/i', $text, $duckMatches);
 
-        foreach (array_merge($absoluteMatches[0] ?? [], $attributeMatches[1] ?? []) as $match) {
+        foreach (array_merge($absoluteMatches[0] ?? [], $mapeiMatches[0] ?? [], $attributeMatches[1] ?? []) as $match) {
             $urls[] = $this->makeAbsoluteUrl(html_entity_decode($match), $baseUrl);
         }
 
@@ -591,20 +704,23 @@ class ImportProductTechnicalSheets extends Command
         return array_values(array_unique(array_filter($urls)));
     }
 
-    private function searchPdfViaWeb(Product $product, array $domains, ?string $brandName = null): array
+    private function searchPdfViaWeb(Product $product, array $domains, ?string $brandName = null, ?array $nameVariants = null): array
     {
         $queries = [];
-        $cleanName = $this->cleanProductName($product->name);
+        $searchNames = $nameVariants ?: $this->deriveProductNameVariants($product->name);
         $brand = $brandName ?: ($product->brand->name ?? '');
 
-        if (! empty($domains)) {
-            foreach ($domains as $domain) {
-                $queries[] = "site:{$domain} filetype:pdf \"{$cleanName}\"";
+        foreach ($searchNames as $searchName) {
+            if (! empty($domains)) {
+                foreach ($domains as $domain) {
+                    $queries[] = "site:{$domain} filetype:pdf \"{$searchName}\"";
+                    $queries[] = "site:{$domain} {$searchName} filetype:pdf";
+                }
             }
-        }
 
-        $queries[] = "\"{$brand}\" \"{$cleanName}\" ficha tecnica filetype:pdf";
-        $queries[] = "\"{$cleanName}\" ficha tecnica filetype:pdf";
+            $queries[] = "\"{$brand}\" \"{$searchName}\" ficha tecnica filetype:pdf";
+            $queries[] = "\"{$searchName}\" ficha tecnica filetype:pdf";
+        }
 
         $found = [];
 
@@ -635,21 +751,28 @@ class ImportProductTechnicalSheets extends Command
     private function scorePdfUrl(string $url, Product $product): float
     {
         $urlNorm = $this->normalizeString(urldecode(basename(parse_url($url, PHP_URL_PATH) ?? '')));
-        $nameNorm = $this->normalizeString($this->cleanProductName($product->name));
         $slugNorm = $this->normalizeString($product->slug);
         $score = 0.0;
 
-        if ($urlNorm === $nameNorm || $urlNorm === $slugNorm) {
-            return 100.0;
+        foreach ($this->deriveProductNameVariants($product->name) as $variantName) {
+            $nameNorm = $this->normalizeString($variantName);
+
+            if ($urlNorm === $nameNorm) {
+                $score = max($score, 100.0);
+                continue;
+            }
+
+            if ($nameNorm !== '' && (str_contains($urlNorm, $nameNorm) || str_contains($nameNorm, $urlNorm))) {
+                $score = max($score, 90.0);
+                continue;
+            }
+
+            similar_text($urlNorm, $nameNorm, $namePercent);
+            $score = max($score, (float) $namePercent);
         }
 
-        if ($nameNorm !== '' && (str_contains($urlNorm, $nameNorm) || str_contains($nameNorm, $urlNorm))) {
-            $score = 90.0;
-        } else {
-            similar_text($urlNorm, $nameNorm, $namePercent);
-            similar_text($urlNorm, $slugNorm, $slugPercent);
-            $score = max((float) $namePercent, (float) $slugPercent);
-        }
+        similar_text($urlNorm, $slugNorm, $slugPercent);
+        $score = max($score, (float) $slugPercent);
 
         $urlLower = strtolower($url);
 
