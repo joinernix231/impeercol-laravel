@@ -289,7 +289,7 @@ class ImportProductTechnicalSheets extends Command
     {
         $candidates = [];
 
-        foreach ($this->buildSearchQueries($product) as $query) {
+        foreach ($this->buildSearchQueries($product, 'sika') as $query) {
             try {
                 $response = Http::timeout(20)
                     ->withHeaders($this->httpHeaders())
@@ -353,16 +353,26 @@ class ImportProductTechnicalSheets extends Command
         ];
     }
 
-    private function buildSearchQueries(Product $product): array
+    private function buildSearchQueries(Product $product, ?string $brandType = null): array
     {
         $cleanName = $this->cleanProductName($product->name);
-        $queries = [$cleanName];
+        $queries = [
+            $cleanName,
+            "{$cleanName} hoja producto",
+            "{$cleanName} ficha tecnica",
+        ];
+
+        if ($brandType === 'sika' && ! preg_match('/^sika\b/i', $cleanName)) {
+            $queries[] = "Sika {$cleanName}";
+        }
 
         $withoutBrand = preg_replace('/^sika[\s®™-]*/i', '', $cleanName) ?? $cleanName;
         $withoutBrand = trim($withoutBrand);
 
         if ($withoutBrand !== '' && $withoutBrand !== $cleanName) {
             $queries[] = $withoutBrand;
+            $queries[] = "Sika {$withoutBrand}";
+            $queries[] = "{$withoutBrand} hoja producto";
         }
 
         $parts = preg_split('/\s+/', $cleanName) ?: [];
