@@ -238,23 +238,204 @@ class ImportProductTechnicalSheets extends Command
         $candidates = [];
 
         if ($brandType === 'sika') {
-            $candidates = array_merge($candidates, $this->probeSikaDirectPdfUrls($product));
-            $candidates = array_merge($candidates, $this->extractPdfUrlsFromPages($this->buildSikaProductPageUrls($product)));
+            $typeaheadCandidates = $this->searchSikaViaTypeahead($product);
+            $typeaheadMatch = $this->pickBestScoredCandidate($typeaheadCandidates);
+
+            if ($typeaheadMatch) {
+                return $typeaheadMatch;
+            }
+
+            $candidates = array_merge($candidates, $typeaheadCandidates);
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->probeSikaDirectPdfUrls($product),
+                $product,
+                75
+            ));
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->extractPdfUrlsFromPages($this->buildSikaProductPageUrls($product)),
+                $product,
+                60
+            ));
         }
 
         if ($brandType === 'mapei') {
-            $candidates = array_merge($candidates, $this->extractPdfUrlsFromPages($this->buildMapeiProductPageUrls($product)));
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->extractPdfUrlsFromPages($this->buildMapeiProductPageUrls($product)),
+                $product,
+                70
+            ));
         }
 
         $domains = $brandType ? ($this->searchDomains[$brandType] ?? []) : [];
-        $candidates = array_merge($candidates, $this->searchPdfViaWeb($product, $domains));
+        $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+            $this->searchPdfViaWeb($product, $domains),
+            $product,
+            50
+        ));
 
         if (empty($domains)) {
             $brandName = $product->brand->name ?? '';
-            $candidates = array_merge($candidates, $this->searchPdfViaWeb($product, [], $brandName));
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->searchPdfViaWeb($product, [], $brandName),
+                $product,
+                45
+            ));
         }
 
-        return $this->pickBestPdfCandidate($candidates, $product);
+        return $this->pickBestScoredCandidate($candidates);
+    }
+
+    private function searchSikaViaTypeahead(Product $product): array
+    {
+        $candidates = [];
+
+        foreach ($this->buildSearchQueries($product) as $query) {
+            try {
+                $response = Http::timeout(20)
+                    ->withHeaders($this->httpHeaders())
+                    ->get('https://col.sika.com/content/co/main/es/serp/_jcr_content.typeahead.json', [
+                        'q' => $query,
+                        'language' => 'es',
+                    ]);
+
+                if (! $response->successful()) {
+                    continue;
+                }
+
+                $data = $response->json();
+
+                foreach ($data['topResults'] ?? [] as $result) {
+                    $candidate = $this->parseSikaTypeaheadResult($result, $product);
+
+                    if ($candidate) {
+                        $candidates[] = $candidate;
+                    }
+                }
+            } catch (\Throwable) {
+                continue;
+            }
+
+            if (! empty($candidates)) {
+                break;
+            }
+        }
+
+        return $candidates;
+    }
+
+    private function parseSikaTypeaheadResult(array $result, Product $product): ?array
+    {
+        $link = $result['link'] ?? '';
+        $description = html_entity_decode(strip_tags($result['description'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $title = html_entity_decode(strip_tags($result['title'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $linkLower = strtolower($link);
+        $descLower = strtolower($description);
+
+        if (! $this->looksLikePdfUrl($link)) {
+            return null;
+        }
+
+        if ($this->isSafetyDataSheet($linkLower, $descLower)) {
+            return null;
+        }
+
+        $score = $this->scoreTitleMatch($title, $product) + 20;
+
+        if (str_contains($descLower, 'hoja de datos del producto')
+            || str_contains($descLower, 'product data sheet')
+            || str_contains($descLower, 'ficha tecnica')) {
+            $score += 30;
+        }
+
+        return [
+            'url' => $link,
+            'score' => min($score, 100),
+        ];
+    }
+
+    private function buildSearchQueries(Product $product): array
+    {
+        $cleanName = $this->cleanProductName($product->name);
+        $queries = [$cleanName];
+
+        $withoutBrand = preg_replace('/^sika[\s®™-]*/i', '', $cleanName) ?? $cleanName;
+        $withoutBrand = trim($withoutBrand);
+
+        if ($withoutBrand !== '' && $withoutBrand !== $cleanName) {
+            $queries[] = $withoutBrand;
+        }
+
+        $parts = preg_split('/\s+/', $cleanName) ?: [];
+        if (count($parts) >= 2) {
+            $queries[] = implode(' ', array_slice($parts, 0, 2));
+        }
+
+        return array_values(array_unique(array_filter($queries)));
+    }
+
+    private function isSafetyDataSheet(string $linkLower, string $descLower): bool
+    {
+        foreach (['seguridad', 'safety data', 'co-hs_', '/sds', 'msds', 'hoja de datos de seguridad'] as $marker) {
+            if (str_contains($linkLower, $marker) || str_contains($descLower, $marker)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function scoreTitleMatch(string $title, Product $product): float
+    {
+        $titleNorm = $this->normalizeString($this->cleanProductName($title));
+        $nameNorm = $this->normalizeString($this->cleanProductName($product->name));
+
+        if ($titleNorm === $nameNorm) {
+            return 100.0;
+        }
+
+        if ($nameNorm !== '' && (str_contains($titleNorm, $nameNorm) || str_contains($nameNorm, $titleNorm))) {
+            return 90.0;
+        }
+
+        similar_text($titleNorm, $nameNorm, $percent);
+
+        return (float) $percent;
+    }
+
+    private function mapUrlsToCandidates(array $urls, Product $product, float $baseScore): array
+    {
+        return array_map(function (string $url) use ($product, $baseScore) {
+            return [
+                'url' => $url,
+                'score' => max($baseScore, $this->scorePdfUrl($url, $product)),
+            ];
+        }, $urls);
+    }
+
+    private function pickBestScoredCandidate(array $candidates): ?string
+    {
+        $bestUrl = null;
+        $bestScore = 0.0;
+
+        foreach ($candidates as $candidate) {
+            $url = $candidate['url'] ?? null;
+            $score = (float) ($candidate['score'] ?? 0);
+
+            if (! $url || ! $this->looksLikePdfUrl($url)) {
+                continue;
+            }
+
+            if ($score > $bestScore) {
+                $bestScore = $score;
+                $bestUrl = $url;
+            }
+        }
+
+        if ($bestScore < 40) {
+            return null;
+        }
+
+        return $bestUrl;
     }
 
     private function buildSikaProductPageUrls(Product $product): array
@@ -263,9 +444,8 @@ class ImportProductTechnicalSheets extends Command
         $baseUrl = $this->baseUrls['sika'];
 
         return array_unique([
-            "{$baseUrl}/es/productos/{$slug}.html",
-            "{$baseUrl}/es/productos/{$slug}",
-            "{$baseUrl}/es/search.html?search=".urlencode($product->name),
+            "{$baseUrl}/es/products/{$slug}.html",
+            "{$baseUrl}/es/products/{$slug}",
         ]);
     }
 
@@ -283,22 +463,30 @@ class ImportProductTechnicalSheets extends Command
 
     private function probeSikaDirectPdfUrls(Product $product): array
     {
-        $slug = $this->buildProductSlug($product->name);
-        $folders = array_unique([
-            substr($slug, 0, 1),
-            strtolower(substr($product->name, 0, 1)),
-        ]);
+        $slugs = array_unique(array_filter([
+            $this->buildProductSlug($product->name),
+            $this->buildProductSlug(preg_replace('/^sika[\s®™-]*/i', '', $this->cleanProductName($product->name)) ?? ''),
+        ]));
+
+        $folders = array_merge(
+            range('0', '9'),
+            range('a', 'z')
+        );
 
         $candidates = [];
 
-        foreach ($folders as $folder) {
-            if ($folder === '') {
+        foreach ($slugs as $slug) {
+            if ($slug === '') {
                 continue;
             }
 
-            $url = "https://col.sika.com/dam/dms/co01/{$folder}/{$slug}.pdf";
-            if ($this->urlReturnsPdf($url)) {
-                $candidates[] = $url;
+            foreach ($folders as $folder) {
+                $url = "https://col.sika.com/dam/dms/co01/{$folder}/{$slug}.pdf";
+
+                if ($this->urlReturnsPdf($url)) {
+                    $candidates[] = $url;
+                    break 2;
+                }
             }
         }
 
@@ -362,7 +550,6 @@ class ImportProductTechnicalSheets extends Command
         $found = [];
 
         foreach (array_unique($queries) as $query) {
-            $found = array_merge($found, $this->searchDuckDuckGo($query));
             $found = array_merge($found, $this->searchBing($query));
 
             if (! empty($found)) {
@@ -375,17 +562,6 @@ class ImportProductTechnicalSheets extends Command
         return array_unique($found);
     }
 
-    private function searchDuckDuckGo(string $query): array
-    {
-        $html = $this->fetchHtml('https://html.duckduckgo.com/html/?q='.urlencode($query));
-
-        if (! $html) {
-            return [];
-        }
-
-        return $this->extractPdfUrlsFromText($html, 'https://duckduckgo.com');
-    }
-
     private function searchBing(string $query): array
     {
         $html = $this->fetchHtml('https://www.bing.com/search?q='.urlencode($query));
@@ -395,31 +571,6 @@ class ImportProductTechnicalSheets extends Command
         }
 
         return $this->extractPdfUrlsFromText($html, 'https://www.bing.com');
-    }
-
-    private function pickBestPdfCandidate(array $urls, Product $product): ?string
-    {
-        $bestUrl = null;
-        $bestScore = 0.0;
-
-        foreach (array_unique($urls) as $url) {
-            if (! $this->looksLikePdfUrl($url)) {
-                continue;
-            }
-
-            $score = $this->scorePdfUrl($url, $product);
-
-            if ($score > $bestScore) {
-                $bestScore = $score;
-                $bestUrl = $url;
-            }
-        }
-
-        if ($bestScore < 35) {
-            return null;
-        }
-
-        return $bestUrl;
     }
 
     private function scorePdfUrl(string $url, Product $product): float
