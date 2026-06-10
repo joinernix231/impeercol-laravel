@@ -15,19 +15,26 @@ use Illuminate\Support\Str;
 class ImportProductTechnicalSheets extends Command
 {
     protected $signature = 'products:import-technical-sheets
-                            {--source= : Carpeta con PDFs locales (default: storage/app/imports/technical-sheets)}
-                            {--from-web : Descargar fichas desde sitios oficiales de Mapei y Sika}
+                            {--from-folder : Importar desde carpeta local en lugar de buscar en internet}
+                            {--source= : Carpeta con PDFs locales (solo con --from-folder)}
                             {--brand= : Filtrar por marca (mapei, sika, metic, corona)}
                             {--limit= : Limitar cantidad de productos a procesar}
                             {--threshold=70 : Puntaje minimo (0-100) para emparejar PDF local con producto}
                             {--force : Reemplazar fichas tecnicas ya asignadas}
                             {--dry-run : Mostrar acciones sin guardar cambios}';
 
-    protected $description = 'Importa fichas tecnicas PDF para productos sin ficha (carpeta local o sitios Mapei/Sika)';
+    protected $description = 'Busca e importa fichas tecnicas PDF desde internet para productos sin ficha';
 
     private array $baseUrls = [
         'mapei' => 'https://www.mapei.com',
         'sika' => 'https://col.sika.com',
+    ];
+
+    private array $searchDomains = [
+        'mapei' => ['cdnmedia.mapei.com', 'mapei.com'],
+        'sika' => ['col.sika.com'],
+        'metic' => ['metic.com.co', 'metic.com'],
+        'corona' => ['corona.co', 'corona.com'],
     ];
 
     public function handle(): int
@@ -46,11 +53,13 @@ class ImportProductTechnicalSheets extends Command
             $this->warn('Modo dry-run: no se guardaran archivos ni cambios en BD.');
         }
 
-        if ($this->option('from-web')) {
-            return $this->importFromWeb($products);
+        if ($this->option('from-folder')) {
+            return $this->importFromLocalFolder($products);
         }
 
-        return $this->importFromLocalFolder($products);
+        $this->info('Buscando fichas tecnicas en internet...');
+
+        return $this->importFromWeb($products);
     }
 
     private function getProductsToProcess(): Collection
@@ -87,7 +96,7 @@ class ImportProductTechnicalSheets extends Command
         if (! File::isDirectory($source)) {
             File::makeDirectory($source, 0755, true);
             $this->warn("Se creo la carpeta de importacion: {$source}");
-            $this->line('Coloca los PDFs ahi y vuelve a ejecutar el comando.');
+            $this->line('Coloca los PDFs ahi y vuelve a ejecutar el comando con --from-folder.');
 
             return Command::SUCCESS;
         }
@@ -172,26 +181,6 @@ class ImportProductTechnicalSheets extends Command
             $progressBar->advance();
 
             $brandType = $this->resolveBrandType($product);
-
-            if (! $brandType) {
-                $skippedCount++;
-
-                if ($this->option('verbose')) {
-                    $this->newLine();
-                    $this->line("  Marca no soportada para web: {$product->name}");
-                }
-
-                continue;
-            }
-
-            if ($this->option('dry-run')) {
-                $successCount++;
-                $this->newLine();
-                $this->line("  [dry-run] {$product->name} ({$brandType})");
-
-                continue;
-            }
-
             $pdfUrl = $this->searchTechnicalSheetUrl($product, $brandType);
 
             if (! $pdfUrl) {
@@ -202,13 +191,31 @@ class ImportProductTechnicalSheets extends Command
                     $this->line("  PDF no encontrado: {$product->name}");
                 }
 
+                usleep(300000);
                 continue;
             }
 
-            $savedPath = $this->downloadAndSavePdf($pdfUrl, $product, $brandType);
+            if ($this->option('dry-run')) {
+                $successCount++;
+                $this->newLine();
+                $this->line("  [dry-run] {$product->name}");
+                $this->line("            -> {$pdfUrl}");
+
+                usleep(300000);
+                continue;
+            }
+
+            $savedPath = $this->downloadAndSavePdf($pdfUrl, $product, $brandType ?? 'web');
 
             if (! $savedPath) {
                 $failedCount++;
+
+                if ($this->option('verbose')) {
+                    $this->newLine();
+                    $this->line("  Error al descargar: {$product->name}");
+                }
+
+                usleep(300000);
                 continue;
             }
 
@@ -224,6 +231,273 @@ class ImportProductTechnicalSheets extends Command
         $this->printSummary($successCount, $failedCount, $skippedCount, $products->count());
 
         return Command::SUCCESS;
+    }
+
+    private function searchTechnicalSheetUrl(Product $product, ?string $brandType): ?string
+    {
+        $candidates = [];
+
+        if ($brandType === 'sika') {
+            $candidates = array_merge($candidates, $this->probeSikaDirectPdfUrls($product));
+            $candidates = array_merge($candidates, $this->extractPdfUrlsFromPages($this->buildSikaProductPageUrls($product)));
+        }
+
+        if ($brandType === 'mapei') {
+            $candidates = array_merge($candidates, $this->extractPdfUrlsFromPages($this->buildMapeiProductPageUrls($product)));
+        }
+
+        $domains = $brandType ? ($this->searchDomains[$brandType] ?? []) : [];
+        $candidates = array_merge($candidates, $this->searchPdfViaWeb($product, $domains));
+
+        if (empty($domains)) {
+            $brandName = $product->brand->name ?? '';
+            $candidates = array_merge($candidates, $this->searchPdfViaWeb($product, [], $brandName));
+        }
+
+        return $this->pickBestPdfCandidate($candidates, $product);
+    }
+
+    private function buildSikaProductPageUrls(Product $product): array
+    {
+        $slug = $this->buildProductSlug($product->name);
+        $baseUrl = $this->baseUrls['sika'];
+
+        return array_unique([
+            "{$baseUrl}/es/productos/{$slug}.html",
+            "{$baseUrl}/es/productos/{$slug}",
+            "{$baseUrl}/es/search.html?search=".urlencode($product->name),
+        ]);
+    }
+
+    private function buildMapeiProductPageUrls(Product $product): array
+    {
+        $slug = $this->buildProductSlug($product->name);
+        $baseUrl = $this->baseUrls['mapei'];
+
+        return array_unique([
+            "{$baseUrl}/co/es-co/productos/{$slug}",
+            "{$baseUrl}/co/es-co/productos/{$slug}.html",
+            "{$baseUrl}/co/es-co/search?q=".urlencode($product->name),
+        ]);
+    }
+
+    private function probeSikaDirectPdfUrls(Product $product): array
+    {
+        $slug = $this->buildProductSlug($product->name);
+        $folders = array_unique([
+            substr($slug, 0, 1),
+            strtolower(substr($product->name, 0, 1)),
+        ]);
+
+        $candidates = [];
+
+        foreach ($folders as $folder) {
+            if ($folder === '') {
+                continue;
+            }
+
+            $url = "https://col.sika.com/dam/dms/co01/{$folder}/{$slug}.pdf";
+            if ($this->urlReturnsPdf($url)) {
+                $candidates[] = $url;
+            }
+        }
+
+        return $candidates;
+    }
+
+    private function extractPdfUrlsFromPages(array $urls): array
+    {
+        $found = [];
+
+        foreach ($urls as $url) {
+            $html = $this->fetchHtml($url);
+
+            if (! $html) {
+                continue;
+            }
+
+            $found = array_merge($found, $this->extractPdfUrlsFromText($html, $url));
+        }
+
+        return array_unique($found);
+    }
+
+    private function extractPdfUrlsFromText(string $text, string $baseUrl): array
+    {
+        $urls = [];
+
+        preg_match_all('/https?:\/\/[^\s"\'<>]+\.pdf[^\s"\'<>]*/i', $text, $absoluteMatches);
+        preg_match_all('/(?:href|src)=["\']([^"\']+\.pdf[^"\']*)["\']/i', $text, $attributeMatches);
+        preg_match_all('/uddg=([^&"\']+)/i', $text, $duckMatches);
+
+        foreach (array_merge($absoluteMatches[0] ?? [], $attributeMatches[1] ?? []) as $match) {
+            $urls[] = $this->makeAbsoluteUrl(html_entity_decode($match), $baseUrl);
+        }
+
+        foreach ($duckMatches[1] ?? [] as $encodedUrl) {
+            $decoded = urldecode($encodedUrl);
+            if (str_contains(strtolower($decoded), '.pdf')) {
+                $urls[] = $decoded;
+            }
+        }
+
+        return array_values(array_unique(array_filter($urls)));
+    }
+
+    private function searchPdfViaWeb(Product $product, array $domains, ?string $brandName = null): array
+    {
+        $queries = [];
+        $cleanName = $this->cleanProductName($product->name);
+        $brand = $brandName ?: ($product->brand->name ?? '');
+
+        if (! empty($domains)) {
+            foreach ($domains as $domain) {
+                $queries[] = "site:{$domain} filetype:pdf \"{$cleanName}\"";
+            }
+        }
+
+        $queries[] = "\"{$brand}\" \"{$cleanName}\" ficha tecnica filetype:pdf";
+        $queries[] = "\"{$cleanName}\" ficha tecnica filetype:pdf";
+
+        $found = [];
+
+        foreach (array_unique($queries) as $query) {
+            $found = array_merge($found, $this->searchDuckDuckGo($query));
+            $found = array_merge($found, $this->searchBing($query));
+
+            if (! empty($found)) {
+                break;
+            }
+
+            usleep(250000);
+        }
+
+        return array_unique($found);
+    }
+
+    private function searchDuckDuckGo(string $query): array
+    {
+        $html = $this->fetchHtml('https://html.duckduckgo.com/html/?q='.urlencode($query));
+
+        if (! $html) {
+            return [];
+        }
+
+        return $this->extractPdfUrlsFromText($html, 'https://duckduckgo.com');
+    }
+
+    private function searchBing(string $query): array
+    {
+        $html = $this->fetchHtml('https://www.bing.com/search?q='.urlencode($query));
+
+        if (! $html) {
+            return [];
+        }
+
+        return $this->extractPdfUrlsFromText($html, 'https://www.bing.com');
+    }
+
+    private function pickBestPdfCandidate(array $urls, Product $product): ?string
+    {
+        $bestUrl = null;
+        $bestScore = 0.0;
+
+        foreach (array_unique($urls) as $url) {
+            if (! $this->looksLikePdfUrl($url)) {
+                continue;
+            }
+
+            $score = $this->scorePdfUrl($url, $product);
+
+            if ($score > $bestScore) {
+                $bestScore = $score;
+                $bestUrl = $url;
+            }
+        }
+
+        if ($bestScore < 35) {
+            return null;
+        }
+
+        return $bestUrl;
+    }
+
+    private function scorePdfUrl(string $url, Product $product): float
+    {
+        $urlNorm = $this->normalizeString(urldecode(basename(parse_url($url, PHP_URL_PATH) ?? '')));
+        $nameNorm = $this->normalizeString($this->cleanProductName($product->name));
+        $slugNorm = $this->normalizeString($product->slug);
+        $score = 0.0;
+
+        if ($urlNorm === $nameNorm || $urlNorm === $slugNorm) {
+            return 100.0;
+        }
+
+        if ($nameNorm !== '' && (str_contains($urlNorm, $nameNorm) || str_contains($nameNorm, $urlNorm))) {
+            $score = 90.0;
+        } else {
+            similar_text($urlNorm, $nameNorm, $namePercent);
+            similar_text($urlNorm, $slugNorm, $slugPercent);
+            $score = max((float) $namePercent, (float) $slugPercent);
+        }
+
+        $urlLower = strtolower($url);
+
+        foreach (['col.sika.com', 'cdnmedia.mapei.com', 'mapei.com', 'metic', 'corona'] as $trustedHost) {
+            if (str_contains($urlLower, $trustedHost)) {
+                $score += 10;
+                break;
+            }
+        }
+
+        foreach (['ficha', 'tecnica', 'technical', 'datasheet', 'hoja', 'tds', 'pds'] as $keyword) {
+            if (str_contains($urlLower, $keyword)) {
+                $score += 5;
+            }
+        }
+
+        return min($score, 100.0);
+    }
+
+    private function urlReturnsPdf(string $url): bool
+    {
+        try {
+            $response = Http::timeout(15)
+                ->withHeaders($this->httpHeaders())
+                ->head($url);
+
+            if (! $response->successful()) {
+                return false;
+            }
+
+            $contentType = strtolower($response->header('Content-Type') ?? '');
+
+            return str_contains($contentType, 'pdf');
+        } catch (\Throwable) {
+            return false;
+        }
+    }
+
+    private function looksLikePdfUrl(string $url): bool
+    {
+        $lower = strtolower($url);
+
+        return str_contains($lower, '.pdf') || str_contains($lower, 'getdocument.get');
+    }
+
+    private function buildProductSlug(string $name): string
+    {
+        $clean = $this->cleanProductName($name);
+
+        return Str::slug($clean);
+    }
+
+    private function cleanProductName(string $name): string
+    {
+        $name = str_replace(['®', '™', '©'], '', $name);
+        $name = preg_replace('/\s+/', ' ', trim($name)) ?? $name;
+
+        return $name;
     }
 
     private function findBestPdfMatch(Product $product, Collection $pdfFiles, array $usedPdfPaths, float $threshold): ?array
@@ -291,16 +565,7 @@ class ImportProductTechnicalSheets extends Command
                 return null;
             }
 
-            $year = date('Y');
-            $month = date('m');
-            $fileName = Str::slug($product->name).'_'.time().'_'.Str::random(6).'.pdf';
-            $path = "products/documents/{$year}/{$month}/{$fileName}";
-
-            if (! Storage::disk('public')->put($path, $content)) {
-                return null;
-            }
-
-            return $path;
+            return $this->storePdfContent($content, $product, 'local');
         } catch (\Throwable) {
             return null;
         }
@@ -318,41 +583,12 @@ class ImportProductTechnicalSheets extends Command
             return 'sika';
         }
 
-        return null;
-    }
-
-    private function searchTechnicalSheetUrl(Product $product, string $brandType): ?string
-    {
-        $searchUrl = $this->buildSearchUrl($product, $brandType);
-
-        if (! $searchUrl) {
-            return null;
+        if (str_contains($brandName, 'metic')) {
+            return 'metic';
         }
 
-        $html = $this->fetchHtml($searchUrl);
-
-        if (! $html) {
-            return null;
-        }
-
-        return $this->extractPdfUrlFromHtml($html, $this->baseUrls[$brandType]);
-    }
-
-    private function buildSearchUrl(Product $product, string $brandType): ?string
-    {
-        $productName = $product->name;
-        $baseUrl = $this->baseUrls[$brandType];
-
-        if ($brandType === 'mapei') {
-            $slug = Str::slug($productName);
-
-            return "{$baseUrl}/co/es-co/productos/{$slug}";
-        }
-
-        if ($brandType === 'sika') {
-            $searchQuery = urlencode($productName);
-
-            return "{$baseUrl}/search?q={$searchQuery}";
+        if (str_contains($brandName, 'corona')) {
+            return 'corona';
         }
 
         return null;
@@ -362,79 +598,32 @@ class ImportProductTechnicalSheets extends Command
     {
         try {
             $response = Http::timeout(30)
-                ->withHeaders([
-                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                    'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                    'Accept-Language' => 'es-ES,es;q=0.9,en;q=0.8',
-                ])
+                ->withHeaders($this->httpHeaders())
                 ->get($url);
 
             if (! $response->successful()) {
                 return null;
             }
 
-            return $response->body();
+            $body = $response->body();
+
+            if (str_contains(strtolower($body), 'you have been blocked')) {
+                return null;
+            }
+
+            return $body;
         } catch (\Throwable) {
             return null;
         }
     }
 
-    private function extractPdfUrlFromHtml(string $html, string $baseUrl): ?string
+    private function httpHeaders(): array
     {
-        try {
-            libxml_use_internal_errors(true);
-
-            $dom = new DOMDocument();
-            @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
-
-            $xpath = new DOMXPath($dom);
-            $nodes = $xpath->query('//a[@href]');
-
-            $candidates = [];
-
-            foreach ($nodes as $node) {
-                if (! $node instanceof \DOMElement) {
-                    continue;
-                }
-
-                $href = trim($node->getAttribute('href'));
-                $text = strtolower(trim($node->textContent));
-
-                if ($href === '') {
-                    continue;
-                }
-
-                $absoluteUrl = $this->makeAbsoluteUrl($href, $baseUrl);
-                $urlLower = strtolower($absoluteUrl);
-
-                if (! str_contains($urlLower, '.pdf')) {
-                    continue;
-                }
-
-                $score = 10;
-
-                foreach (['ficha', 'tecnica', 'technical', 'datasheet', 'data-sheet', 'hoja', 'tds', 'ft_'] as $keyword) {
-                    if (str_contains($urlLower, $keyword) || str_contains($text, $keyword)) {
-                        $score += 20;
-                    }
-                }
-
-                $candidates[] = [
-                    'url' => $absoluteUrl,
-                    'score' => $score,
-                ];
-            }
-
-            if (empty($candidates)) {
-                return null;
-            }
-
-            usort($candidates, fn ($a, $b) => $b['score'] <=> $a['score']);
-
-            return $candidates[0]['url'];
-        } catch (\Throwable) {
-            return null;
-        }
+        return [
+            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language' => 'es-CO,es;q=0.9,en;q=0.8',
+        ];
     }
 
     private function makeAbsoluteUrl(string $url, string $baseUrl): string
@@ -456,13 +645,11 @@ class ImportProductTechnicalSheets extends Command
         return rtrim($baseUrl, '/').'/'.ltrim($url, '/');
     }
 
-    private function downloadAndSavePdf(string $pdfUrl, Product $product, string $brandType): ?string
+    private function downloadAndSavePdf(string $pdfUrl, Product $product, string $sourceTag): ?string
     {
         try {
             $response = Http::timeout(45)
-                ->withHeaders([
-                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                ])
+                ->withHeaders($this->httpHeaders())
                 ->get($pdfUrl);
 
             if (! $response->successful()) {
@@ -475,19 +662,24 @@ class ImportProductTechnicalSheets extends Command
                 return null;
             }
 
-            $year = date('Y');
-            $month = date('m');
-            $fileName = Str::slug($product->name)."_{$brandType}_".time().'_'.Str::random(6).'.pdf';
-            $path = "products/documents/{$year}/{$month}/{$fileName}";
-
-            if (! Storage::disk('public')->put($path, $content)) {
-                return null;
-            }
-
-            return $path;
+            return $this->storePdfContent($content, $product, $sourceTag);
         } catch (\Throwable) {
             return null;
         }
+    }
+
+    private function storePdfContent(string $content, Product $product, string $sourceTag): ?string
+    {
+        $year = date('Y');
+        $month = date('m');
+        $fileName = Str::slug($this->cleanProductName($product->name))."_{$sourceTag}_".time().'_'.Str::random(6).'.pdf';
+        $path = "products/documents/{$year}/{$month}/{$fileName}";
+
+        if (! Storage::disk('public')->put($path, $content)) {
+            return null;
+        }
+
+        return $path;
     }
 
     private function isPdfContent(string $content): bool
