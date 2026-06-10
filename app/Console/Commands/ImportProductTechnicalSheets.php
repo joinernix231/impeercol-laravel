@@ -21,7 +21,8 @@ class ImportProductTechnicalSheets extends Command
                             {--limit= : Limitar cantidad de productos a procesar}
                             {--threshold=70 : Puntaje minimo (0-100) para emparejar PDF local con producto}
                             {--force : Reemplazar fichas tecnicas ya asignadas}
-                            {--dry-run : Mostrar acciones sin guardar cambios}';
+                            {--dry-run : Mostrar acciones sin guardar cambios}
+                            {--export-failures= : Exportar fallidos a CSV (default: storage/app/imports/fallidos-fichas.csv)}';
 
     protected $description = 'Busca e importa fichas tecnicas PDF desde internet para productos sin ficha';
 
@@ -173,6 +174,7 @@ class ImportProductTechnicalSheets extends Command
         $successCount = 0;
         $failedCount = 0;
         $skippedCount = 0;
+        $failures = [];
 
         $progressBar = $this->output->createProgressBar($products->count());
         $progressBar->start();
@@ -185,10 +187,16 @@ class ImportProductTechnicalSheets extends Command
 
             if (! $pdfUrl) {
                 $failedCount++;
+                $failures[] = [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'slug' => $product->slug,
+                    'brand' => $product->brand->name ?? '',
+                ];
 
                 if ($this->option('verbose')) {
                     $this->newLine();
-                    $this->line("  PDF no encontrado: {$product->name}");
+                    $this->line("  PDF no encontrado: {$product->name} ({$product->brand->name})");
                 }
 
                 usleep(300000);
@@ -209,6 +217,13 @@ class ImportProductTechnicalSheets extends Command
 
             if (! $savedPath) {
                 $failedCount++;
+                $failures[] = [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'slug' => $product->slug,
+                    'brand' => $product->brand->name ?? '',
+                    'error' => 'download_failed',
+                ];
 
                 if ($this->option('verbose')) {
                     $this->newLine();
@@ -230,7 +245,36 @@ class ImportProductTechnicalSheets extends Command
         $this->newLine(2);
         $this->printSummary($successCount, $failedCount, $skippedCount, $products->count());
 
+        if (! empty($failures) && ! $this->option('dry-run')) {
+            $this->exportFailures($failures);
+        }
+
         return Command::SUCCESS;
+    }
+
+    private function exportFailures(array $failures): void
+    {
+        $path = $this->option('export-failures') ?: storage_path('app/imports/fallidos-fichas.csv');
+        File::ensureDirectoryExists(dirname($path));
+
+        $handle = fopen($path, 'w');
+        fputcsv($handle, ['id', 'nombre', 'slug', 'marca', 'error']);
+
+        foreach ($failures as $failure) {
+            fputcsv($handle, [
+                $failure['id'],
+                $failure['name'],
+                $failure['slug'],
+                $failure['brand'],
+                $failure['error'] ?? 'not_found',
+            ]);
+        }
+
+        fclose($handle);
+
+        $this->newLine();
+        $this->warn("Fallidos exportados: {$path}");
+        $this->line('Ver pendientes: php artisan products:missing-technical-sheets');
     }
 
     private function searchTechnicalSheetUrl(Product $product, ?string $brandType): ?string
@@ -264,16 +308,21 @@ class ImportProductTechnicalSheets extends Command
                 $product,
                 70
             ));
+            $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
+                $this->searchPdfViaWeb($product, ['cdnmedia.mapei.com'], 'Mapei'),
+                $product,
+                65
+            ));
         }
 
-        $domains = $brandType ? ($this->searchDomains[$brandType] ?? []) : [];
+        $domains = $this->resolveSearchDomains($product, $brandType);
         $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
             $this->searchPdfViaWeb($product, $domains),
             $product,
             50
         ));
 
-        if (empty($domains)) {
+        if ($brandType === null) {
             $brandName = $product->brand->name ?? '';
             $candidates = array_merge($candidates, $this->mapUrlsToCandidates(
                 $this->searchPdfViaWeb($product, [], $brandName),
@@ -753,6 +802,25 @@ class ImportProductTechnicalSheets extends Command
         }
 
         return null;
+    }
+
+    private function resolveSearchDomains(Product $product, ?string $brandType): array
+    {
+        if ($brandType && isset($this->searchDomains[$brandType])) {
+            return $this->searchDomains[$brandType];
+        }
+
+        $brandSlug = Str::slug($product->brand->name ?? '');
+
+        if ($brandSlug === '') {
+            return [];
+        }
+
+        return array_unique([
+            "{$brandSlug}.com.co",
+            "{$brandSlug}.com",
+            "{$brandSlug}.co",
+        ]);
     }
 
     private function fetchHtml(string $url): ?string
